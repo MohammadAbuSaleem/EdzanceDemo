@@ -1,0 +1,17 @@
+<section class="homepage">
+    <div class="container text-center">
+	  <div>
+	  	<h2 class="title_404">خطأ في تفعيل حسابك لدينا</h2>
+	  		<div ng-if="vm.alerts" ng-repeat="alert in vm.alerts">
+			  <div class="des_404">{{alert.msg}}</div>
+			</div>
+	  	<h3 class="des_404">{{alert.msg}}</h3>
+		  <div><img src='img/404.png' class="img-404" /></div>
+	  	<div class="back-link">
+	    	<a href="#/">
+	    		الصفحة الرئيسية
+	    	</a>
+	  	</div>
+	  </div>
+    </div>
+</section>

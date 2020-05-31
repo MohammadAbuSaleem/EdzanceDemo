@@ -1,0 +1,33 @@
+<div class="row" ng-if="permission('files.add')">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <h3><i class="md md-add-box"></i> إضافة ملف جديد</h3>
+    <div class="card">
+      <div class="card-body card-padding">
+      <form novalidate name="vcfl.vcfileform" ng-submit="addfile(vcfl.vcfileform,$root.newPost.file,vcfl)" autocomplete="off">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group m-b-10 fg-line">
+              <textarea ng-model="$root.newPost.description" class="form-control" rows="5" placeholder="وصف الملف" name="filedes" required="required"></textarea>
+               <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل وصف الملف" ng-show="vcfl.vcfileform.filedes.$invalid && vcfl.vcfileform.$submitted" aria-hidden="false"></i>
+            </div>
+          </div>
+        </div> 
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="md md-attach-file f-20 v-l-m edzance-color" ng-class="{'error-color' : vcfl.vcfileform.file.$invalid && vcfl.vcfileform.$submitted}"></i>
+            <div ngf-drop ngf-select="vcfl.watch($root.newPost.file)" ng-model="$root.newPost.file" class="drop-box" 
+                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+                accept="image/*,application/pdf" 
+                ngf-pattern="'image/*,application/pdf,.doc,.docx,.xdoc,.xls,.xlsx,.ppt,.pptx,.odt,.rtf,.txt'" ng-bind="$root.newPost.file.name || $root.newPost.file.$error || $root.newPost.file.$errorParam || 'اضغط هنا لرفع ملف / أو قم بادراجها هنا'" required name="file" ng-class="{'error-color' : vcfl.vcfileform.file.$invalid && vcfl.vcfileform.$submitted}" tooltip-placement="bottom" uib-tooltip="ادخل الملف"></div>  
+               <button type="submit" class="btn btn-primary pull-left add-file f-15">
+                  إضافة ملف
+              </button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<h3><i class="md md-attach-file"></i>ملف المادة</h3>
+<div ui-view="file"></div>

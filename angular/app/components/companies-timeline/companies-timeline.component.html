@@ -1,0 +1,257 @@
+<section class="row m-0 p-t-20">
+    <div class="col-md-8 col-sm-12">
+        <div class="media">
+            <div class="pull-right p-l-10 post-tool">
+                <div>
+                    <a class="btn btn-primary btn-sm waves-effect waves-button waves-float postText">
+                        <i class="md md-create  fn-lg"></i>
+                    </a>
+                </div>
+                <!-- <div>
+                    <a type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float postImg">
+                        <i class="md  md-insert-photo fn-lg"></i>
+                    </a>
+                </div> -->
+                <div>
+                    <a type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float postCode">
+                        <i class="md  md-thumbs-up-down fn-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="media-body">
+                <div class="card">
+                    <div class="card-body card-padding">
+                        <div class="media-body">
+                            <form id="submitTextForm" ng-submit="vm.submitText('')" name="submitTextForm" novalidate="" class="ng-dirty ng-valid-parse ng-invalid ng-invalid-required">
+                                <div class="row post-text">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="fg-line m-b-10">
+                                            <textarea id="postbody" h-a="postbody" my-enter="vm.submitText('')" ng-model="vm.textpost" class="form-control auto-size post-textarea ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" rows="4" url-title="" url-description="" url-url="" placeholder="بم تفكر؟..." name="textpost" required=""></textarea>
+                                        </div>
+                                        <div class="liveurl-loader"></div>
+                                        <div class="liveurl">
+                                            <div class="close" title="Entfernen"></div>
+                                            <div class="inner">
+                                                <div class="image"> </div>
+                                                <div class="details">
+                                                    <div class="info">
+                                                        <input type="hidden" h-a="title" class="title" value="">
+                                                        <div class="title ng-pristine ng-untouched ng-valid ng-empty" ng-model="vm.title"> </div>
+                                                        <input type="hidden" h-a="description" class="description" value="">
+                                                        <div class="description ng-pristine ng-untouched ng-valid ng-empty" ng-model="vm.description"> </div> 
+                                                        <input type="hidden" h-a="url" class="url" value="">
+                                                        <div h-a="url" type="hidden" id="url" name="url" class="url ng-pristine ng-untouched ng-valid ng-empty" ng-model="vm.media"></div>
+                                                    </div>
+                                                    <div class="thumbnail">
+                                                        <div class="pictures">
+                                                            <div class="controls">
+                                                                <div class="prev button inactive"></div>
+                                                                <div class="next button inactive"></div>
+                                                                <div class="count">
+                                                                    <span class="current">0</span><span> من </span><span class="max">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="video"></div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <div class="fg-line keyword-div">
+
+                                            <div class="typeahead__container">
+                                                <div class="typeahead__field">
+
+                                                    <span class="typeahead__query">
+                                                        <input class="js2-typeahead form-control auto-size tags ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="vm.tag" type="search" name="q" autocomplete="off" placeholder="ادخل الكلمات المفتاحية" required="">
+
+                                                    </span>
+                                                    <!--    <span class="typeahead__button">
+                                                           <button type="submit">
+                                                               <span class="typeahead__search-icon"></span>
+                                                           </button>
+                                                       </span> -->
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm waves-effect waves-button waves-float pull-left fn-lg" ng-disabled="submitTextForm.textpost.$dirty & amp; & amp; submitTextForm.textpost.$invalid || submitTextForm.q.$dirty & amp; & amp; submitTextForm.q.$invalid" disabled="disabled">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form ng-submit="vm.submitCode()" class="ng-pristine ng-valid">
+                                <div class="row post-code hidden-element">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="fg-line">
+                                            <textarea my-enter="vm.submitCode()" ng-model="vm.codePost" class="form-control auto-size ng-pristine ng-untouched ng-valid ng-empty" rows="6" placeholder="بم تفكر؟..."></textarea>
+                                        </div>   
+                                        <div class="fg-line">
+                                            <input class="form-control auto-size ng-pristine ng-untouched ng-valid ng-empty" ng-model="vm.tag" type="text">
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="media animated ng-scope">
+                <div class="ng-scope">
+                    <div class="pull-right hidden-xs p-l-10">
+                        <a ui-sref="app.profile.timeline({id: post.userid})" class="img-fram" href="#/profile-3/timeline">
+                            <img class="post-img" ng-src="img/pioneer.png" src="img/pioneer.png" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="card w-item">
+                            <div class="card-body card-padding p-b-0">
+                                <div class="media">
+                                    <div class="pull-right hidden-md hidden-sm hidden-lg">
+                                        <a ui-sref="app.profile.timeline({id: post.userid})" href="#/profile-3/timeline">
+                                            <img class="post-img" ng-src="img/pioneer.png" alt="" src="img/pioneer.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="pull-right">
+                                            <a class="user-name ng-binding">اكاديمية الرواد للتدريب</a>
+                                            <div class="text-black ng-binding">2016-08-12 15:25:56</div>
+                                        </div>
+                                        <div class="pull-left tags-style ng-binding">فعالية حلك عنا</div>
+                                    </div>
+                                </div>
+                                <div class="row p-t-30">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 ng-binding">
+                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/54OBne7ELSo" frameborder="0" allowfullscreen></iframe>
+                                    
+                                    </div>
+                                </div>
+                                <div class="row m-t-10">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 ng-binding">
+                                        0<span>😒</span><span>😐</span><span>😍</span> 
+                                    </div>
+                                </div>
+                                <hr class="m-t-0 m-b-0">
+                                <div class="row faces-padding">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <a ng-click="vm.exprission(post.id, 'happy', $index)" class="facs-size">
+                                            😍</a>
+                                        <a ng-click="vm.exprission(post.id, 'normal', $index)" class="facs-size">
+                                            😐</a>
+                                        <a ng-click="vm.exprission(post.id, 'sad', $index)" class="facs-size">
+                                            😒</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wi-comments">
+                                <!-- ngRepeat: comments in post.comment| orderBy: 'created_at' -->
+                                <!-- Comment form -->
+                                <div class="wic-form toggled  row m-r-0 m-l-0">
+                                    <img ng-src="img/pioneer.png" class="comment-img" src="img/pioneer.png">
+                                    <textarea my-enter="vm.submitComment(post.id,$index)" ng-model="vm.comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control auto-size pull-left ng-pristine ng-untouched ng-valid ng-empty"></textarea>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="card">
+            <div class="card-body card-padding">
+                <div id="carousel1" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div  class="carousel-inner" role="listbox">
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <img src="img/profile-pics/2.jpg" alt="" class="suggestion-img">
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="user-name">حمزه النتشة</div>
+                                    <div>الجامعة الاردنية</div>
+                                    <div>علم حاسوب</div>
+                                    <div>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5">
+                                            <i class="md md-person-add"></i>
+                                            متابعة
+                                        </a>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5 m-r-5">
+                                            <i class="md md-email"></i>
+                                            رسالة
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="item">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <img src="img/profile-pics/2.jpg" alt="" class="suggestion-img">
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="user-name">حمزه النتشة</div>
+                                    <div>الجامعة الاردنية</div>
+                                    <div>علم حاسوب</div>
+                                    <div>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5">
+                                            <i class="md md-person-add"></i>
+                                            متابعة
+                                        </a>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5 m-r-5">
+                                            <i class="md md-email"></i>
+                                            رسالة
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="item">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <img src="img/profile-pics/2.jpg" alt="" class="suggestion-img">
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="user-name">حمزه النتشة</div>
+                                    <div>الجامعة الاردنية</div>
+                                    <div>علم حاسوب</div>
+                                    <div>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5">
+                                            <i class="md md-person-add"></i>
+                                            متابعة
+                                        </a>
+                                        <a class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5 m-r-5">
+                                            <i class="md md-email"></i>
+                                            رسالة
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item see-more-frind">
+                            <a class="f-16">
+                                مشاهده المزيد من المقترح    
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev">
+                        <span class="md md-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel1" role="button" data-slide="next">
+                        <span class="md md-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,37 @@
+<div class="contacts">
+    <div class="m-t-10">
+   <div class="member-div-margin" ng-repeat="(key,member) in waiting">
+        <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+            <div class="c-item m-b-5">
+                <div class="media">
+                    <div class="pull-right">
+                        <a ui-sref="app.profile.timeline({id:friend.friend_id})">
+                            <img src="img/icons/infinity.svg" ng-src="{{member.avatar}}" alt="{{member.name + '' + member.last_name}}" class="group-user-img m-b-5">
+                        </a>
+                    </div> 
+                    <div class="media-body col-md-12 col-sm-12 col-xs-12 p-0 p-t-5 p-b-5">
+                        <strong class="f-16 edzance-color line-height-1em">
+                            <span ng-bind="member.name"></span>
+                            <span ng-bind="member.last_name"></span>
+                        </strong>
+                        <div class="f-16 text-black line-height-1em" ng-bind="member.specialition"></div>
+                        <div class="f-16 text-gray line-height-1em">  
+                            <span ng-if="member.type == 'in'">عضو</span>
+                            <span ng-if="member.type == 'modirator'">مدير المجموعة</span>
+                            <span ng-if="member.type == ''"></span>
+                        </div>
+                    </div>
+                    <div class="pull-left edit-icon">
+                        <a class="btn btn-primary fn-lg join-group rate-follow-btn" ng-click="join(member.id,1)">
+                            <i class="md md-done"></i> موافقة
+                        </a>
+                        <a class="btn btn-danger fn-lg rate-follow-btn" ng-click="join(member.id,2)">
+                            <i class="md md-clear"></i> رفض
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+</div> 

@@ -1,0 +1,51 @@
+<section id="content">
+    <div class="container">
+		<div class="m-15">
+			<div class="row">
+				<div class="Page-container">
+                    <div class="row m-0">
+                        <div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+                            <div class="pull-right">
+                                <i class="md md-local-library"></i>
+                                المواد المؤرشفة
+                            </div>
+                            <a class="btn btn-primary btn-membership f-15 p-t-4 p-b-4  waves-effect waves-button waves-float pull-left f-18" ui-sref="app.virtualclasses">
+                                 الرجوع <i class="md md-chevron-left"></i>
+                            </a>
+                        </div> 
+                    </div>
+                    <md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1' ng-show="nopost == 1">
+    				 	<div ng-repeat="(key,vc) in archived | orderBy: 'created_at'" class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10">
+    			 			<div class="group-box">
+    						    <a ui-sref="app.virtualclass.discussion({classid:vc.class_id})">
+    						    <div class="position-relative">
+    						        <img src="img/vc/vc-cover.jpg" width="100%" height="120">
+    						    </div>
+    						    <div class="vc-box p-10 m-t-5">
+    						    	<img src="img/icons/infinity.svg" ng-src="{{vc.avatar}}" class="vc-indeximg">
+    						        <div class="f-18 text-black long-text" ng-bind="vc.name"></div>
+    						        <div class="  f-14 text-gray long-text" ng-bind="vc.u_name"></div>
+    						        <div>
+    						            <strong class="f-18">
+    						                 دخول
+    						            </strong>
+    						        </div> 
+    						    </div>
+    						    </a>
+    						</div>
+				        </div>
+                    </md-content>
+                    <div ng-show="nopost == 3">
+                        <div class="card col-md-3 col-sm-3 col-xs-12 m-t-20">
+                            <div class="card-body card-padding">
+                                <div class="f-20">
+                                    لا يوجد مواد مؤرشفة
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			 </div> 
+    	</div>
+    </div>
+</section>

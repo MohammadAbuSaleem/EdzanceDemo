@@ -1,0 +1,153 @@
+<div ng-if="$root.vc.permissions.class.indexOf('student.add') >= 0" class="new-student-vc">
+  <script type="text/ng-template" id="customTemplate.html">
+        <a>
+          <img src="img/icons/infinity.svg" lazy-img="{{match.model.img}}" width="56"> {{match.model.name}}
+    </a>
+  </script>
+  <!-- 
+<input type="text" name="asyncSelected" ng-model="asyncSelected" placeholder="ادخل اسم الطالب" uib-typeahead="address.full_name for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" required="true"> -->
+  <h4>
+    <i class="md md-add-box">
+    </i>
+    قم بإضافة الطلبة من خلال البحث عنهم من خلال صندوق البحث
+  </h4>
+  <input  type="text" name="query" ng-model="query" class="form-control" 
+          ng-paste="getLocation(query);" 
+          uib-typeahead="name for result in getLocation($viewValue)" 
+          typeahead-template-url="customTemplate.html" 
+          typeahead-on-select="query=$item.name;vm.addclasses($item);" 
+          typeahead-min-length="1" 
+          typeahead-is-open = "showResult"
+          typeahead-loading="searching"
+          autocomplete="false" 
+          placeholder="إضافة طالب جديد"/>
+  <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh">
+  </i>
+  <div ng-show="noResults">
+    <i class="glyphicon glyphicon-remove">
+    </i> No Results Found
+  </div>
+</div>
+<div class="contacts vc-student-info">
+  <h3 class="m-t-5">
+    <i class="md md-person">
+    </i>
+    مدرس المادة
+  </h3>
+  <div>
+    <div class="pull-right">
+      <a ui-sref="app.profile.timeline({id:$root.vc.instructor})">
+        <img src="img/icons/infinity.svg" lazy-img="{{$root.vc.avatar}}" class="vc-doctor-img">
+      </a>    
+    </div>
+    <div class="media-body">
+      <div class="card">
+        <div class="card-body">
+          <div class="media vc-doctor-text">
+            <strong>
+              <span ng-bind="$root.vc.u_name">
+              </span>
+            </strong>
+            <div class="edzance-color text-bold">مدرس المادة
+            </div>
+          </div>
+          <!-- <button ng-if="$root.vc.acctype != 2" ng-click="vm.removeclassuser(friend.id);frnd[$index]=1;" class="btn btn-primary fn-lg waves-effect doctor-follow"><i class="md md-person-add"></i> إالغاء المتابعة</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="$root.vc.permissions.class.indexOf('student.add') >= 0" >
+    <h3 class="m-t-5">
+      <i class="md md-group">
+      </i>
+      طلبات الإنضمام
+    </h3>
+    <div ng-repeat="student in waitingStudent track by $index" class="member-div-margin" ng-if="!noWaitingStudent">
+      <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+          <div class="c-item">
+          <div class="media">
+            <div class="pull-right p-l-10">
+              <a ui-sref="app.profile.timeline({id:student.user_id})">
+                <img src="img/icons/infinity.svg" lazy-img="{{student.avatar}}" alt="" class="vc-user-img">
+              </a>
+            </div>
+            <div class="media-body col-md-12 col-sm-12 col-xs-12 p-0 p-t-5 p-b-5 f-15">
+              <strong>
+                <span ng-bind="student.first_name">
+                </span>
+                 <span ng-bind="student.mid_name">
+                </span>
+                <span ng-bind="student.last_name">
+                </span>
+              </strong>
+              <div ng-bind="student.specialition" class="edzance-color f-15 text-bold">  
+              </div>
+            </div>
+            <div class="pull-left vc-student-button">
+              <button ng-click="vm.acceptStudent(0,student,$index)" ng-if="$root.vc.permissions.class.indexOf('student.add') >= 0" class="btn btn-danger waves-effect waves-button waves-float rate-follow-btn">
+                <i class="md md-not-interested">
+                </i>رفض الطالب
+              </button>
+               <button ng-click="vm.acceptStudent(1,student,$index)" ng-if="$root.vc.permissions.class.indexOf('student.add') >= 0" class="btn btn-primary waves-effect waves-button waves-float rate-follow-btn">
+                <i class="md md-add">
+                </i>قبول الطالب
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="noWaitingStudent">
+      لا يوجد طلبات انضمام في الوقت الحالي
+    </div>
+  </div>
+  <h3 class="m-t-5">
+    <i class="md md-group">
+    </i>
+    أعضاء المادة
+  </h3>
+  <div ng-repeat="friend in $root.vc.vcuser track by $index" class="member-div-margin" ng-if="$root.vc.vcuser.length>0">
+    <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+      <input type="hidden" name="frnd-{{$index}}" ng-model="frnd[$index]" value="0">
+      <div ng-show="!frnd[$index]" class="c-item">
+        <div class="media">
+          <div class="pull-right p-l-10">
+            <a ui-sref="app.profile.timeline({id:friend.friend_id})">
+              <img src="img/icons/infinity.svg" lazy-img="{{friend.avatar}}" alt="" class="vc-user-img">
+            </a>
+          </div>
+          <div class="media-body col-md-12 col-sm-12 col-xs-12 p-0 p-t-5 p-b-5 f-15">
+            <strong>
+              <span ng-bind="friend.first_name">
+              </span>
+              <span ng-bind="friend.last_name">
+              </span>
+            </strong>
+            <div ng-bind="friend.specialition" class="edzance-color f-15 text-bold">  
+            </div>
+          </div>
+          <div class="pull-left vc-student-button">
+            <button ng-click="vm.removeclassuser(friend.uid)" class="btn btn-danger rate-follow-btn"
+             ng-if="$root.vc.permissions.class.indexOf('student.delete') >= 0">
+              <i class="md md-delete">
+              </i>حذف الطالب
+            </button>
+            <span ng-click="(friend.isfriend == false ? friend.isfriend=true : friend.isfriend=false)" ng-if="friend.uid != $root.me.id">
+              <a ng-click ="(friend.isfriend == false ? $root.follow(friend.uid,'follower') : $root.follow(friend.uid,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float rate-follow-btn" >
+                <i class="md md-person-add">
+                </i>
+                <span ng-if="friend.isfriend== false">متابعة
+                </span>
+                <span ng-if="friend.isfriend!= false">الغاء المتابعة
+                </span> 
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div ng-if="$root.vc.vcuser.length == 0">
+        لا يوجد طلاب للمادة
+  </div> 
+</div>

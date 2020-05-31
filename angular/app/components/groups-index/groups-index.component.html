@@ -1,0 +1,123 @@
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<a ui-sref="app.groups.Invitations" class="f-18">
+			<i class="md md-group-add"></i>
+			دعوات الانضمام
+		</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+		<div class="pull-right">
+			<i class="md  md-group-work"></i>
+			مجموعاتي
+		</div>
+		<div class="pull-left" ng-if="$root.megroups.length > 1">
+			<a ui-sref="app.groups.all({groupcategory:'me'})">
+				مشاهدة المزيد
+			</a>
+		</div>
+	</div> 
+	<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10">
+		<div class="group-box new-group-padding" ng-click="vm.modalOpen()">
+			<a class="add-new-group">
+    			<div>
+    				<i class="md  md-add-circle-outline add-newgroup-icon"></i>
+    			</div>
+    			<div class="f-18">	    					
+    				إضافة مجموعة جديدة 
+    			</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10" ng-repeat="(key,group) in $root.megroups | orderBy: 'created_at':true | limitTo: 3">
+		<div ui-view="group"></div>
+	</div>
+</div>
+<div class="row" ng-if="engroups.length > 0">
+	<div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+		<div class="pull-right">
+			<i class="md  md-group-work"></i>
+			المجموعات المنتسب اليها
+		</div>
+		<div class="pull-left" ng-if="engroups.length > 2">
+			<a ui-sref="app.groups.all({groupcategory:'entered'})">
+				مشاهدة المزيد
+			</a>
+		</div>
+	</div> 
+	<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10" ng-repeat="(key,group) in engroups | orderBy: 'created_at':true | limitTo: 4">
+			<div ui-view="group"></div>
+	</div>
+</div>
+<div class="row" ng-if="sggroups.length > 0">
+	<div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+		<div class="pull-right">
+			<i class="md  md-group-work"></i>
+			المجموعات المقترحة
+		</div>
+		<div class="pull-left" ng-if="sggroups.length > 3">
+			<a ui-sref="app.groups.all({groupcategory:'sggstd'})">
+				مشاهدة المزيد
+			</a>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10" ng-repeat="(key,group) in sggroups | orderBy: 'created_at':true | limitTo: 4">
+		<div ui-view="group"></div>
+	</div>
+</div>
+<script type="text/ng-template" id="newGroup.html">
+    <div class="modal-content">
+      <div class="modal-header p-10">
+        <button type="button" class="close" ng-click="mvm.cancel()"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+        	<i class="md md-add-box"></i>
+        	إنشاء مجموعة جديدة
+        </h3>
+      </div>
+       <form name="mvm.newgroupform" novalidate ng-submit="mvm.addNewGroup(mvm.newgroupform,vm)" autocomplete="off">
+      <div class="modal-body p-15">
+		  <div class="form-group position-relative">
+		    <label for="groupname">اسم المجموعة</label>
+		    <input ng-model="$root.newPost.name" type="text"  class="form-control" placeholder="اسم المجموعة" name="groupname" required="required">
+            <i class="md md-error form-error left-6 group-error" tooltip-placement="bottom" uib-tooltip="ادخل اسم المجموعة" ng-show="mvm.newgroupform.groupname.$invalid && mvm.newgroupform.$submitted" aria-hidden="false"></i>
+		  </div>
+	   	  <div class="form-group">
+		    <label for="groupdes">وصف المجموعة</label>
+		    <textarea ng-model="$root.newPost.description" class="form-control group-textarea" rows="5" cols="3" placeholder="ادخل وصف المجموعة..." name="groupdes"></textarea>
+		  </div>
+		  <div class="row">
+			  <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+				  <div class="fg-line">
+                      <div class="select">
+                      <label for="sel1">صلاحيات وصول للمجموعة</label>
+                          <select ng-model="$root.newPost.permission" class="form-control" name="groupper" required="required">
+                          	<option value="closed" selected>للأعضاء الذين أقوم بدعوتهم</option>
+			    			<option value="public">عامة للجميع</option>
+                          </select>
+                          <i class="md md-error form-error group-error" tooltip-placement="bottom" uib-tooltip="ادخل صلاحيات للمجموعة" ng-show="mvm.newgroupform.groupper.$invalid && mvm.newgroupform.$submitted" aria-hidden="false"></i>
+                      </div>
+                  </div>
+			</div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+				  <div class="fg-line">
+	                   <div class="select">
+	                      <label for="sel1">نوع المجموعة</label>
+                           <tags-input placeholder="أضف الاهتمامات" ng-model="$root.newPost.type" add-on-comma="false" replace-spaces-with-dashes="true" name="grouptype" required></tags-input>
+                            <i class="md md-error form-error group-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل نوع للمجموعة" ng-show="mvm.newgroupform.grouptype.$invalid && mvm.newgroupform.$submitted" aria-hidden="false"></i>
+	                    </div>
+                  </div>
+			</div>
+		</div>
+		   <label class="checkbox checkbox-inline">
+              الحصول على موافقتي لإنضمام المستخدمين في المجموعة
+              <input ng-model="$root.newPost.auth" type="checkbox" value="true">
+              <i class="input-helper"></i> 
+          </label>
+      </div>
+      <div class="modal-footer border-top p-10">
+        <button type="submit" class="btn btn-primary f-14">إنشاء المجموعة</button>
+      </div>
+      </form>
+    </div>
+</script>

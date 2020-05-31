@@ -1,0 +1,31 @@
+<section id="content">
+    <div class="container">
+        <div class="card m-b-0" id="messages-main">
+            <div class="ms-menu">
+                <div class="message-search-div hidden-xs">
+                    <div class="fg-line">
+                        <input ng-model="searchFriends" type="text" class="form-control message-search-input" placeholder="بحث في جهات الإتصال" />
+                    </div>
+                </div> 
+                <div class="listview lv-user m-t-15-web">
+                    <div ui-sref="app.message.room({Room:friend.name})" ng-if="!friend.deleted" ng-repeat="friend in $root.Rooms | orderBy: 'updatedAt':true | filter:searchFriends" class="lv-item media" ui-sref-active="active">
+                        <div class="lv-avatar pull-right user-chat-mobile-box">
+                            <img ng-src="{{friend.avatar}}" src="img/profile-pics/1.jpg" alt="" class="user-chat-mobile">
+                        </div>
+                        <div class="media-body hidden-xs">
+                            <div class="lv-title chat-username row">
+                                <span ng-bind="friend.display" class="username-chat"></span>
+                                <i class="chat-count text-bold" ng-bind="friend.unReaded" ng-show="friend.unReaded != 0"></i>
+                            </div> 
+                            <div class="row m-0 p-r-8">
+                                <span class="last-message" ng-bind-html="$crypto.decrypt(friend.lastMessage) | trustHtml"></span>
+                                <span class="text-gray pull-left">{{moment(friend.updatedAt).locale('en').format("ddd, hA")}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ui-view></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,60 @@
+<!--
+<section class="homepage">
+    <div class="container margin-container login-container">
+        <div class="row m-0">
+            <div class="col-md-4 col-sm-6 col-xs-12 center-element">
+                <div ui-view>
+                	<register-type></register-type>
+                </div>
+                <div class="">
+                    <div class="col-md-6 col-sm-6 col-xs-6 p-r-0 p-l-5 m-t-5">
+                        <a  ng-click="reg.go(reg.stateParams.back)" class="btn btn-primary  btn-block f-16">
+                            <span>
+                              <<  رجوع
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 p-l-0 p-r-5 m-t-5">
+                        <a ng-click="reg.go(reg.stateParams.next)" class="btn btn-primary  btn-block f-16">
+                            <span>
+                                استمرار >>
+                            </span>
+                        </a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    if($( "section").hasClass("homepage") == true){
+        $("body").addClass("homepage-background");
+    }
+</script>
+-->
+
+<!-- <pre ng-hide="reg.$state.current.name == 'logins.login.register'">
+    الجامعة :{{reg.stateParams.university}}
+     نوع الحساب :{{reg.stateParams.type }}
+    اسم المستخدم :{{reg.stateParams.name }}
+    البريد الالكتروني :{{reg.stateParams.email }}
+    رقم الهاتف :{{reg.stateParams.phone }}
+    كلمة المرور : {{ '*'.repeat(reg.stateParams.password.length)}}
+</pre> -->
+<div class="p-20">
+    <div class="callout callout-danger" ng-if="reg.rootScope.rerror">
+        <h4>فشل في عملية التسجيل</h4>
+        <p ng-bind="reg.rootScope.errorDes1"></p>
+        <p ng-bind="reg.rootScope.errorDes2"></p>
+    </div>
+    <div ui-view>   
+         <register-type></register-type>
+    </div>
+    <div ng-hide="reg.$state.current.name == 'logins.login.register.main' || reg.$state.current.name == 'logins.login.register.information'"   class="text-center p-b-15 p-t-5 con hidden">  
+        <a  ng-click="reg.go(reg.stateParams.next)"  class="btn btn-lg con-btn btn-primary">
+            <span>
+                     استمرار
+            </span>
+        </a>
+    </div>
+</div>

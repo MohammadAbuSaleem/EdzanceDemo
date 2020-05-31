@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js" ></script>
+    <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc2/angular-material.js" ></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script>
+    <style type="text/css">
+        .virtualRepeatdemoInfiniteScroll #vertical-container {
+          height: 292px;
+          /*//width: 400px; */
+        }
+        .virtualRepeatdemoInfiniteScroll .repeated-item {
+          border-bottom: 1px solid #ddd;
+          box-sizing: border-box;
+          /*height: 40px;*/
+          padding-top: 10px; }
+        .virtualRepeatdemoInfiniteScroll md-content {
+          margin: 16px; }
+        .virtualRepeatdemoInfiniteScroll md-virtual-repeat-container {
+          border: solid 1px grey; }
+        .virtualRepeatdemoInfiniteScroll .md-virtual-repeat-container .md-virtual-repeat-offsetter {
+          padding-left: 16px; }
+    </style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div ng-controller="AppCtrl as ctrl" ng-cloak="" class="virtualRepeatdemoInfiniteScroll" ng-app="MyApp">
+  <md-content layout="column">
+  
+    <button ng-click="toggleShow()" style="width:100px">Show</button>
+
+    <md-virtual-repeat-container id="vertical-container" style="visibility:{{show}}">
+      <div md-virtual-repeat="item in ctrl.infiniteItems" md-on-demand class="repeated-item" flex>
+        {{item.id}}<button ng-click="console(item)" >test</button>
+      </div>
+    </md-virtual-repeat-container>
+  </md-content>
+</div>
+<script type="text/javascript">
+    (function () {
+  'use strict';
+
+    angular
+      .module('MyApp')
+      .controller('AppCtrl', function($timeout, $scope,$http) {
+        $scope.show = "hidden"
+
+$scope.toggleShow = function(){
+  $scope.show = "visible"
+}
+$scope.console = function(post){
+  console.log(post);
+}
+        // In this example, we set up our model using a plain object.
+        // Using a class works too. All that matters is that we implement
+        // getItemAtIndex and getLength.
+        var selfy = this;
+        this.infiniteItems = {
+          numLoaded_: 0,
+          toLoad_: 0,
+          items: [],
+
+          // Required.
+          getItemAtIndex: function(index) {
+            if (index > this.numLoaded_) {
+              this.fetchMoreItems_(index);
+              return null;
+            }
+
+                  return this[index];
+          },
+
+          // Required.
+          // For infinite scroll behavior, we always return a slightly higher
+          // number than the previously loaded items.
+          getLength: function() {
+            return this.numLoaded_ + 1;
+          },
+
+          fetchMoreItems_: function(index) {
+            // For demo purposes, we simulate loading more items with a timed
+            // promise. In real code, this function would likely contain an
+            // $http request.
+
+            if (this.toLoad_ < index) {
+              this.toLoad_ += 2;
+                $timeout(angular.noop, 300).then(
+                    angular.bind(this, function() {
+                        let self = this;
+                        $http.get("api/misc/post/"+(selfy.infiniteItems.items.length+2)+"/"+self.toLoad_+"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMDE1OCwiaXNzIjoiaHR0cDpcL1wvaW5pdGlhbC5kZXZcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MDE3NDc1NzQsImV4cCI6MjE0NzQ4MzY0NywibmJmIjoxNTAxNzQ3NTc0LCJqdGkiOiI1N2JlNTAzNDQ0ZGUxM2RhM2QyNDQxMWY5ZjNmODc3OCJ9.WFUHLjvnb61R6X9g3f2933RU5ITtLYAloiw5nsIJLNM")
+                        .then(function(response) {
+                            console.log(selfy.infiniteItems);
+                            if (response.data.data == 'no post') {
+                                return;
+                            }
+                            self.numLoaded_ = self.toLoad_;
+                            // Object.assign(obj1, obj2);
+                            selfy.infiniteItems.items = selfy.infiniteItems.items.concat(response.data.data);
+                            // selfy.infiniteItems = response.data.data
+                        });
+                        // Post.getPost().then(function(response) {
+                        //     console.log(response.data);
+                        //     this.numLoaded_ = this.toLoad_;
+                        // }).bind(this);
+                    })
+                );
+
+              // $timeout(angular.noop, 300).then(angular.bind(this, function() {
+              //   this.numLoaded_ = this.toLoad_;
+              // }));
+            }
+          }
+        };
+      });
+
+})();
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var Person = function(name) {
+  this.name = name;
+  this.canTalk = true;
+};
+
+Person.prototype.greet = function() {
+  if (this.canTalk) {
+    console.log('Hi, I am ' + this.name);
+  }else{console.warn('hidden:'+this.name);}
+};
+
+var Employee = function(name, title) {
+  Person.call(this, name);
+  this.title = title;
+};
+
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+
+Employee.prototype.greet = function() {
+  if (this.canTalk) {
+    this.showInfo('Hi, I am ' + this.name + ', the ' + this.title);
+  }
+};
+Employee.prototype.showInfo = function(obj) {
+    document.write(obj + "<br>");
+};
+
+var Customer = function(name) {
+  Person.call(this, name);
+};
+
+Customer.prototype = Object.create(Person.prototype);
+Customer.prototype.constructor = Customer;
+
+var Mime = function(name) {
+  Person.call(this, name);
+  this.canTalk = false;
+};
+
+Mime.prototype = Object.create(Person.prototype);
+Mime.prototype.constructor = Mime;
+
+var bob = new Employee('Bob', 'Builder');
+var joe = new Customer('Joe');
+var rg = new Employee('Red Green', 'Handyman');
+var mike = new Customer('Mike');
+var mime = new Mime('Mime');
+
+bob.greet();
+// Hi, I am Bob, the Builder
+
+joe.greet();
+// Hi, I am Joe
+
+rg.greet();
+// Hi, I am Red Green, the Handyman
+
+mike.greet();
+// Hi, I am Mike
+mime.greet();
+</script>
+</body>
+</html>

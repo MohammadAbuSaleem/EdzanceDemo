@@ -1,0 +1,73 @@
+<div class="row" ng-if="permission('homeWork.add')">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h3><i class="md md-add-box"></i> إضافة واجب جديد</h3>
+        <div class="card">
+            <div class="card-body card-padding">
+                <form novalidate name="vchw.homeworkForm" ng-submit="addfile(vchw.homeworkForm,$root.newPost.file,vchw)" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group fg-line" ng-class="{ 'has-error': vchw.homeworkForm.homeworktitle.$invalid && vchw.homeworkForm.$submitted }">
+                                <input ng-model="$root.newPost.hw_name" type="text" class="form-control" placeholder="عنوان واجب" name="homeworktitle" required>
+                                <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل عنوان الواجب" ng-show="vchw.homeworkForm.homeworktitle.$invalid && vchw.homeworkForm.$submitted" aria-hidden="false"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group fg-line" ng-class="{ 'has-error': vchw.homeworkForm.homeworkdes.$invalid && vchw.homeworkForm.$submitted }">
+                                <textarea ng-model="$root.newPost.hw_description" class="form-control" rows="5" placeholder="وصف الواجب " required name="homeworkdes"></textarea>
+                                <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل وصف الواجب" ng-show="vchw.homeworkForm.homeworkdes.$invalid && vchw.homeworkForm.$submitted" aria-hidden="false"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group" ng-class="{ 'has-error': vchw.homeworkForm.mark.$invalid && vchw.homeworkForm.$submitted }">
+                                <div>
+                                    <input ng-model="$root.newPost.hw_mark" type="number" class="form-control" placeholder="العلامه" required name="mark">
+                                    <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل علامة الواجب" ng-show="vchw.homeworkForm.mark.$invalid && vchw.homeworkForm.$submitted" aria-hidden="false"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group" ng-class="{ 'has-error': vchw.homeworkForm.homeworktype.$invalid && vchw.homeworkForm.$submitted }">
+                                <div>
+                                    <div class="select">
+                                        <select ng-model="$root.newPost.hw_type" class="form-control" name="homeworktype" required>
+                                            <option selected value="">اختر النوع</option>
+                                            <option value="presentation">عرض تقديمي</option>
+                                            <option value="homework">واجب بيتي</option>
+                                            <option value="project">مشروع</option>
+                                            <option value="report">تقرير</option>
+                                            <option value="research">بحث</option>
+                                        </select>
+                                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل نوع الواجب" ng-show="vchw.homeworkForm.homeworktype.$invalid && vchw.homeworkForm.$submitted" aria-hidden="false"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group" ng-class="{ 'has-error': vchw.homeworkForm.homeworkdate.$invalid && vchw.homeworkForm.$submitted }">
+                                <div>
+                                    <input ng-model="$root.newPost.hw_date" type="date" class="form-control text-right" placeholder="موعد التسليم" format="dd/MM/yyyy" required name="homeworkdate">
+                                    <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل موعد التسليم" ng-show="vchw.homeworkForm.homeworkdate.$invalid && vchw.homeworkForm.$submitted" aria-hidden="false"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <i class="md md-attach-file f-20 v-l-m edzance-color" ng-class="{'error-color' : vchw.homeworkForm.homeworkfile.$invalid && vchw.homeworkForm.$submitted}"></i>
+                            <div ngf-drop ngf-select="vchw.watch($root.newPost.file)" ng-model="$root.newPost.file" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf,.doc,.docx,.xdoc,.xls,.xlsx,.ppt,.pptx,.odt,.rtf,.txt'" ng-bind="$root.newPost.file.name || $root.newPost.file.$error || $root.newPost.file.$errorParam  || 'اضغط هنا لاختيار ملف'" name="homeworkfile" ng-class="{'error-color' : vchw.homeworkForm.homeworkfile.$invalid && vchw.homeworkForm.$submitted}" tooltip-placement="bottom" uib-tooltip="ادخل ملف الواجب">ملف الواجب</div>
+                            <button type="submit" class="btn btn-primary pull-left f-15 p-l-20 p-r-20">
+                                إضافة واجب
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<h3><i class="md md-description"></i>واجبات المادة</h3>
+<div ui-view="homework"></div>

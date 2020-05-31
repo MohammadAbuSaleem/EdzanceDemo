@@ -1,0 +1,294 @@
+<div ng-if="loader == 0">
+    <section id="content">
+        <div class="container">
+            <div class="progress-div">
+                <img src="img/logo-small.svg" class="progress-img" />
+                <progress class="edzance-progress"></progress>
+            </div>
+        </div>
+    </section>
+</div>
+<section id="content" ng-if="loader == 1">
+    <div class="container">
+		<div class="m-15">
+			<div class="row">
+				<md-content class="Page-container">
+                    <div class="row m-0">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <a class="btn btn-primary btn-membership f-15 p-t-4 p-b-4  waves-effect waves-button waves-float f-18" ui-sref="app.virtualclasses.archived">
+                                <i class="md md-save"></i> المواد المؤرشفة
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row m-0" ng-if="$root.me.level == 5">
+                        <div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+                            <div class="pull-right">
+                                <i class="md md-local-library"></i>
+                                المواد المنشأه
+                            </div>
+                        </div> 
+                        <div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10"  ui-sref-active="active" ng-click="vm.newclass = false" data-toggle="modal" data-target="#addClass" ng-if="$root.me.permission.home.indexOf('class.add') >= 0">
+                            <div class="group-box new-group-padding">
+                                <a class="add-new-group">
+                                    <div>
+                                        <i class="md  md-add-box add-newgroup-icon"></i>
+                                    </div>
+                                    <div class="f-18">                          
+                                        اضافة مادة جديدة
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+    				 	<div ng-repeat="(key,owened) in owened | orderBy: 'created_at'" class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10">
+    			 			<div class="group-box">
+    						    <a ui-sref="app.virtualclass.discussion({classid:owened.class_id})">
+    						    <div class="position-relative">
+    						        <img src="img/vc/vc-cover.jpg" width="100%" height="120">
+    						    </div>
+    						    <div class="vc-box p-10 m-t-5">
+    						    	<img src="img/icons/infinity.svg" ng-src="{{owened.avatar}}" class="vc-indeximg">
+    						        <div class="f-18 text-black long-text" ng-bind="owened.name"></div>
+    						        <div class="  f-14 text-gray long-text" ng-bind="owened.u_name"></div>
+    						        <div>
+    						            <strong class="f-18">
+    						                 دخول 
+    						            </strong>
+    						        </div> 
+    						    </div>
+    						    </a>
+    						</div>
+				        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+                            <div class="pull-right">
+                                <i class="md md-local-library"></i>
+                                المواد المنتسب اليها
+                            </div>
+                        </div> 
+                        <div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10" ui-sref-active="active" data-toggle="modal" data-target="#joinClass" ng-if="$root.me.permission.home.indexOf('class.join') >= 0 && $root.meFlag == false" ng-click="vm.newuserclass = false">
+                            <div class="group-box new-group-padding">
+                                <a class="add-new-group">
+                                    <div>
+                                        <i class="md md-add add-newgroup-icon"></i>
+                                    </div>
+                                    <div class="f-18">  
+                                        تسجيل مادة جديدة
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div ng-repeat="(key,entered) in entered | orderBy: 'created_at'" class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10">
+                            <div class="group-box">
+                                <a ui-sref="app.virtualclass.discussion({classid:entered.class_id})">
+                                <div class="position-relative">
+                                    <img src="img/vc/vc-cover.jpg" width="100%" height="120">
+                                </div>
+                                <div class="vc-box p-10 m-t-5">
+                                    <img src="img/icons/infinity.svg" ng-src="{{entered.avatar}}" class="vc-indeximg">
+                                    <div class="f-18 text-black long-text" ng-bind="entered.name"></div>
+                                    <div class="f-14 text-gray long-text" ng-bind="entered.u_name"></div>
+                                    <div>
+                                        <strong class="f-18">
+                                             دخول 
+                                        </strong>
+                                    </div> 
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+				 </md-content>
+			 </div> 
+    	</div>
+    </div>
+</section>
+<div class="modal fade" name="vm.registersemster" id="addClass" tabindex="-1" role="dialog" aria-labelledby="addClass" ng-if="$root.me.permission.home.indexOf('class.add') >= 0">
+    <div class="modal-dialog" role="document" ng-class="(!vm.newclass) ? 'doctor-modal' : ' '">
+        <div class="modal-content">
+            <div class="modal-header p-10">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="registersemsterLabel"><i class="md md-add-box"></i>
+                    مادة جديدة
+                </h3>
+            </div>
+            <div ng-if="!vm.newclass">
+                <form name="vm.newclassform" ng-submit="vm.addclass(vm.newclassform.$valid,vm)" class="newclassform" autocomplete="off" novalidate>
+                    <div class="modal-body p-15">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <input ng-model="vm.name" type="text" class="form-control" placeholder="اسم المادة" required name="name">
+                                            <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل اسم المادة" ng-show="vm.newclassform.name.$error.required && vm.classsubmit" aria-hidden="false"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <input ng-model="vm.class_hall" type="text" class="form-control" placeholder="القاعة الدراسية" name="classclasshall" required="required">
+                                            <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل شعبة المادة" ng-show="vm.newclassform.classclasshall.$error.required && vm.classsubmit" aria-hidden="false"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <textarea ng-model="vm.description" type="text" class="form-control" placeholder="وصف المادة" name="description" required>
+                                            </textarea>
+                                            <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل وصف المادة" ng-show="vm.newclassform.description.$error.required && vm.classsubmit" aria-hidden="false"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative">
+                            <p class="c-black f-500 m-b-5"><i class="md md-today"></i> الايام</p>
+                            <div>
+                                <label class="checkbox checkbox-inline m-l-20">
+                                    السبت
+                                    <input ng-model="vm.sat" type="checkbox" value="sat">
+                                    <i class="input-helper"></i>
+                                </label>
+                                <label class="checkbox checkbox-inline m-l-20">
+                                    الاحد
+                                    <input ng-model="vm.sun" type="checkbox" value="sun">
+                                    <i class="input-helper"></i>
+                                </label>
+                                <label class="checkbox checkbox-inline m-l-20">
+                                    الاثنين
+                                    <input ng-model="vm.mon" type="checkbox" value="mon">
+                                    <i class="input-helper"></i>
+                                </label>
+                                <label class="checkbox checkbox-inline m-l-20">
+                                    الثلاثاء
+                                    <input ng-model="vm.tus" type="checkbox" value="tus">
+                                    <i class="input-helper"></i>
+                                </label>
+                                <label class="checkbox checkbox-inline m-l-20">
+                                    الاربعاء
+                                    <input ng-model="vm.wed" type="checkbox" value="wed">
+                                    <i class="input-helper"></i>
+                                </label>
+                                <label class="checkbox checkbox-inline">
+                                    الخميس
+                                    <input ng-model="vm.thu" ng-change="vm.checkdays()" type="checkbox" value="thu">
+                                    <i class="input-helper"></i>
+                                </label>
+                            </div>
+                            <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل ايام المادة" ng-show="vm.checkdays() && vm.classsubmit" aria-hidden="false"></i>
+                        </div>
+                        <div>
+                            <p class="c-black f-500 m-t-20 m-b-10"><i class="md md-access-time"></i> الوقت</p>
+                            <div class="row vc-calendar">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="m-b-5">
+                                        وقت بدأ المحاضرة الدراسية
+                                    </div>
+                                    <div class="form-group position-relative">
+                                        <div uib-timepicker ng-model="fromtime" ng-change="vm.fromChanged(fromtime)" show-meridian="true"></div>
+                                        <i class="md md-error form-error left-9" tooltip-placement="bottom" uib-tooltip="ادخل وقت بدأ المحاضرة" ng-show="(fromtime.getHours()==0 && fromtime.getMinutes()==0 ) && vm.classsubmit" aria-hidden="false"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="m-b-5">
+                                        وقت انتهاء المحاضرة الدراسية
+                                    </div>
+                                    <div class="form-group position-relative">
+                                        <div uib-timepicker ng-model="totime" ng-change="vm.totimeChanged(totime)" show-meridian="true"></div>
+                                        <i class="md md-error form-error left-9" tooltip-placement="bottom" uib-tooltip="ادخل وقت انتهاء المحاضرة" ng-show="(totime.getHours()==0 && totime.getMinutes()==0 ) && vm.classsubmit" aria-hidden="false"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="checkbox checkbox-inline permission-checkbox">
+                                الحصول على موافقتي لإنضمام المستخدمين
+                                <input ng-model="vm.permission" type="checkbox" value="true">
+                                <i class="input-helper"></i> 
+                            </label>
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top p-10">
+                        <button type="submit" class="btn btn-primary f-14">إضافة المادة</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body p-l-10 p-r-10" ng-if="vm.newclass">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center">
+                            تم اضافة المادة بنجاح
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 f-16 text-center">
+                            قم باعطاء (رمز التسجيل) بالمادة لطلابك ليتمكنوا من الوصول اليها
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <div class="form-group class-code text-blue">
+                                {{vm.newcoursecode}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <div class="form-group text-red">
+                                <div>يمكنك الحصول على هذه الكود مرة أخرى بالدخول الى المادة الدراسية.</div>
+                                <div>يمكنك ايجاد موادك الدراسية في القائمة الرئسية.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" data-dismiss="modal">اغلاق الصندوق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" name="vm.registersemster" id="joinClass" tabindex="-1" role="dialog" aria-labelledby="joinClass">
+        <div ng-if="$root.me.permission.home.indexOf('class.join') >= 0">
+        <div class="modal-dialog doctor-modal" role="document">
+            <div class="modal-content">
+                <div ng-if="!vm.newuserclass">
+                    <div class="modal-header p-10">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="registersemsterLabel">
+                            <i class="md md-add"></i>
+                           تسجيل مادة جديدة
+                        </h3>
+                    </div>
+                    <form name="vm.studentform">
+                        <div class="modal-body p-15 p-b-0">
+                            <label>الرجاء ادخال كود المادة المقدم من مدرس المادة </label>
+                            <div ng-class="{ 'has-error': vm.studentform.studentcode.$error.required && vm.sclasssubmit }">
+                                <input ng-model="vm.code" type="text" class="form-control" required="required" name="studentcode" autocomplete="off">
+                                <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل كود المادة" ng-show="vm.studentform.studentcode.$error.required && vm.sclasssubmit" aria-hidden="false"></i>
+                            </div>
+                        </div>
+                        <div class="border-top modal-footer p-10">
+                            <button type="button" ng-click="vm.addclasses(vm.studentform.$valid)" class="btn btn-primary f-14">تسجيل مادة</button>
+                        </div>
+                    </form>
+                </div>
+                <div ng-if="vm.newuserclass">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center m-t-20 p-b-10">
+                                <div><img src="img/faces/smiling.svg" class="smileyface"></div>
+                                <div ng-bind="sucessMsg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" data-dismiss="modal">اغلاق الصندوق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

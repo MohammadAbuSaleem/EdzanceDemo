@@ -1,0 +1,128 @@
+<section class="homepage">
+    <div class="registration-education-con">
+    <h1 class="reg-title">معلومات الجامعة</h1>
+    <div class="secound-title-reg">لاستكمال عملية التسجيل الرجاء ادخال البيانات المطلوبة</div>
+        <form method="post" name="vm.regeducation" autocomplete="off" novalidate ng-submit="vm.eduRegister(vm.regeducation.$valid,files,vm)">
+            <div class="card register-shadow reg-education">
+                <div class="card-body">
+                    <div class="m-b-20-mobile m-b-15-web position-relative text-center">
+                        <label class="radio radio-inline">
+                            <input type="radio" name="status" required="{ !($root.user.status=='1' || $root.user.status=='2' || $root.user.status=='3'):true  ? false }" ng-model="$root.user.status" value="1">
+                            <i class="input-helper"></i>  
+                            طالب جامعي
+                        </label>
+                        <label class="radio radio-inline m-r-10 m-l-0">
+                            <input type="radio" name="status" required="{ !($root.user.status=='1' || $root.user.status=='2' || $root.user.status=='3'):true  ? false }" ng-model="$root.user.status" value="2">
+                            <i class="input-helper"></i>  
+                            مدرس جامعي
+                        </label>
+                        <label class="radio radio-inline m-r-10 m-l-0">
+                            <input type="radio" name="status" required="{ !($root.user.status=='1' || $root.user.status=='2' || $root.user.status=='3'):true  ? false }" ng-model="$root.user.status" value="3">
+                            <i class="input-helper"></i>  
+                            خريج جامعي 
+                        </label>                        
+                        <div ng-show="vm.regeducation.status.$invalid && vm.regeducation.$submitted" class="help-block type-acc-error">الرجاء اختيار النوع</div>
+                    </div>
+                    <div class="form-group m-b-15-web position-relative">
+                        <md-select ng-model="$root.user.countries" 
+                                   class="text-last-center"
+                                   name="unvcountry" 
+                                   ng-change="vm.changeCountry(vm)"
+                                   placeholder="اختر دولة جامعتك" 
+                                   required>
+                            <md-option ng-repeat="country in unvcountries" ng-value="{{country.id}}" ng-bind="country.country_arabic"></md-option>
+                        </md-select>
+                        <p ng-show="vm.regeducation.unvcountry.$invalid && vm.regeducation.$submitted" class="help-block">الرجاء اختيار الدولة</p>     
+                    </div>  
+                    {{unvrepeat}}
+                    <div class="form-group m-b-15-web position-relative">
+                        <md-select  ng-model="$root.user.university"
+                                    class="text-last-center"
+                                    name="university"
+                                    ng-change="vm.changeUniversity(vm)"
+                                    placeholder="اختر جامعتك" 
+                                    required>
+                            <md-option  ng-repeat="unv in unvrepeat"
+                                        ng-value="{{unv.university_id}}" 
+                                        ng-bind="unv.university_name"></md-option>
+                        </md-select>
+                        <p ng-show="vm.regeducation.university.$invalid && vm.regeducation.$submitted" class="help-block">الرجاء اختيار جامعتك</p>          
+                    </div>
+                    <div class="form-group m-b-15-web position-relative">
+                        <md-select  ng-model="$root.user.collages"
+                                    class="text-last-center" 
+                                    name="collages"  
+                                    ng-change="vm.changeCollages(vm)"
+                                    placeholder="اختر كليتك" 
+                                    required>
+                            <md-option  ng-repeat="col in colrepeat" 
+                                        ng-value="{{col.college_id}}" 
+                                        ng-bind="col.college_name"></md-option>
+                        </md-select>
+                        <p ng-show="vm.regeducation.collages.$invalid && vm.regeducation.$submitted" class="help-block">الرجاء اختيار كليتك</p>
+                    </div>
+                    <div class="form-group m-b-15-web position-relative">
+                        <md-select  ng-model="$root.user.specialization"
+                                    class="text-last-center"
+                                    name="specialization"
+                                    placeholder="اختر تخصصك"
+                                    required>
+                            <md-option  ng-repeat="spe in sperepeat" 
+                                        ng-value="{{spe.specialition_id}}" 
+                                        ng-bind="spe.specialition_name"></md-option>
+                        </md-select>
+                        <p ng-show="vm.regeducation.specialization.$invalid && vm.regedmd-ucation.$submitted" class="help-block">الرجاء اختيار تخصصك</p>
+                    </div>
+                    <div class="doctor-info position-relative hidden">
+                        <div>
+                            <p class="c-black f-500 m-t-20 m-b-10"><i class="md md-access-time"></i>الوقت الذي يمكننا الاتصال بك</p>
+                            <div class="row reg-calendar">
+                             <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group time-picker">
+                                  <span>من</span>
+                                  <div uib-timepicker ng-model="fromtime" ng-change="fromChanged(mytime,files)" show-meridian="true"></div>
+                                </div>
+                             </div>
+                             <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group time-picker">
+                                <span>الى</span>
+                                  <div uib-timepicker ng-model="totime" ng-change="totimeChanged(mytime,files)"  show-meridian="true"></div>
+                                </div>
+                             </div>
+                            </div>
+                             <p ng-show="timeErrorFlag && vm.regeducation.$submitted" class="help-block timeError">الرجاء ادخال الوقت الصحيح</p>
+                        </div>
+                        <div class="position-relative">
+                            <p class="c-black f-500 m-t-20 m-b-10">
+                            <i class="md md-access-time"></i>الرجاء رفع السيره الذاتية</p>
+                            <div ngf-drop ngf-select="vm.watch(files)" ng-model="files" class="drop-box" 
+                                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+                                accept="image/*,application/pdf" 
+                                ngf-pattern="'image/*,application/pdf'" ng-bind="files.name || files.$error || files.$errorParam || 'اضغط هنا لرفع ملف / أو قم بادراجها هنا'" ng-change="doctorValid(files)"> 
+                            </div> 
+                             <p ng-show="fileErrorFlag && vm.regeducation.$submitted" class="help-block fileError">
+                                الرجاء ادخال السيرة الذاتية
+                             </p>
+                         </div>
+                    </div>
+                    <div class="m-b-20-mobile m-b-10-web position-relative">
+                        <button type="submit" class="btn btn-lg con-btn btn-primary" value="Submit">
+                            <span>
+                            إنشاء حساب
+                           </span>
+                        </button>
+                    </div> 
+                 </div> 
+          </div> 
+        </form>
+    </div>
+</section>
+<script type="text/javascript">
+    $("input[name=status]:radio").click(function() {
+        if($(this).attr("value")=="2") {
+            $('.doctor-info').removeClass('hidden');
+        }else{
+            $('.doctor-info').addClass('hidden');
+        }
+    });
+</script>

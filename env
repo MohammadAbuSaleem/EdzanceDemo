@@ -1,0 +1,53 @@
+APP_ENV=local                                                                                
+APP_DEBUG=true                                                                               
+APP_KEY=base64:ulQ3oeXLk5XOeUCQm4KXHHmRGBR/Ls9qcBqsNNKsbvo=                                  
+                                                                                             
+API_PREFIX=api                                                                               
+                                                                                             
+DB_HOST=localhost:3306                                                                       
+//DB_DATABASE=edzance_restructure                                                               
+DB_DATABASE=dev                                                                       
+DB_USERNAME=root                                                                   
+DB_PASSWORD=                                                                                   
+CACHE_DRIVER=file                                                                            
+SESSION_DRIVER=file                                                                          
+QUEUE_DRIVER=sync                                                                            
+                                                                                             
+REDIS_HOST=127.0.0.1                                                                         
+REDIS_PASSWORD=null                                                                          
+REDIS_PORT=6379                                                                              
+MAIL_DRIVER=smtp                                           
+MAIL_HOST=smtp.sparkpostmail.com                           
+MAIL_PORT=587                                              
+MAIL_USERNAME=SMTP_Injection                               
+MAIL_PASSWORD=490832de5b0d31020782d470447bcc89c3b62aaa     
+MAIL_ENCRYPTION=null                                       
+MAIL_FROM=noreplay@ed-zance.com                            
+MAIL_FROM_NAME=ED-ZANCE                                                                                               
+                                                                                             
+NOCAPTCHA_SECRET=6LcCUBUUAAAAAHZBzs-7Oh-7Er-X8lttzkPAMSta
+NOCAPTCHA_SITEKEY=6LcCUBUUAAAAAMXk0dmcvgXsTXLSvxzBPLV098iA                                                              
+
+FIREBASE_SERVICE_JSON=../test1-d5b5f-firebase-adminsdk-c4g9r-36cbbb70f3.json
+FIREBASE_DATABASE=https://test1-d5b5f.firebaseio.com       
+                                                                                             
+                                                                                             
+MAIL_ENCRYPTION=null                                                                         
+MAIL_FROM=noreplay@ed-zance.com                                                              
+MAIL_FROM_NAME='ED-ZANCE'                                                                    
+                                                                                             
+GITHUB_CLIENT_ID = null                                                                      
+GITHUB_CLIENT_SECRET = null                                                                  
+GITHUB_REDIRECT = http://yourdomain.com/auth/github/callback                                 
+                
+                                                                                  
+GOOGLE_CLIENT_ID = 485234217022-vjm5l9l6u15ok6pvchckftu13f6vkt3r.apps.googleuserco
+ntent.com                                                                         
+GOOGLE_CLIENT_SECRET = reYFMHWyIiFtFgQNBofb7LfG                                   
+GOOGLE_REDIRECT = http://initial.dev/auth/google/callback                         
+                                                                                  
+                                                                                  
+FACEBOOK_CLIENT_ID = 186910485064658                                             
+FACEBOOK_CLIENT_SECRET = 0ba6855af73381255bf8e8ab3a2b516c                         
+FACEBOOK_REDIRECT = http://initial.dev/auth/facebook/callback              
+FACEBOOK_REDIRECT = http://initial.dev/auth/facebook/callback                                                        

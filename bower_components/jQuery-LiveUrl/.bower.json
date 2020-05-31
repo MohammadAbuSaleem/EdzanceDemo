@@ -1,0 +1,15 @@
+{
+  "name": "jQuery-LiveUrl",
+  "homepage": "https://github.com/stephan-fischer/jQuery-LiveUrl",
+  "version": "1.2.2",
+  "_release": "1.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.2",
+    "commit": "b0c3b43c33e097a4e9dad2da2aae0c1e52ea28b2"
+  },
+  "_source": "https://github.com/stephan-fischer/jQuery-LiveUrl.git",
+  "_target": "^1.2.2",
+  "_originalSource": "https://github.com/stephan-fischer/jQuery-LiveUrl.git",
+  "_direct": true
+}

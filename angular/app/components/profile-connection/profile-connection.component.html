@@ -1,0 +1,19 @@
+<div class="pmb-block">
+    <div class="p-header">
+        <ul class="p-menu m-b-10">
+            <li ui-sref-active="active">
+                <a ui-sref="app.profile.connection.follower({id:vm.$stateParams.id})" >
+                    <i class="md md-people"></i> متابَعون
+                </a>
+            </li>
+            <li ui-sref-active="active" >
+                <a  ui-sref="app.profile.connection.following({id:vm.$stateParams.id})" class="p-r-0">
+                    <i class="md md-person-add"></i> متابِعون
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="contacts clearfix row">
+        <div ui-view="connection"></div>
+    </div>
+</div>

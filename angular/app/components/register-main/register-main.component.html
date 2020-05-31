@@ -1,0 +1,57 @@
+  <md-content layout-padding="" class="Janna-font">
+    <form name="userForm">
+      <div layout-gt-sm="row">
+        <md-input-container flex-gt-sm="" class="register-email-input">
+          <input type="text" md-maxlength="30" ng-disabled="regmain.stateParams.logtype == 'social'" required name="name" ng-model="regmain.stateParams.name" placeholder="اسم المستخدم" class="form-control" autocomplete="off">
+<!--           <div class="hint" ng-if="showHints"> اخبرنا ماذا تحب ان نناديك</div> -->
+          <div ng-messages="userForm.name.$error" ng-show="userForm.name.$dirty">
+            <div ng-message="required">الاسم مطلوب.</div>
+            <div ng-message="md-maxlength">الحد الأعلى للاسم 30 حرف.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container flex-gt-sm="" class="register-email-input">
+          <input type="text" name="phone" ng-model="regmain.stateParams.phone" ng-pattern="/^[0-9]{3}[0-9]{3}[0-9]{4}$/" placeholder="رقم الهاتف" class="form-control" required maxlength="10" autocomplete="off">
+          <!-- ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" -->
+          <!-- <div class="hint" ng-if="showHints">##########</div> -->
+
+          <div ng-messages="userForm.phone.$error" ng-show="userForm.phone.$dirty">
+            <div ng-message="required">رقم الهاتف مطلوب.</div>
+            <div ng-message="pattern">########## - الرجاء ادخال رقم هاتف صحيح.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container flex-gt-sm="" class="register-email-input">
+          <input type="text" name="email" ng-disabled="regmain.stateParams.logtype == 'social'" ng-model="regmain.stateParams.email" required ng-pattern="/^.+@.+\..+$/" placeholder="البريد الالكتروني" class="form-control" autocomplete="off">
+          <!--<div class="hint" ng-show="showHints">كيف سنتواصل معك؟؟</div>-->
+          <div ng-messages="userForm.email.$error" ng-show="userForm.email.$dirty">
+            <div ng-message="required">البريد الالكتروني مطلوب</div>
+            <div ng-message="required">البريد الالكتروني مطلوب</div>
+            <div ng-message="pattern"> 
+                البريد الالكتروني غير مدخل بشكل صحيح
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container flex-gt-sm="" class="register-password-input">
+          <input type="password" md-minlength="8" ng-minlength="8"  required name="password" ng-model="regmain.stateParams.password" placeholder="كلمة المرور" class="form-control" autocomplete="off">
+          <!-- <div class="hint" ng-if="showHints"> ##########</div> -->
+          <div ng-messages="userForm.password.$error" ng-show="userForm.password.$dirty">
+            <div ng-message="required">كلمة المرور مطلوبة.</div>
+            <div ng-message="md-minlength">كلمة المرور يجب ان تكون ست حروف على الاقل.</div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+  </md-content>
+      <a ng-show="regmain.$state.current.name == 'logins.login.register.main'"  ng-disabled="!userForm.$valid"    ng-click="userForm.$valid == true ? $parent.$parent.reg.go(regmain.stateParams.next) : $parent.$parent.reg.test('no no no')"  class="btn btn-lg con-btn btn-primary">
+            <span>
+            استمرار
+           </span>
+        </a>
+  <script type="text/javascript">
+     $(".con").removeClass("hidden");
+  </script>

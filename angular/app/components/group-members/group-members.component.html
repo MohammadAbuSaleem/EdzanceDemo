@@ -1,0 +1,213 @@
+<div class="contacts">
+    <div ng-if="($root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator') && $root.groupObj.permission == 1">
+        <a ui-sref="app.group.members-requests" class="btn btn-primary btn-membership p-h-20 f-15"> 
+            <i class="md md-dns"></i>
+            طلبات الانضمام 
+        </a>  
+        <hr/> 
+    </div>
+    <div class="m-t-10 new-student-vc" ng-if="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator'">
+          <script type="text/ng-template" id="customTemplate.html">
+            <a>
+              <img ng-src="{{match.model.img}}" width="56"> {{match.model.name}}
+            </a>
+          </script>
+        <h4>
+            <i class="md md-add-box"></i>
+            قم بدعوه الأعضاء من خلال البحث عنهم من خلال صندوق البحث
+        </h4>
+        <input  type="text" name="search" 
+            ng-model="search" 
+            class="form-control" 
+            ng-paste="$root.usersearch(query);" 
+            uib-typeahead="name for result in $root.usersearch($viewValue)" 
+            typeahead-template-url="customTemplate.html" 
+            typeahead-on-select="query=$item.name;join($item.id,5,0,1);" 
+            typeahead-min-length="1" 
+            typeahead-is-open = "showResult"
+            typeahead-loading="searching"
+            autocomplete="false" 
+            placeholder="+إضافة عضو جديد"/>
+        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+    </div>
+    <div class="f-18 p-t-10 text-black">
+        <i class="md md-assignment-ind"></i>
+        مالك المجموعة
+    </div>
+      <div class="member-div-margin">
+            <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+                <div class="c-item m-b-5"> 
+                    <div class="media">
+                        <a ui-sref="app.profile.timeline({id:$root.groupObj.data.user_id})">
+                            <div class="pull-right">
+                                <img ng-src="{{$root.groupObj.data.avatar}}" alt="{{$root.groupObj.data.first_name + '' + $root.groupObj.data.last_name}}" class="group-user-img">
+                            </div> 
+                            <div class="media-body col-md-12 col-sm-12 col-xs-12 p-l-0 p-r-8 p-t-5 p-b-5">
+                                <strong class="f-16 edzance-color line-height-1em">
+                                    <span ng-bind="$root.groupObj.data.first_name"></span>
+                                    <span ng-bind="$root.groupObj.data.last_name"></span>
+                                </strong>
+                                <div class="f-16 text-black line-height-1em" ng-bind="$root.groupObj.data.specialition"></div>
+                                <div class="f-16 text-gray line-height-1em">  
+                                    <span>مالك المجموعة</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    <div ng-if="groupModirator != 'no Modirator'" class="f-18 p-t-10 clear-both text-black">
+        <i class="md md-assignment-ind"></i>
+        مدراء المجموعة
+    </div>
+    <div ng-if="groupModirator != 'no Modirator'">
+     <div class="member-div-margin" ng-repeat="(key,groupModirator) in groupModirator| orderBy: 'created_at':true">
+            <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+                <div class="c-item m-b-5"> 
+                    <div class="media">
+                        <a ui-sref="app.profile.timeline({id:groupModirator.id})">
+                            <div class="pull-right">
+                                <img ng-src="{{groupModirator.avatar}}" alt="{{groupModirator.name + '' + groupModirator.last_name}}" class="group-user-img">
+                            </div> 
+                            <div class="media-body col-md-12 col-sm-12 col-xs-12 p-l-0 p-r-8 p-t-5 p-b-5">
+                                <strong class="f-16 edzance-color line-height-1em">
+                                    <span ng-bind="groupModirator.name"></span>
+                                    <span ng-bind="groupModirator.last_name"></span>
+                                </strong>
+                                <div class="f-16 text-black line-height-1em" ng-bind="groupModirator.specialition"></div>
+                                <div class="f-16 text-gray line-height-1em">  
+                                    <span ng-if="groupModirator.type == 'in'">عضو</span>
+                                    <span ng-if="groupModirator.type == 'modirator'">مدير المجموعة</span>
+                                    <span ng-if="groupModirator.type == ''"></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="pull-left edit-icon" ng-if="$root.groupObj.member == 'owner'">
+                            <ul class="actions">
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="md md-settings"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a ng-click="join(groupModirator.id,3,key,2)" class="close-menu" ng-if="groupModirator.type != 'block'">
+                                                <i class="md md-remove-circle"></i>
+                                                <span>
+                                                    حظر العضو
+                                                </span>
+                                            </a>
+                                            <a ng-click="join(groupModirator.id,1,key,2)" class="close-menu" ng-if="groupModirator.type == 'block'">
+                                                <i class="md md-remove-circle"></i>
+                                                <span>
+                                                   الغاء حظر العضو
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="join(groupModirator.id,1,key,2)" class="close-menu" ng-if="groupModirator.type == 'modirator' && $root.groupObj.member == 'owner'">
+                                                <i class="md md-mode-edit"></i>
+                                                <span>
+                                                    تعيين عضو
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="join(groupModirator.id,2,key,2)" class="close-menu" >
+                                                <i class="md md-delete"></i>
+                                                حذف العضو
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="f-18 p-t-10 clear-both text-black">
+        <i class="md md-account-child"></i>
+        أعضاء المجموعة
+    </div>
+    <div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+       <div class="member-div-margin" ng-repeat="(key,member) in dat | orderBy: 'key':true track by $index">
+            <div class="col-md-12 col-sm-12 col-xs-12 p-r-5 p-l-5">
+                <div class="c-item m-b-5"> 
+                    <div class="media">
+                        <a ui-sref="app.profile.timeline({id:member.id})">
+                            <div class="pull-right">
+                                <img ng-src="{{member.avatar}}" alt="{{member.name + '' + member.last_name}}" class="group-user-img">
+                            </div> 
+                            <div class="media-body col-md-12 col-sm-12 col-xs-12 p-l-0 p-r-8 p-t-5 p-b-5">
+                                <strong class="f-16 edzance-color line-height-1em">
+                                    <span ng-bind="member.name"></span>
+                                    <span ng-bind="member.last_name"></span>
+                                </strong>
+                                <div class="f-16 text-black line-height-1em" ng-bind="member.specialition"></div>
+                                <div class="f-16 text-gray line-height-1em">  
+                                    <span ng-if="member.type == 'in'">عضو</span>
+                                    <span ng-if="member.type == 'modirator'">مدير المجموعة</span>
+                                    <span ng-if="member.type == 'blocked'" class="text-red">عضو محظور</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="pull-left edit-icon" ng-if="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator'">
+                            <ul class="actions">
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="md md-settings"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                        
+                                            <a ng-click="join(member.id,3,$index,3)" class="close-menu" ng-if="member.type != 'block'">
+                                                <i class="md md-remove-circle"></i>
+                                                <span>
+                                                    حظر العضو
+                                                </span>
+                                            </a>
+                                            <a ng-click="join(member.id,1,$index,3)" class="close-menu" ng-if="member.type == 'block'">
+                                                <i class="md md-remove-circle"></i>
+                                                <span>
+                                                   الغاء حظر العضو
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="join(member.id,4,$index,3)" class="close-menu" ng-if="member.type != 'modirator'">
+                                                <i class="md md-mode-edit"></i>
+                                                <span>
+                                                    تعيين مدير
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="join(member.id,2,$index,3)" class="close-menu" >
+                                                <i class="md md-delete"></i>
+                                                حذف العضو
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div> 
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function(){
+            $(".close-menu").click(function() {
+                $(".dropdown").removeClass("open");
+            });
+        }, 3000);
+    });
+</script>

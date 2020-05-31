@@ -1,0 +1,360 @@
+<div ng-if="loader == 0">
+    <section id="content">
+        <div class="container">
+            <div class="progress-div">
+                <img src="img/logo-small.svg" class="progress-img" />
+                <progress class="edzance-progress"></progress>
+            </div>
+        </div>
+    </section>
+</div>
+<section id="content"  ng-if="loader == 1">
+    <div class="container" ng-class="{markcon: ($state.current.name == 'app.virtualclass.marks')}">
+        <ul class="tab-nav tn-justified vc-mobile-menu hidden-lg hidden-md hidden-sm">
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon">
+                <a ui-sref="app.virtualclass.discussion">
+                    <img src="img/vc/discussion.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/discussionactive.svg" width="30" class="icon-active">
+                    <div>
+                        الحائط
+                    </div>  
+                </a>
+            </li>
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon">
+                <a ui-sref="app.virtualclass.files">
+                    <img src="img/vc/files.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/filesactive.svg" width="30" class="icon-active">
+                    <div>
+                        الملفات
+                    </div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon">
+                <a ui-sref="app.virtualclass.homework">
+                    <img src="img/vc/homework.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/homeworkactive.svg" width="30" class="icon-active">
+                    <br/> الواجبات
+                </a>
+            </li>
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon">
+                <a ui-sref="app.virtualclass.exam">
+                    <img src="img/vc/exam.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/examactive.svg" width="30" class="icon-active">
+                    <div>
+                        الامتحانات
+                    </div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon">
+                <a ui-sref="app.virtualclass.student">
+                    <img src="img/vc/student.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/studentactive.svg" width="30" class="icon-active">
+                    <div>
+                        الطلاب
+                    </div>
+                </a>
+            </li>
+            <li ui-sref-active="active" class="waves-effect vc-mobile-icon" ng-if="$root.vc.permissions.class.indexOf('setting.add') >= 0">
+                <a ui-sref="app.virtualclass.options">
+                    <img src="img/vc/options.svg" width="30" class="icon-not-active">
+                    <img src="img/vc/optionsactive.svg" width="30" class="icon-active">
+                    <div>
+                        الاعدادات
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="col-md-3 col-sm-3 col-xs-12 left-side-bar vc-right-side">
+            <div class="card vc-card hidden-xs">
+                <div class="card-body card-padding">
+                    <img src="img/icons/infinity.svg" lazy-img="{{vc.rscope.vc.avatar}}" width="100%" alt="" class="vc-image">
+                    <div ng-if="$root.vc.instructor != $root.me.id">
+                        <div ng-click="($root.vc.isfriend == null ? $root.vc.isfriend=true : $root.vc.isfriend=null) " class="vc-follow-btn hidden-xs">
+                            <a ng-click="($root.vc.isfriend == null ? $root.follow($root.vc.instructor,'follower') : $root.follow($root.vc.instructor,'deleted'))" class="fn-lg btn-block">
+                                <i class="md md-person-add"></i>
+                                <span ng-if="$root.vc.isfriend== null">متابعة</span>
+                                <span ng-if="$root.vc.isfriend!= null">الغاء المتابعة</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div scroll-to-fixed="{ marginTop: 78}">
+                <div class="row hidden-xs">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center">
+                            <h1 class="f-16 m-0 edzance-color text-bold" ng-bind="vc.rscope.vc.name"></h1>
+                            <h2 class="f-16 m-b-15 m-t-10 username" ng-bind="vc.rscope.vc.u_name">                          
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden-xs">
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.discussion">النقاشات</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.files">ملفات المادة</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.homework">الواجبات الدراسية
+                        </a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.exam">امتحانات المادة</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.chat">الدردشة الصفية</a>
+                    </div>
+                    <!-- <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.marks">العلامات</a>
+                    </div> -->
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.attendance">الحضور والغياب</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.information">معلومات المادة</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active" ng-if="$root.vc.permissions.class.indexOf('student.add') >= 0">
+                        <a class="" ui-sref="app.virtualclass.student">إدارة الطلبة</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active" ng-if="$root.vc.permissions.class.indexOf('student.add') < 0">
+                        <a class="" ui-sref="app.virtualclass.student">أعضاء المادة</a>
+                    </div>
+                    <div class="tabs-edzance" ui-sref-active="active">
+                        <a class="" ui-sref="app.virtualclass.options">إعدادت الماده</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-lg hidden-md hidden-sm" ng-if="$root.mobileHeader">
+            <div class="vc-mobile-cover">
+                <div class="card vc-card">
+                    <div class="card-body card-padding">
+                        <img src="img/icons/infinity.svg" lazy-img="{{vc.rscope.vc.avatar}}" width="100%" alt="" class=""/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center">
+                            <h1 class="f-n-22 m-0 edzance-color" ng-bind="vc.rscope.vc.name"></h1>
+                            <h2 class="f-20 m-b-10 m-t-5" ng-bind="vc.rscope.vc.u_name"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-10 f-16">
+                            <div class="edzance-color">وصف المساق</div>
+                            <div ng-bind="vc.rscope.vc.Description"></div>
+                            <hr class="m-t-10 m-b-10" />
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="edzance-color">موعد المحاضرة</div>
+                                    <div>
+                                        <i class="md md-access-time edzance-color"></i>
+                                        <span ng-bind="vc.rscope.vc.from"></span>
+                                        <span> - </span>
+                                        <span ng-bind="vc.rscope.vc.to"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 b-r-1  ">
+                                    <div class="edzance-color">رقم القاعة</div>
+                                    <i class="md md-gps-fixed edzance-color"></i>
+                                    <span ng-bind="vc.rscope.vc.class_hall"></span>
+                                </div>
+                            </div>
+                            <hr class="m-t-10 m-b-10" />
+                            <div class="text-center">
+                                <a ui-sref="app.virtualclass.information">
+                                        مشاهدة المزيد
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 p-r-0-web vc-mid-side">
+            <div ui-view="vc"></div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 p-r-0-web p-l-0-web hidden-mark">
+            <div ng-if="vc.rscope.vc.persantage">
+                <div class="card hidden-xs" ng-if="$root.vc.instructor == $root.me.id">
+                    <div class="card-body">
+                        <div class="p-10">
+                            <div class="text-center">
+                                <canvas class="classy-loader" classy-loader></canvas>
+                            </div>
+                            <div class="vc-matrial-title" ng-bind="vc.rscope.vc.name"></div>
+                            <div class="percent-title">
+                                نسبة معلومات المادة المدخلة
+                            </div>
+                            <hr/>
+                            <div class="text-center p-t-5">
+                                <a ui-sref="app.virtualclass.information" class="btn btn-info fn-lg">إضافة معلومات المادة</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card hidden-xs" ng-if="vc.rscope.vc.class_code.length > 0">
+                <div class="card-body">
+                    <div class="p-10 f-18">
+                        <span><i class="md md-now-widgets"></i></span>
+                        <span class="p-l-5">كود تسجيل المادة</span>
+                        <span ng-bind="vc.rscope.vc.class_code" class="text-blue"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card hidden-xs">
+                <div class="card-body">
+                    <div class="p-10 f-18">
+                        <span></span>
+                        <div ng-if="vc.rscope.vc.files < 1">
+                            <i class="md md-description"></i>
+                            <span>لم يتم رفع ملفات</span>
+                        </div>
+                        <div ng-if="vc.rscope.vc.files == 1">
+                            <i class="md md-description"></i>
+                            <a ui-sref="app.virtualclass.files">تم رفع ملف</a>
+                        </div>
+                        <div ng-if="vc.rscope.vc.files == 2">
+                            <i class="md md-description"></i>
+                            <a ui-sref="app.virtualclass.files">تم رفع ملفين</a>
+                        </div>
+                        <div ng-if="(vc.rscope.vc.files > 2 && vc.rscope.vc.files < 11)">
+                            <i class="md md-description"></i>
+                            <span>تم رفع</span>
+                            <a ui-sref="app.virtualclass.files">
+                                <span ng-bind="vc.rscope.vc.files"></span>
+                                <span>ملفات</span>
+                            </a>
+                        </div>
+                        <div ng-if="vc.rscope.vc.files > 10">
+                            <i class="md md-description"></i>
+                            <span>تم رفع</span>
+                            <a ui-sref="app.virtualclass.files">
+                                <span ng-bind="vc.rscope.vc.files"></span>
+                                <span>ملف</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card hidden-xs" ng-if="vc.rscope.vc.join_requests > 0 && $root.vc.instructor == $root.me.id">
+                <div class="card-body">
+                    <div class="p-10 f-18">
+                        <div>
+                            <a ui-sref="app.virtualclass.student">
+                                <i class="md md-dns"></i>
+                                <span ng-if="vc.rscope.vc.join_requests == 1">
+                                    لديك طلب الإنضمام
+                                </span>
+                                <span ng-if="vc.rscope.vc.join_requests == 2">
+                                    لديك طلبي الإنضمام
+                                </span>
+                                <span ng-if="vc.rscope.vc.join_requests > 2">
+                                    لديك <span ng-bind="vc.rscope.vc.join_requests"></span> طلبات الإنضمام
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs">
+                <div class="f-18">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 p-l-5">
+                            <div class="card" ng-show="vc.rscope.vc.Books">
+                                <div class="card-body p-10 text-center">
+                                    <div>
+                                        <a href="{{vc.rscope.vc.Books}}" download target="_blank">
+                                            <span>كتاب المادة</span>
+                                            <span class="p-r-5">
+                                                <i class="md md-file-download"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 p-r-5">
+                            <div class="card" ng-show="vc.rscope.vc.syllabus">
+                                <div class="card-body p-10 text-center">
+                                    <div>
+                                        <a href="{{vc.rscope.vc.syllabus}}" download target="_blank">
+                                            <span>خطة المادة</span>
+                                            <span class="p-r-5">
+                                                <i class="md md-file-download"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs left-side-bar" scroll-to-fixed="{ marginTop: 78}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="vc-student-title">
+                            <span><i class="md md-account-child"></i></span>
+                            <span>الطلبة المنتسبين</span>
+                            <span ng-bind="vc.rscope.vc.vcuser.length" class="pull-left"></span>
+                        </div>
+                        <div class="p-r-5 p-l-5 p-t-0 f-16">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 p-b-4 p-t-4">
+                                    <div>
+                                        <div ng-repeat="(key,student) in vc.rscope.vc.vcuser | limitTo: 12">
+                                            <div class="col-md-3 col-xs-4 timeline-follower-padding">
+                                                <a ui-sref="app.profile.timeline({id:student.uid})">
+                                                    <img src="img/icons/infinity.svg" lazy-img="{{student.avatar}}" class="timeline-follower" height="48px" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div ng-if="vc.rscope.vc.vcuser.length < 1" class="text-center">
+                                            <div class="empty-img-profile">
+                                                <div class="empty-div">
+                                                    <div>
+                                                        <img src="img/faces/sad-face.svg">
+                                                    </div>
+                                                    <div class="text">
+                                                        لا يوجد طلاب منتسبين
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center p-b-5" ng-if="vc.rscope.vc.vcuser.length > 2">
+                                <hr class="m-t-0" />
+                                <a ui-sref="app.virtualclass.student">
+                                مشاهدة جميع الأعضاء
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-center">
+                        <a class="f-15 text-gray" ui-sref="app.virtualclass.instructions">الارشادات</a> -
+                        <a class="f-15 text-gray" ui-sref="app.privacy-login">الخصوصية</a> - <a class="f-15 text-gray" ui-sref="app.support">مركز المساعدة</a>
+                    </div>
+                    <div class="f-15 text-gray text-center">
+                        <span class="m-r-5">
+                            Edzance © 2017 
+                        </span>
+                        <img src="img/logo-small.svg" class="edzance-logo-xs">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="vendors/classyloader/js/jquery.classyloader.min.js"></script>

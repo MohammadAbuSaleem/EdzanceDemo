@@ -1,0 +1,29 @@
+<md-content class="Page-container p-h-10-mobile" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+    <div class="col-md-4 col-sm-6 col-xs-6 p-5" ng-repeat="(key,post) in dat| orderBy: 'created_at':true track by $index">
+        <div class="suggestion-box"> 
+            <div>
+                <img src="img/icons/infinity.svg" lazy-img="{{post.avatar}}" alt="" class="suggestion-image">
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 p-r-10 p-l-10 p-t-5 p-b-5">
+                <div class="f-16 text-black">
+                    <a ui-sref="app.profile.timeline({id: post.id})" class="notification-username long-text" ng-bind="post.name"></a>
+                </div>
+                <div class="notification-body text-right">
+                    <div class="f-15 long-text" ng-bind="post.specialition"></div>
+                </div>
+                <div class="notification-body text-right p-b-10">
+                    <div class="text-gray long-text" ng-bind="post.university"></div>
+                </div>
+            </div>
+            <div class="m-t-10">
+                <span ng-click="(post.isfriend == false ? post.isfriend=true : post.isfriend=false) ">
+                    <a ng-click ="(post.isfriend == false ? $root.follow(post.id,'follower') : $root.follow(post.id,'deleted'))" class="btn btn-primary btn-block border-radius-0 waves-effect waves-button waves-float fn-lg" >
+                        <i class="md md-person-add"></i>
+                        <span ng-if="post.isfriend == false">متابعة</span>
+                        <span ng-if="post.isfriend!= false">الغاء المتابعة</span> 
+                    </a>
+                </span>
+            </div>
+        </div>
+   </div>
+</md-content>

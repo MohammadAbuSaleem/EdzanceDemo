@@ -1,0 +1,249 @@
+<div ng-show="$root.progressPercentage != 0">
+  <div class="card">
+    <div class="card-body p-10">
+    <div class="p-b-5">
+      جاري الرفع....
+    </div>
+      <uib-progressbar class="progress-striped active" value="$root.progressPercentage">
+          <b>{{$root.progressPercentage}}%</b>
+      </uib-progressbar>
+    </div>
+  </div>
+</div>
+<md-content infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+<div ng-repeat="(key,post) in dat | orderBy: 'created_at':true track by $index"  class="media animated">
+   <div>
+      <div class="media-body m-b-10">
+          <div class="card w-item vc-con m-b-0">
+              <div class="card-body card-padding p-b-0">
+              <div class="media-body">
+                <div class="media">
+                  <div class="pull-right p-l-5">
+                      <a ui-sref="app.profile.timeline({id: post.user_id})">
+                          <img class="post-img" src="img/icons/infinity.svg" lazy-img="{{post.user_avatar}}">
+                      </a>
+                  </div>
+                  <div>
+                      <div class="pull-right">
+                          <a ui-sref="app.profile.timeline({id: post.user_id})" class="user-name username ng-binding" ng-bind="post.user_name | capitalize"></a>
+                          <div class="data-post ng-binding" ng-bind="moment(post.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()"></div>
+                      </div>
+                      <!-- ngIf: post.userid == $root.me.id --><!-- end ngIf: post.userid == $root.me.id -->
+                  </div>
+                   <div class="pull-left" ng-if="permission('files.edit')">
+                    <ul class="actions">
+                      <li ng-hide="editableForm.$visible" class="dropdown">
+                          <a href="" data-toggle="dropdown" aria-expanded="false">
+                              <i class="md md-more-vert"></i>
+                          </a>
+                          <ul ng-hide="editableForm.$visible" class="dropdown-menu dropdown-menu-right">
+                              <li class="b-bottom"  ng-hide="editableForm.$visible">
+                                  <a data-pmb-action="delete" class="close-menu sa-params" ng-click="deleteNode(post,false);"  data-post-index="{{post.index = key}}"   data-post-id="{{post.id}}" data-post-key="{{post.key = key}}" data-post-type="files">
+                                  <i class="md md-delete"></i>
+                                  حذف
+                                  </a>
+                                  
+                              </li>
+                              <li  ng-hide="editableForm.$visible">
+                                  <a ng-click="editableForm.$show();" class="close-menu">
+                                    <i class="md md-mode-edit"></i>
+                                  تعديل</a>
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+                  <div class="row file-con">
+                    <div class="col-md-12 col-sm-12 col-xs-12 f-15">
+                        <!-- 
+                         <span  ng-bind="post.description" class="f-16"></span>
+                        </div> -->
+                        <div ng-show="editableForm.$visible" class="m-t-10">
+                          <i class="md md-description"></i>
+                          وصف الملف
+                        </div>
+                        <div e-form="editableForm" editable-textarea="post.description" e-name="description"  class="f-15 m-b-10 textarea-file">
+                          <pre>{{post.description}}</pre>
+                        </div>
+                    </div>
+                  </div>
+                  <br ng-show="editableForm.$visible"/>
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="pull-right">
+                          <img lazy-img="img/upload-icon/{{post.extension}}.svg" width="50px" ng-if="post.extension">
+                          <img src="img/upload-icon/file.svg" width="50px" ng-if="!post.extension">
+                        </div>
+                        <div class="media-body col-md-12 col-sm-12 col-xs-12">
+                          <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+                                <!-- <span  e-form="editableForm"  ng-bind="'عنوان الملف: ' + post.name.substr(0, post.name.lastIndexOf('.'))" class="homework-title"></span> -->
+                                <div ng-show="editableForm.$visible">
+                                  <i class="md  md-attach-file"></i>
+                                  العنوان
+                                </div>
+                                <div e-form="editableForm" editable-text="post.name" e-name="name" ng-bind="post.name" class="file-name"></div>
+                                <!-- <div ng-bind="post.extension"></div> -->
+                                <div class="m-t-5" ng-hide="editableForm.$visible">
+                                  <a href="{{post.url}}" download target="_blank" class="btn btn-default down-btn">
+                                    <i class="md md-file-download"></i>
+                                    تحميل
+                                  </a>
+                                   <a href="{{post.url}}" target="_blank" class="btn btn-default down-btn">
+                                    <i class="md md-find-in-page"></i>
+                                    مشاهدة
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12 p-0 p-b-20">
+                                 <!-- buttons to submit / cancel form -->
+                                <form editable-form name="editableForm" onaftersave="updateData($data, post.id)">
+                                  <div class="" ng-show="editableForm.$visible">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                                          حفظ
+                                        </button>
+                                        <button type="button" class="btn btn-danger" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                                          الغاء
+                                        </button>
+                                  </div> 
+                                 </form>
+                              </div>   
+                            </div>
+                          </div>
+                        <!--   <div class="pull-left">
+                              <div>
+                              <a href="{{post.url}}" download class="btn btn-default f-15 down-btn" ng-hide="editableForm.$visible">
+                                <i class="md md-file-download"></i>
+                                تحميل
+                              </a>
+                              </div>
+                          </div> -->
+                      </div>
+                    </div>
+                    <div class="row" ng-if="(post.comment.length != 0)">
+                        <div class="col-md-12 col-sm-12 col-xs-12 position-relative">
+                           <div data-toggle="modal" data-target="#commentModel{{post.id}}" video-post-popup data-src="{{$root.trustSrc(post.media)}}" data-video-id="{{post.id}}" class="file-comment">
+                              <div class="mouse-pointer" ng-if="post.comment.length == 2">
+                                <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليقين
+                                </a>
+                              </div>
+                              <div ng-if="(post.comment.length > 2 && post.comment.length < 11)">
+                                <a>
+                                  <i class="md md-comment"></i>
+                                  <span ng-bind="post.comment.length"></span>
+                                  تعليقات
+                                </a>  
+                              </div>
+                              <div ng-if="(post.comment.length > 10 || post.comment.length == 1)">
+                                <a>
+                                  <i class="md md-comment"></i>
+                                  <span ng-bind="post.comment.length"></span>
+                                  تعليق
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Comment -->
+            <comment-repeat ng-init="$root.controller='virtualclass-files'" req-url="file" comment-id="{{post.id}}" comment-index="{{key}}" req-parent="virtualclass-files"></comment-repeat>
+            <!-- End Comment -->
+        </div>
+    </div>
+  </div>
+</md-content>
+</div>
+<!-- <div ng-if="hasFile">
+  <div class="card">
+    <div class="card-body card-padding empty-text">
+      لا يوجد ملفات
+    </div>
+  </div>
+</div> -->
+  <div ng-show="nopost == 3">
+    <div class="card">
+      <div class="card-body card-padding empty-text">
+        لا يوجد ملفات
+      </div>
+    </div>
+  </div>              <!--End post text -->
+  <div ng-show="nopost == 2 || busy">
+    <div>
+      <div class="pull-right hidden-xs p-l-10 postimg-web">
+        <a class="img-fram">
+          <div class="empty-img"></div>
+        </a>
+      </div>
+      <div class="media-body post-pos">
+          <div class="card w-item">
+              <div class="card-body card-padding p-b-0 empty-post">
+                  <div class="media">
+                      <div class="pull-right hidden-md hidden-sm hidden-lg postimg-mobile">
+                          <a href="#">
+                              <div class="post-img"></div>
+                          </a>
+                      </div>
+                      <div>
+                          <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-20">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+<script type="text/ng-template" id="fileModal.html">
+  <div class="modal-body">
+    <div>
+      <div>
+        <div class="row"> 
+          <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center m-t-20 p-b-10">
+            <div>
+              <img src="img/success.svg" class="smileyface">
+            </div>
+            <div class="m-t-5">
+              تم اضافة الملف بنجاح
+            </div>
+            <div class="f-18">
+              سنقوم بإبلاغ جميع طلبتك عن هذا الملف وعن المعلومات التي قمت بإرفاقها معة.
+            </div>
+            <div class="f-14 text-red m-t-10 m-b-5">
+              يمكنك دائما أن تقوم بتعديل المعلومات التي أدخلتها في هذا الملف ويمكنك أيضا حذفه بشكل نهائي, وسنقوم بإبلاغ طلابك بأي تغير يحصل على هذا الملف
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" ng-click="mvm.ok()" >اغلاق الصندوق</button>
+      </div>
+    </div>
+  </div>
+</script>

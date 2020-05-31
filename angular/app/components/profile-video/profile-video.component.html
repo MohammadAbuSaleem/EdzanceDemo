@@ -1,0 +1,38 @@
+<div class="row">
+    <md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+      <div ng-repeat="post in dat| orderBy: 'created_at':true" class="lightbox col-md-3 col-sm-4 col-xs-6 p-h-5">
+          <div data-src="{{post.mediaimage}}">
+              <div>
+                  <iframe ng-src="{{post.media}}" width="100%" height="150" frameborder="0" allowfullscreen showinfo="0" rel="0" ng-if="!post.mediaimage"></iframe>
+                   <a data-toggle="modal" data-src="{{post.media}}" data-target="#myModal" data-video-fullscreen="" youtube-video ng-if="post.mediaimage"> 
+                    <img src="img/icons/infinity.svg" lazy-img="{{post.mediaimage}}" class="modalButton timeline-follower image-post m-b-10" height="150"/>
+                    <i class="md md-play-circle-fill yvideo-icon"></i>
+                  </a>
+              </div>
+          </div>
+      </div> 
+    </md-content>
+      <div ng-show="nopost == 3" class="position-relative">
+        <div class="empty-img-profile">
+          <div class="empty-div">
+            <div>
+              <img src="img/faces/sad-face.svg">
+            </div>
+            <div class="text">  
+             لا يوجد فيدوهات لعرضها
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog img-modal-dialog">
+    <div>
+      <div>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" frameborder="0" height="640" width="360"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

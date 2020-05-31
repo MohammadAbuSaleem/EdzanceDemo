@@ -1,0 +1,129 @@
+ <section id="content">
+    <div class="container">
+    	<div class="row m-0-mobile">
+    		<div class="col-md-7 col-sm-7 col-xs-12">
+			    <div class="card">
+				    <div class="pmbb-header box-header">
+		    			<h1 class="f-24 m-0">
+		    				<i class="md md-help"></i>
+		    				ادخل مشكلة, اقتراح أو اطلب مساعدة
+		    			</h1>
+			    	</div>  
+			    	<div class="card-body card-padding">
+			    		<form form novalidate name="sup.supportForm" ng-submit="addTicket(sup.supportForm,$root.newPost.file,sup)" autocomplete="off">
+					    	<div class="row">
+					    		<div class="col-md-12 col-sm-12 col-xs-12">
+					    			<strong class="f-18">المكان</strong>
+						    		<div class="form-group m-b-10 p-t-4">
+		                                <div class="position-relative">
+		                                    <div class="select">
+		                                        <select class="form-control" ng-model="$root.newPost.title" name="suptitle" required>
+		                                            <option value="">اختار الموقع</option>
+		                                            <option value="الصفحة الرئيسي">الصفحة الرئيسية</option>
+		                                            <option value="الملف الشخصي">الملف الشخصي</option>
+		                                            <option value="المواد الدراسية">المواد الدراسية</option>
+		                                            <option>المجموعات</option>
+		                                            <option>الرسائل</option>
+		                                            <option>بنك الكتب</option>
+		                                            <option>الوظائف المؤقتة</option>
+		                                            <option>الاشعارات</option>
+		                                        </select>
+		                                          <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="الرداء ادخال مكان المشكله" ng-show="sup.supportForm.suptitle.$invalid && sup.supportForm.$submitted" aria-hidden="false"></i>
+		                                    </div>
+		                                </div>
+		                            </div>
+	                            </div>
+					    	</div>
+					    	<div class="row m-b-10">
+					    		<div class="col-md-12 col-sm-12 col-xs-12 f-18">
+					    			<strong>الوصف</strong>
+					    			<div class="position-relative">
+					    				<textarea ng-model="$root.newPost.description" class="form-control support-textarea auto-size m-t-4" placeholder="قم بشرح مشكلتك,اقتراحك,او طلب المساعدة هنا , سنقوم بالرد عليك قريبا." name="supdes" required></textarea>
+				    				    <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="الرداء ادخال وصف المشكله" ng-show="sup.supportForm.supdes.$invalid && sup.supportForm.$submitted" aria-hidden="false"></i>
+					    			</div>
+					    		</div>
+					    	</div>
+					    	<div class="row">
+					    		<div class="col-md-12 col-sm-12 col-xs-12">
+					    			<div class="pull-right">
+						    			<div ngf-drop ngf-select="vcfl.watch($root.newPost.file)" ng-model="$root.newPost.file" class="drop-box m-t-4" 
+						                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+						                accept="image/*" 
+						                ngf-pattern="'image/*,application/pdf'" ng-bind="$root.newPost.file.name || $root.newPost.file.$error || $root.newPost.file.$errorParam || 'اضغط هنا لرفع ملف / أو قم بادراجها هنا'">
+						                </div>
+					                </div>
+					                <button type="submit" class="btn btn-primary f-15 pull-left p-r-30 p-l-30">إرسال</button>
+					    		</div>
+					    	</div>
+				    	</form>
+			    	</div>
+				</div>
+			<div ui-view="support"></div>
+			</div>
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="card">
+					<div class="pmbb-header box-header">
+		    			<h1 class="f-18 m-0">
+		    				<i class="md md-help"></i>
+		    				كيف يمكننا مساعدتك
+		    			</h1>
+			    	</div>
+					<div class="card-body card-padding">
+						<div class="m-b-10">
+							<div>
+								<a class="f-16">
+									هل لديك مشكلة ما؟
+								</a>
+							</div>
+							<div class="text-gray">ارسل لنا المشكلة وكيفية ظهرت معك حتى يستطيع الفريق التقني لحلها</div>
+						</div>
+						<div class="m-b-10">
+							<div>
+								<a class="f-16">
+									هل لديك اقتراح؟
+								</a>
+							</div>
+							<div class="text-gray">قم بتزويدنا باقرحاتك وساعدنا للوصول الى افضل منتج</div>
+						</div>
+						<div class="m-b-10">
+							<div>
+								<a class="f-16">
+									هل تحتاج الى مساعدة؟
+								</a>
+							</div>
+							<div class="text-gray">تواجه صعوبه في استخدم امر ما</div>
+						</div>
+					</div>
+				</div>
+				<div scroll-to-fixed="{ marginTop: 70}" class="left-side-bar">
+			      	<div>
+	                    <h4>
+	                        <i class="md md-work"></i>
+	                        إعلان
+	                    </h4>
+	                </div>
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- edzance-support -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:336px;height:280px"
+					     data-ad-client="ca-pub-2067358913948217"
+					     data-ad-slot="3120839484"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				    <div>
+	                    <div class="text-center">
+	                        <a class="f-15 text-gray" ui-sref="app.privacy-login">الخصوصية</a> - <a class="f-15 text-gray" ui-sref="app.support">مركز المساعدة</a>
+	                    </div>
+	                    <div class="f-15 text-gray text-center">
+	                        <span class="m-r-5">
+	                            Edzance © 2017 
+	                        </span>
+	                        <img src="img/logo-small.svg" class="edzance-logo-xs">
+	                    </div> 
+	                </div>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>

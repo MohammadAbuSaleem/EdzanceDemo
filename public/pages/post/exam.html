@@ -1,0 +1,166 @@
+<div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+  <div ng-repeat="(key,post) in dat| orderBy: 'created_at':true track by $index"  class="media animated m-b-10">
+     <div>
+        <div class="media-body"> 
+          <div class="card w-item m-b-0">
+            <div class="card-body card-padding">      
+            <div class="pull-left" ng-if="permission('exam.edit')">
+              <ul class="actions">
+                  <li  ng-hide="editableForm.$visible"  class="dropdown">
+                      <a href="" data-toggle="dropdown" aria-expanded="false">
+                          <i class="md md-more-vert"></i>
+                      </a>
+                      <ul  ng-hide="editableForm.$visible"  class="dropdown-menu dropdown-menu-right">
+                          <li class="b-bottom">
+                              <a ng-click="deleteNode(post,false);"   data-pmb-action="delete" data-post-key="{{post.key =key}}" data-post-index="{{post.index = $index}}" class="close-menu com-params" data-post-id="{{post.id}}" data-post-type="exam" id="post.id" >
+                              <i class="md md-delete"></i> 
+                              حذف
+                              </a>
+                              
+                          </li>
+                          <li >
+                             <!--  <a data-pmb-action="delete" href="#" ng-click="vm.edit(post.id,$index)"> -->
+                               <a href="javascript:void(0)" ng-click="editableForm.$show()" ng-hide="editableForm.$visible" class="close-menu" >
+                                <i class="md md-mode-edit"></i>
+                              تعديل<!-- </a> --></a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+               <div class="media pull-right ">
+                  <div>
+                    <img src="img/upload-icon/exam.svg" width="100px">
+                  </div>
+                </div>
+                <div class="media-body exam-con">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 homework-title">
+                    <span ng-show="editableForm.$visible" class="exam-type">
+                    <i class="md md-description"></i>
+                    نوع الامتحان
+                    </span>
+                     <span ng-hide="editableForm.$visible"  class="f-22">الامتحان </span>
+                     <span class="m-b-5" editable-select="post.type" e-form="editableForm"  e-ng-options="g.value as g.text for g in types" e-name="type">
+                        <span ng-if="post.type=='first'">الأول</span>
+                        <span ng-if="post.type=='second'">الثاني</span>
+                        <span ng-if="post.type=='final'">النهائي</span>
+                        <span ng-if="post.type=='quiz'">قصير</span>
+                        <span ng-if="post.type=='mackup'">تكميلي</span> 
+                    </span>         
+                    </div>
+                    </div>
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <i class="md md-today"></i>  
+                      <span>تاريخ الامتحان </span>  
+                      <!-- <span >{{ (post.exam_date.getFullYear() + '/' + (post.exam_date.getMonth() + 1) + '/' +post.exam_date.getDate()) || 'لم يتم ادخال تاريخ ميلاد'}}</span> -->
+                      <span e-form="editableForm"  e-placeholder="تاريخ الامتحان"  editable-date="post.exam_date" e-form="editableForm" e-name="exam_date" e-value="{{post.exam_date}}"  class="m-b-5"> {{ (post.exam_date.getFullYear() + '/' + (post.exam_date.getMonth() + 1) + '/' +post.exam_date.getDate()) }}</span>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 vc-calendar">
+                      <i class="md md-access-time"></i>  
+                      <span>وقت الامتحان </span>  
+                      <!-- <span >{{ (post.exam_date.getFullYear() + '/' + (post.exam_date.getMonth() + 1) + '/' +post.exam_date.getDate()) || 'لم يتم ادخال تاريخ ميلاد'}}</span> -->
+                        <span  e-form="editableForm" e-name="exam_time"  editable-bstime="post.exam_time" e-show-meridian="true" e-minute-step="1">
+                          {{ (post.exam_time | date:"HH:mm") }}
+                        </span>
+                     <!--  <span e-form="editableForm"  e-placeholder="تاريخ الامتحان"  editable-date="post.exam_date" e-form="editableForm" e-name="exam_date" e-value="{{post.exam_date}}"  > {{ (post.exam_date.getHours() + ':' + post.exam_date.getMinutes() ) || 'لم يتم ادخال وقت الامتحان'}}</span> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">  
+                    <i class="md md-business"></i>
+                    <span>قاعات الامتحان </span>   <!-- 
+                    <span ng-bind="post.hall"></span> -->
+                     <span e-form="editableForm" editable-text="post.hall" e-name="hall" ng-bind="post.hall  || 'لم يتم ادخال قاعات الامتحان'"></span>
+                    </div>
+                  </div>
+                  <div class="row"></div>
+                    <form editable-form name="editableForm" onaftersave="updateData($data, post.id)">
+                      <div class="" ng-show="editableForm.$visible">
+                            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                              حفظ
+                            </button>
+                            <button type="button" class="btn btn-danger" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                              الغاء
+                            </button>
+                        </div> 
+                      </div> 
+                              <div class="position-relative">
+                      <div ng-hide="editableForm.$visible" class="exam-comment">
+                         <!--     <a href="{{post.file}}" download class="btn btn-default f-15 down-btn">
+                                <i class="md md-file-download"></i>
+                                تحميل
+                              </a> -->
+                              <div data-toggle="modal" data-target="#commentModel{{post.id}}" video-post-popup data-src="{{$root.trustSrc(post.media)}}" data-video-id="{{post.id}}">
+                            <div class="mouse-pointer" ng-if="post.comment.length == 2">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليقين
+                              </a>
+                            </div>
+                            <div ng-if="(post.comment.length > 2 && post.comment.length < 11)">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليقات
+                              </a>
+                            </div>
+                            <div ng-if="(post.comment.length > 10 || post.comment.length == 1)">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليق
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        </div>  
+                    </form>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <!-- Comment -->
+              <comment-repeat   ng-init="$root.controller='virtualclass-exam'" req-url="exams" comment-id="{{post.id}}" comment-index="{{key}}" req-parent="virtualclass-exam"></comment-repeat>
+                <!-- End Comment -->
+          </div>
+      </div>
+  </div>
+</div>
+<div ng-if="nopost == 3">
+  <div class="card">
+    <div class="card-body card-padding empty-text">
+      لا يوجد امتحانات
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="examModal.html">
+  <div class="modal-body">
+    <div>
+      <div class="row"> 
+        <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center m-t-20 p-b-10">
+          <div>
+            <img src="img/success.svg" class="smileyface">
+          </div>
+          <div class="m-t-5">
+            تم اضافة امتحان بنجاح
+          </div>
+          <div class="f-18">
+            سنقوم بإبلاغ جميع طلبتك عن هذا امتحان وعن المعلومات التي قمت بإرفاقها معة.
+          </div>
+          <div class="f-14 text-red m-t-10 m-b-5">
+            يمكنك دائما أن تقوم بتعديل المعلومات التي أدخلتها في هذا امتحان زيمكنك أيضا حذفه بشكل نهائي, وسنقوم بإبلاغ طلابك بأي تغير يحصل على هذا الامتحان
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" data-dismiss="modal" ng-click="mvm.ok()">اغلاق الصندوق</button>
+    </div>
+  </div>
+</script>

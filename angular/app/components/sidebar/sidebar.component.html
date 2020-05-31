@@ -1,0 +1,299 @@
+<aside id="sidebar">
+    <div class="sidebar-inner">
+        <div class="si-inner">
+            <div class="user-profile-menu">
+                <div>
+                    <img src="img/icons/default.png" ng-src="{{$root.me.showcase}}" height="100px" width="100%" />
+                </div>
+                <div class="profile-pic media">
+                    <div class="p-r-10" ng-if="$root.me.avatar">
+                        <a ui-sref="app.profile.timeline({id: $root.me.id})">
+                            <img src="img/icons/infinity.svg" lazy-img="{{$root.me.avatar}}" alt="{{$root.me.name}} {{$root.me.last_name}}" class="menu-user-img side-user-img">
+                        </a>
+                    </div>
+                    <div class="media-body user-contant" ng-if="$root.me.id">
+                        <a ui-sref="app.profile.timeline({id: $root.me.id})">
+                            <div class="user-img-background">
+                                <span class="user-name m-b-5 f-16 p-l-2 username" ng-bind="$root.me.name + ' ' + $root.me.last_name | capitalize">
+                                  </span>
+                              <!--   <img src="img/edzance-logo/verified-account.png" width="16px" class="side-verified-account" ng-if="$root.me.email_verified == 1" /> -->
+                            </div>
+                        </a>
+                        <div>
+                            <a class="text-black p-r-5" ui-sref="app.institute.timeline({instituteid: $root.me.id})" ng-bind="$root.me.uni_name"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-b-10 text-black m-t-30">
+                    <a class="m-l-5 p-r-15" ui-sref="app.profile.connection.follower({id:$root.me.id})" class="inline-block" ng-if="$root.me.followers_count">
+                        <span class="text-black">
+                          يتابعونك
+                        </span>
+                        <span class="p-r-5 p-l-5"> | </span>
+                        <span ng-bind="$root.me.followers_count" class="f-14 text-bold"></span>
+                    </a>
+                    <a ui-sref="app.profile.connection.following({id:$root.me.id})" class="p-r-15" ng-if="$root.me.friends_count">
+                        <span class="text-black">
+                          تتابعهم
+                        </span>
+                        <span class="p-r-5 p-l-5"> | </span>
+                        <span ng-bind="$root.me.friends_count" class="f-14 text-bold"></span>
+                    </a>
+                </div>
+                <!-- <div class="m-b-10 text-black m-t-30">
+                    <a ui-sref="app.profile.connection.follower({id:$root.me.id})" class="p-r-15" ng-if="$root.me.friends_count">
+                        <span class="text-black">
+                          الأصدقاء
+                        </span>
+                        <span class="p-r-5 p-l-5"> | </span>
+                        <span ng-bind="$root.me.friends_count" class="f-14 text-bold"></span>
+                    </a>
+                    <a class="m-l-5 p-r-15" ui-sref="app.profile.connection.following({id:$root.me.id})" class="inline-block" ng-if="$root.me.followers_count">
+                        <span class="text-black">
+                          طلبات الإنضمام
+                        </span>
+                        <span class="p-r-5 p-l-5"> | </span>
+                        <span ng-bind="$root.me.followers_count" class="f-14 text-bold"></span>
+                    </a>
+                </div> -->
+            </div>
+            <ul class="main-menu">
+                <li ui-sref-active="active">
+                    <a ui-sref="app.landing" class="close-side">
+                        <i class="md md-home"></i> الصفحة الرئيسية
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-if="$root.me.permission.home.indexOf('class.join') >= 0" ng-class="!$root.me.activated_at ? 'disabled':''">
+                    <a ui-sref="app.virtualclasses">
+                        <i class="md md-local-library"></i> المواد الدراسية 
+                        <!-- ({{$root.me.myclass.length}}) -->
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.groups.index" class="close-side" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <i class="md md-group-work"></i> المجموعات
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.message.room" class="close-side" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <i class="md md-email"></i> الرسائل
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.booksbank" class="close-side" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <i class="md md-account-balance"></i> بنك الكتب
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.jobs" class="close-side" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <i class="md md-work"></i> وظائف مؤقتة
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.profile.timeline({id: $root.me.id})" class="close-side" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <i class="md md-person"></i> الملف الشخصي
+                    </a>
+                </li>
+                <!--  <li ui-sref-active="active" ng-if="$root.me.activated_at.length > 1">
+                  <a ui-sref="app.courses" class="close-side">
+                    <i class="md md-class"></i>
+                   الدورات التعليمية
+                  </a>
+                </li> -->
+                <!--  <li ui-sref-active="active">
+                  <a ui-sref="app.institutes" class="close-side">
+                    <i class="md md-domain"></i>
+                    المؤسسات
+                  </a>
+                </li> -->
+                <!--     <li ui-sref-active="active"  ng-if="$root.me.activated_at.length > 1">
+                    <a ui-sref="app.specialization.discussion" class="close-side">
+                      <i class="md md-book"></i>
+                      تخصصي الدراسي
+                    </a>
+                </li>
+                -->
+            </ul>
+            <div class="p-r-12 p-l-12">
+                <a class="btn btn-primary f-15 p-t-4 p-b-4 btn-member btn-block" data-toggle="modal" data-target="#memberModal" ng-click="membershipModal = false" ng-class="{disabled : !$root.me.activated_at}"> <i class="md md-school "></i>
+                    بيانات الإنتساب
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="modal fade small-modal" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header p-10">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="registersemsterLabel">
+                    <i class="md md-school"></i>
+                    بيانات الإنتساب
+                </h3>
+            </div>
+            <div ng-if="!membershipModal">
+                <form name="side.membership" autocomplete="off" novalidate>
+                    <div class="modal-body p-15">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div>
+                                    <div class="m-t-5">
+                                        قم بإضافة معلومات الإنتساب ليتم ربطك بمؤسستك وتفعيل المحتوى الخاص بك
+                                    </div>
+                                    <div class="f-16 m-t-20 m-b-10 text-bold">
+                                        اختر التصنيف الخاص بك:
+                                    </div>
+                                    <div>
+                                        <div class="radio radio-inline p-r-0 p-l-25">
+                                            <label class="p-0 f-16 user-type" ng-class="{'active': membership.level == 5 }">
+                                                <input type="radio" name="userType" value="5" class="user-radio" ng-model="membership.level">
+                                                <img src="img/institution/user/teacher.png" width="40px" class="m-l-5"> مدرس
+                                            </label>
+                                        </div>
+                                        <div class="radio radio-inline p-r-0 p-l-25">
+                                            <label class="p-0 f-16 user-type" ng-class="{'active': membership.level == 4 }">
+                                                <input type="radio" name="userType" value="4" class="user-radio" ng-model="membership.level">
+                                                <img src="img/institution/user/student.png" width="40px" class="m-l-5"> طالب
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div ng-if="membership.level == 5 || membership.level == 4">
+                                        <hr class="m-t-15 m-b-15" />
+                                        <div class="m-b-10">
+                                            <strong ng-if="membership.level != 5">
+                                                حدد المؤسسة التي تنتمي اليها
+                                            </strong>
+                                            <strong ng-if="membership.level == 5">
+                                                حدد المؤسسة التي تعمل فيها 
+                                            </strong>
+                                        </div>
+                                        <div class="row m-0" ng-init="membership.instype = 1">
+                                            <div class="col-md-4 col-sm-4 col-xs-6 m-b-5 p-0">
+                                                <label class="radio radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" value="2" ng-model="membership.instype" ng-change="changeType()" disabled="" />
+                                                    <i class="input-helper"></i> مدرسة
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-6 m-b-5 p-0">
+                                                <label class="radio radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" value="1" ng-model="membership.instype" ng-change="changeType()" />
+                                                    <i class="input-helper"></i> جامعة
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <hr class="m-t-15 m-b-15" />
+                                        <script type="text/ng-template" id="instituteTemplate.html">
+                                            <div class="row m-0">
+                                                <div class="media-body">
+                                                    <div ng-bind="match.model.name" class="text-bold f-15"></div>
+                                                </div>
+                                            </div>
+                                        </script>
+                                        <div ng-switch="membership.instype">
+                                            <div ng-switch-when="2" ng-switch-when-separator="|">
+                                                <div class="form-group row m-0 p-b-10" ng-class="{ 'has-error': (side.membership.university.$invalid || side.membership.school.$invalid) && side.membership.$submitted }">
+                                                    <label for="exampleInputName2" class="col-sm-3 p-0 p-t-10">اختر المدرسة</label>
+                                                    <div class="col-sm-9 p-0-mobile ins-input">
+                                                        <input type="search" name="school" class="form-control" ng-model="membership.instituteName" ng-paste="getInstitute($viewValue);" uib-typeahead="name for result in getInstitute($viewValue)" typeahead-min-length="1" typeahead-is-open="showResult" typeahead-loading="searching" placeholder="اختر المدرسة" autocomplete="off" typeahead-template-url="instituteTemplate.html" typeahead-on-select="onInsSelect($item)" ng-keydown="shouldInsSelect($event)" required />
+                                                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="اختر المدرسة" ng-show=" side.membership.school.$invalid && side.membership.$submitted" aria-hidden="false"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-switch-when="1" ng-switch-when-separator="|">
+                                                <div class="form-group row m-0 p-b-10" ng-class="{ 'has-error': (side.membership.university.$invalid || side.membership.school.$invalid) && side.membership.$submitted }">
+                                                    <label for="exampleInputName2" class="col-sm-3 p-0 p-t-10">اختر الجامعة</label>
+                                                    <div class="col-sm-9 p-0-mobile ins-input">
+                                                        <input type="search" name="school" class="form-control" ng-model="membership.instituteName" ng-paste="getInstitute($viewValue);" uib-typeahead="name for result in getInstitute($viewValue)" typeahead-min-length="1" typeahead-is-open="showResult" typeahead-loading="searching" placeholder="اختر الجامعة" autocomplete="off" typeahead-template-url="instituteTemplate.html" typeahead-on-select="onInsSelect($item)" ng-keydown="shouldInsSelect($event)" required />
+                                                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="اختر الجامعة" ng-show=" side.membership.school.$invalid && side.membership.$submitted" aria-hidden="false"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row m-0 p-b-15">
+                                                    <label for="exampleInputName2" class="col-sm-3 p-0 p-t-10">اختر التخصص</label>
+                                                    <div class="col-sm-9 p-0-mobile ins-input">
+                                                        <input type="search" name="specialty" class="form-control" ng-model="membership.specialtyName" ng-paste="getSpecialty($viewValue);" uib-typeahead="name for result in getSpecialty($viewValue)" typeahead-min-length="1" typeahead-is-open="showResult" typeahead-loading="searching" placeholder="اختر التخصص" autocomplete="off" typeahead-template-url="instituteTemplate.html" typeahead-on-select="onSpeSelect($item)" ng-keydown="shouldSpeSelect($event)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="membership.level == 5">
+                                            <hr class="m-t-10 m-b-10">
+                                            <div>
+                                                <p class="text-bold m-t-10 m-b-10">
+                                                    <span>الوقت الذي يمكننا الاتصال بك</span>
+                                                    <i class="md md-error time-error" tooltip-placement="bottom" uib-tooltip="الرجاء ادخال الوقت الصحيح" ng-show="membership.from.getTime() == membership.to.getTime() && side.membership.$submitted" aria-hidden="false"></i>
+                                                </p>
+                                                <div class="row reg-calendar available-time">
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group time-picker" ng-class="{ 'has-error': membership.from.getTime() == membership.to.getTime() && side.membership.$submitted}">
+                                                            <span>من</span>
+                                                            <div uib-timepicker ng-model="membership.fromtime" ng-change="fromMembership(membership.fromtime)" show-meridian="true"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group time-picker" ng-class="{ 'has-error': membership.from.getTime() == membership.to.getTime() && side.membership.$submitted}">
+                                                            <span>إلى</span>
+                                                            <div uib-timepicker ng-model="membership.totime" ng-change="totimeMembership(membership.totime)" show-meridian="true"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-t-10 m-b-10">
+                                            <div>
+                                                <p class="text-bold m-t-10 m-b-10">
+                                                    الرجاء رفع السيرة الذاتية</p>
+                                                <div ngf-drop ngf-select="side.watch(membership.files)" ng-model="membership.files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'" ng-bind="membership.files.name || membership.files.$error || membership.files.$errorParam || 'اضغط هنا لرفع ملف / أو قم بإدراجها هنا'" ng-change="doctorValid(membership.files)" required name="file" ng-class="{'error-color' : side.membership.file.$invalid && side.membership.$submitted}" tooltip-placement="bottom" uib-tooltip="ادخل الملف">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top p-10" ng-if="membership.instype > 0">
+                        <button type="submit" class="btn btn-primary f-14" ng-click="newMembership(membership,side.membership.$valid)">تقديم طلب الإنتساب</button>
+                    </div>
+                </form>    
+            </div>
+            <div class="modal-body p-15" ng-if="membershipModal">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <img src="img/faces/smiling.svg" class="smileyface">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center">
+                            <span ng-if="level != 5">تهانيناً لقد اصبحت طالب</span>
+                            <span ng-if="level == 5">شكراً لإضافة بياناتك كمدرس</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 f-16 text-center m-b-15">
+                            <span ng-if="level != 5">
+                                يمكنك الآن الاستفاده من الخدمات المقدمه للطلاب 
+                            </span>
+                            <span class="text-red" ng-if="level == 5">
+                                سوف نقوم بالاتصال بك بأقرب وقت وتفعيل حسابك كمدرس 
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" data-dismiss="modal">اغلاق الصندوق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    setTimeout(function() {
+        $(".close-side").click(function() {
+            $('#menu-trigger').removeClass('open');
+            $('#sidebar').removeClass('toggled');
+        });
+    }, 3000);
+</script>

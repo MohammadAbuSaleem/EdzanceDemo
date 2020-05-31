@@ -1,0 +1,23 @@
+<header id="header">
+  <div class="container login-container">
+    <ul class="header-inner p-t-0">
+      <li class="logo">
+        <a href="#/">
+          <img src="img/logo.svg" alt="EDZANCE logo" class="logo-home"/>
+           <span class="v-l-middle"></span>
+        </a>
+         <div class="callout callout-danger" ng-if="vm.loginfailed">
+            <h4>فشل تسجيل الدخول</h4>
+            <p>ايميل او كلمة سر خاطئة.</p>
+        </div>
+        <div class="callout callout-danger" ng-if="vm.unverified">
+            <h4>لم يتم تأكيد الايميل</h4>
+            <p>نرجوا منك الضغط على ايميل التفعيل الموجود في بريدك الالكتروني.</p>
+        </div>
+      </li>
+      <li class="pull-left hidden-xs" ng-if="$root.desktop">
+        <login-box></login-box>
+      </li>
+    </ul>
+  </div>
+</header>

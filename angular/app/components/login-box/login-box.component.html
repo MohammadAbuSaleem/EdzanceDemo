@@ -1,0 +1,31 @@
+  <form class="form-inline m-t-12 position-relative" ng-submit="vm.login(vm.loginForm.$valid,vm)" method="post" name="vm.loginForm" autocomplete="off" novalidate>
+  <div class="form-group padding-input p-l-5-web position-relative" ng-class="{ 'has-error': vm.loginForm.logemail.$invalid && (vm.formSubmitted) }"> 
+      <input type="text" class="form-control gray-input" name="logemail" placeholder="البريد الإلكتروني" ng-model="vm.logemail" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+      <i class="md md-error email-error-icon" tooltip-placement="bottom" uib-tooltip="ادخل بريدك الالكتروني" ng-show="vm.loginForm.logemail.$error.required && (vm.logSubmitted)"></i>
+      <i class="md md-error email-error-icon" tooltip-placement="bottom" uib-tooltip="ادخل بريدك الالكتروني" ng-show="vm.loginForm.logemail.$error.required && (vm.logSubmitted)"></i>
+      <i class="md md-error email-error-icon" tooltip-placement="bottom" uib-tooltip="هنالك خطأ في كتابة البريد"  ng-show="vm.loginForm.logemail.$error.pattern && vm.loginForm.logemail.$touched"></i> 
+      <!-- <i class="md md-error error-icon" tooltip-placement="bottom" uib-tooltip="{{vm.errors.logemail}}"  ng-show="vm.loginForm.logemail.$invalid && (vm.logSubmitted || vm.errors.logemail)"></i> -->
+      <!-- <p ng-show="vm.loginForm.logemail.$error.required && (vm.logSubmitted || vm.loginForm.logemail.$touched)" class="help-block">ادخل بريدك الالكتروني</p>  -->
+      <!-- <p ng-show="vm.loginForm.logemail.$error.pattern && vm.loginForm.logemail.$touched" class="help-block">هنالك خطأ في كتابة البريد.</p> -->
+      <!-- <p ng-show="vm.loginForm.logemail.$invalid && (vm.logSubmitted || vm.errors.logemail)" class="help-block">{{vm.errors.logemail}}</p> -->
+  </div>
+  <div class="form-group padding-input p-l-10-web position-relative" ng-class="{ 'has-error': vm.loginForm.logpassword.$invalid && (vm.formSubmitted || vm.loginForm.logpassword.$touched) }">
+      <input type="password" class="form-control gray-input" name="logpassword" placeholder="كلمة السر" ng-minlength="6" ng-maxlength="50" ng-model="vm.logpassword" required>
+      <i class="md md-error password-error-icon" tooltip-placement="bottom" uib-tooltip="كلمة السر مطلوبة" ng-show="vm.loginForm.logpassword.$error.required && (vm.logSubmitted)"></i>
+      <i class="md md-error password-error-icon" tooltip-placement="bottom" uib-tooltip="كلمة المرور طويلة جداً" ng-show="vm.loginForm.logpassword.$error.maxlength"></i>
+      <i class="md md-error password-error-icon" tooltip-placement="bottom" uib-tooltip="كلمة المرور قصيرة ، أدخل 6 على الاقل" ng-show="vm.loginForm.logpassword.$invalid && vm.loginForm.logpassword.$error.minlength" ></i>
+     <!--  <i class="md md-error error-icon" tooltip-placement="bottom" uib-tooltip="{{vm.errors.logpassword}}" ng-show="vm.loginForm.logpassword.$invalid && (vm.logSubmitted || vm.errors.logpassword)"></i> -->
+      <!-- <p ng-show="vm.loginForm.logpassword.$error.required && (vm.logSubmitted || vm.loginForm.logpassword.$touched)" class="help-block">كلمة السر مطلوبة.</p>
+      <p ng-show="vm.loginForm.logpassword.$error.maxlength" class="help-block">كلمة المرور طويلة جداً.</p>
+      <p ng-show="vm.loginForm.logpassword.$invalid && vm.loginForm.logpassword.$error.minlength && vm.loginForm.logpassword.$touched" class="help-block">كلمة المرور قصيرة ، أدخل 8 على الاقل.</p>
+      <p ng-show="vm.loginForm.logpassword.$invalid && (vm.logSubmitted || vm.errors.logpassword)" class="help-block">{{vm.errors.logpassword}}</p> -->
+  </div>
+  <div ng-if="$root.throttle" class="position-relative">
+    <div class="text-center m-b-10" vc-recaptcha key="'6Le3ZDUUAAAAADVUvi7e61JU0_OCAwBXOXFJtLjj'" lang="ar"  ng-model="vm.gRecaptchaResponse"></div>
+    <i class="md md-error password-error-icon" tooltip-placement="bottom" uib-tooltip="الرجاء الضغط على مربع التحقق" ng-show="vm.loginForm.$submitted && vm.loginForm.$invalid" ></i>
+  </div>
+  <button type="submit" class="btn btn-primary waves-effect f-16 p-l-20 p-r-20 mobile-login-btn">دخول</button>
+  <a ui-sref="logins.forgot_password" class="forgot-password">
+    نسيت كلمة المرور ؟
+  </a>
+</form>

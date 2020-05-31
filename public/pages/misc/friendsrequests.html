@@ -1,0 +1,32 @@
+<md-content class="Page-container search-con">
+    <div class="col-md-12 col-sm-12 col-xs-12 p-0" ng-repeat="(key,post) in dat | orderBy: 'created_at':true track by $index">
+        <hr ng-if="key != 0"/>
+        <div class="p-5">
+            <div class="media">
+                <div class="pull-right p-l-8"> 
+                    <a ui-sref="app.profile.timeline({id: post.id})">
+                        <img src="img/icons/infinity.svg" lazy-img="{{post.avatar}}" alt="" class="friend-img">
+                    </a>
+                </div>
+                <div class="media-body col-md-12 col-sm-12 col-xs-12 p-0 p-t-15 p-b-5">
+                    <div class="text-black">
+                        <a ui-sref="app.profile.timeline({id: post.id})" class="notification-username f-17" ng-bind="post.name"></a>
+                    </div>
+                </div>
+                <div class="pull-left m-t-15">
+                    <a class="btn btn-primary waves-effect waves-button waves-float fn-16 p-r-20 p-l-20 join-group" ng-click="friendRequest($root.prodata.id,'accepted')">
+                        <i class="md md-done-all"></i>
+                          الاستجابة لطلب
+                    </a>
+                    <a class="btn btn-danger waves-effect waves-button waves-float fn-16 p-r-20 p-l-20" ng-click="friendRequest($root.prodata.id,'refused')">
+                        <i class="md md-clear"></i>
+                          رفض الطلب
+                    </a>
+                </div>
+            </div>
+        </div>
+   </div>
+   <div ng-show="nopost == 3">
+        لا يوجد نتائج
+   </div>
+</md-content>

@@ -1,0 +1,1933 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fu",
+				"func_get_args"
+			],
+			[
+				"mapping",
+				"mapping_last_id"
+			],
+			[
+				"add",
+				"addMarks"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"par",
+				"partId"
+			],
+			[
+				"class",
+				"classId"
+			],
+			[
+				"if",
+				"ife\tif … else"
+			],
+			[
+				"exam",
+				"exam_name"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"fun",
+				"func_get_args"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"pas",
+				"past_id"
+			],
+			[
+				"new",
+				"new_id"
+			],
+			[
+				"map",
+				"mapping"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"Deb",
+				"Debugger"
+			],
+			[
+				"ins",
+				"inst"
+			],
+			[
+				"op",
+				"option"
+			],
+			[
+				"fo",
+				"foregien"
+			],
+			[
+				"update",
+				"updated"
+			],
+			[
+				"ar",
+				"array"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"a",
+				"array"
+			],
+			[
+				"o",
+				"option\tTag"
+			],
+			[
+				"se",
+				"select\tTag"
+			],
+			[
+				"i",
+				"if\tif …"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"s",
+				"span\tTag"
+			],
+			[
+				"state",
+				"stateparams"
+			],
+			[
+				"pare",
+				"parent"
+			],
+			[
+				"fa",
+				"father"
+			],
+			[
+				"chil",
+				"child_types"
+			],
+			[
+				"name",
+				"namespace"
+			],
+			[
+				"cat",
+				"category"
+			],
+			[
+				"uns",
+				"unset"
+			],
+			[
+				"pla",
+				"place_id"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"ra",
+				"rand"
+			],
+			[
+				"array_c",
+				"array_column"
+			],
+			[
+				"is",
+				"isset"
+			],
+			[
+				"get_",
+				"get_class"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"r",
+				"ng-repeat\tAngularJS"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"Rou",
+				"Route::post\tBasic Post Route."
+			],
+			[
+				"t",
+				"timeout\tsetTimeout function"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"R",
+				"Room"
+			],
+			[
+				"w",
+				"while"
+			],
+			[
+				"child",
+				"childSnapshot"
+			],
+			[
+				"f",
+				"firebase"
+			],
+			[
+				"e",
+				"else"
+			],
+			[
+				"Rooms",
+				"Rooms"
+			],
+			[
+				"the",
+				"then"
+			],
+			[
+				"ch",
+				"checkMessageCount"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"more",
+				"moreMessages"
+			],
+			[
+				"mo",
+				"moreMessages"
+			],
+			[
+				"all",
+				"all_count"
+			],
+			[
+				"get",
+				"getMessages"
+			],
+			[
+				"fr",
+				"forEach"
+			],
+			[
+				"messa",
+				"messages"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"F",
+				"FB_UID"
+			],
+			[
+				"pro",
+				"Promise"
+			],
+			[
+				"ng-",
+				"ng-disabled\tAngularJS"
+			],
+			[
+				"chi",
+				"childSnapshot"
+			],
+			[
+				"th",
+				"then"
+			],
+			[
+				"ngr",
+				"ng-repeat\tAngularJS"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"n",
+				"ng-click\tAngularJS"
+			],
+			[
+				"ng",
+				"ng-click\tAngularJS"
+			],
+			[
+				"isa",
+				"is_array"
+			],
+			[
+				"CON",
+				"console"
+			],
+			[
+				"sig",
+				"signOut"
+			],
+			[
+				"is_n",
+				"is_null"
+			],
+			[
+				"group",
+				"groupuser"
+			],
+			[
+				"$root",
+				"$rootScope\tAngularJS"
+			],
+			[
+				"isn",
+				"is_null"
+			],
+			[
+				"my",
+				"mygroup"
+			],
+			[
+				"Inp",
+				"Input::all\tRetrieve all Inputs"
+			],
+			[
+				"ex",
+				"explode"
+			],
+			[
+				"vc",
+				"vc_info"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"po",
+				"postat"
+			],
+			[
+				"g",
+				"getPost"
+			],
+			[
+				"to",
+				"toState"
+			],
+			[
+				"un",
+				"undefined"
+			],
+			[
+				"post",
+				"posturl"
+			],
+			[
+				"da",
+				"dat"
+			],
+			[
+				"u",
+				"undefined"
+			],
+			[
+				"ge",
+				"getpost"
+			],
+			[
+				"m",
+				"myScope"
+			],
+			[
+				"$sc",
+				"$scope\tAngularJS"
+			],
+			[
+				"DE",
+				"deleted"
+			],
+			[
+				"h",
+				"html\thtml"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
+				"p",
+				"postindex"
+			],
+			[
+				"ngin",
+				"ng-init\tAngularJS"
+			],
+			[
+				"strtime",
+				"strtotime"
+			],
+			[
+				"$f",
+				"$friend"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"ng-i",
+				"ng-init\tAngularJS"
+			],
+			[
+				"$lo",
+				"$log\tAngularJS"
+			],
+			[
+				"$",
+				"$root"
+			],
+			[
+				"$s",
+				"$scope\tAngularJS"
+			],
+			[
+				"$ROO",
+				"$rootScope\tAngularJS"
+			],
+			[
+				"Nu",
+				"null"
+			],
+			[
+				"posti",
+				"postindex"
+			],
+			[
+				"$roo",
+				"$rootScope\tAngularJS"
+			],
+			[
+				"ng-c",
+				"ng-click\tAngularJS"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"where",
+				"whereIn"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"hea",
+				"header\tTag"
+			],
+			[
+				"els",
+				"else"
+			],
+			[
+				"col-md-offs",
+				"col-md-offset-6"
+			],
+			[
+				"ng-sc",
+				"ng-src\tAngularJS"
+			],
+			[
+				"ng-r",
+				"ng-repeat\tAngularJS"
+			],
+			[
+				"scop",
+				"$scope\tAngularJS"
+			],
+			[
+				"root",
+				"$rootScope\tAngularJS"
+			],
+			[
+				"sco",
+				"$scope\tAngularJS"
+			],
+			[
+				"p-",
+				"padding-top"
+			],
+			[
+				"v",
+				"value"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"di",
+				"div\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/laragon/www/5.3/database/seeds/DatabaseSeeder.php",
+			"settings":
+			{
+				"buffer_size": 1040,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_005744_migrate_customers.php",
+			"settings":
+			{
+				"buffer_size": 1356,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/laragon/www/initial/config/database.php",
+			"settings":
+			{
+				"buffer_size": 5387,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_005914_migrate_contracts.php",
+			"settings":
+			{
+				"buffer_size": 1194,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_011409_migrate_histories.php",
+			"settings":
+			{
+				"buffer_size": 1346,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/laragon/www/aqsaat/database/seeds/DatabaseSeeder.php",
+			"settings":
+			{
+				"buffer_size": 981,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/laragon/www/aqsaat/database/factories/ModelFactory.php",
+			"settings":
+			{
+				"buffer_size": 13521,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/laragon/www/5.3/config/database.php",
+			"settings":
+			{
+				"buffer_size": 4474,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/C++/C++ Single File.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: co",
+				"Snippet: Constant Definition"
+			],
+			[
+				"Snippet: lore",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Artisan"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: g",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 114.0,
+		"history":
+		[
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/laragon/www/initial",
+		"/C/laragon/www/initial/config"
+	],
+	"file_history":
+	[
+		"/C/laragon/www/5.3/database/factories/ModelFactory.php",
+		"/C/laragon/www/5.6/database/seeds/DatabaseSeeder.php",
+		"/C/laragon/www/5.6/database/factories/ModelFactory.php",
+		"/C/laragon/www/initial/app/Http/routes.php",
+		"/C/laragon/www/initial/app/Http/routes/grRoute.php",
+		"/C/laragon/www/initial/app/Http/Controllers/grController.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Social/childs/group.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Social/parents/PostFather.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Profile/Profile.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/VClass.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Social/childs/vc.php",
+		"/C/Users/Ahmad/Downloads/institutes_joins (1).sql",
+		"/C/laragon/www/initial/app/Http/Controllers/bio.php",
+		"/C/laragon/www/initial/app/Exceptions/Handler.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Social/childs/home.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/Routing.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Profile/Routing.php",
+		"/C/Users/Ahmad/Downloads/edzance_live (1).sql",
+		"/C/Users/Ahmad/Downloads/institute_join.sql",
+		"/C/laragon/www/initial/app/Http/Controllers/Routing/SocialController.php",
+		"/C/Users/Ahmad/Downloads/18-12-res.sql",
+		"/C/Users/Ahmad/Downloads/edzance (2).sql",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/parts/Exam.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/parts/HomeWork.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/parts/Files.php",
+		"/C/laragon/www/initial/config/database.php",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-exam/virtualclass-exam.component.html",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-exam/virtualclass-exam.component.js",
+		"/C/laragon/www/initial/app/Http/Controllers/Jobs/jobs.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/Vclass.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/MyPermission.php",
+		"/C/laragon/www/zaxx44a.github.io/.git/config",
+		"/C/laragon/www/initial/public/build/rev-manifest.json",
+		"/C/laragon/www/zaxx44a.github.io/index.html",
+		"/C/laragon/www/initial/app/Models/mapping.php",
+		"/E/laragon/www/laravel5-angular-material-starter/composer.json",
+		"/E/laragon/www/aqsaat/.gitignore",
+		"/E/laragon/www/aqsaat/.git/config",
+		"/E/laragon/www/laravel5/.gitignore",
+		"/E/laragon/www/laravel5-angular-material-starter/bower.json",
+		"/E/laragon/www/laravel5-angular-material-starter/.env",
+		"/C/Users/Ahmad/Downloads/institutes_joins.sql",
+		"/C/laragon/www/initial/app/Models/mapping/category.php",
+		"/C/laragon/www/initial/app/Models/mapping/specialition.php",
+		"/C/laragon/www/initial/app/Models/mapping/taggable.php",
+		"/C/laragon/www/initial/app/Models/mapping/taxonomy.php",
+		"/C/laragon/www/initial/app/Models/mapping/university.php",
+		"/C/laragon/www/initial/app/Models/mapping/User.php",
+		"/C/laragon/www/initial/app/Models/mapping/variable.php",
+		"/C/laragon/www/initial/app/Models/mapping/mapping.php",
+		"/C/laragon/www/initial/app/Models/mapping/college.php",
+		"/C/laragon/www/initial/app/Models/mapping/institute.php",
+		"/C/laragon/www/initial/app/Models/mapping/InstitutesJoin.php",
+		"/C/laragon/www/initial/app/Models/classusers.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/parts/Mark.php",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-marks/virtualclass-marks.component.js",
+		"/C/laragon/www/5.3/composer.json",
+		"/C/laragon/www/initial/composer.json",
+		"/C/laragon/www/initial/.gitignore",
+		"/C/laragon/www/initial/resources/views/index.blade.php",
+		"/C/laragon/www/initial/bower_components/AngularDropdownBoxDirective/node_modules/load-grunt-config/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/underscore.js",
+		"/C/Users/Ahmad/Downloads/www/train662016/app/app.js",
+		"/C/Users/Ahmad/Downloads/www/train662016/index.html",
+		"/C/Users/Ahmad/Downloads/www/train662016/header.html",
+		"/C/Users/Ahmad/Downloads/www/train662016/ang/main.html",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-marks/virtualclass-marks.component.html",
+		"/C/laragon/www/initial/app/Models/Assessment.php",
+		"/C/laragon/www/initial/angular/directives/examRepeater/examRepeater.component.js",
+		"/C/laragon/www/initial/angular/index.directives.js",
+		"/C/laragon/www/initial/app/Http/Controllers/Classes/VirtualClass/MarksClass.php",
+		"/C/laragon/www/initial/bower_components/angular-ui-scroll/dist/ui-scroll.js",
+		"/C/laragon/www/initial/app/Http/Controllers/Social/posts.php",
+		"/C/laragon/www/initial/app/Models/User.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Members/members.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Institutes/institutes.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Profile/profile.php",
+		"/C/laragon/www/initial/app/Models/group.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Debugger/Debugger.php",
+		"/C/laragon/www/initial/app/Models/institute.php",
+		"/C/laragon/www/initial/app/Models/variable.php",
+		"/C/laragon/www/initial/app/Models/category.php",
+		"/C/laragon/www/initial/app/Models/specialition.php",
+		"/C/laragon/www/initial/app/Models/InstitutesJoin.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Institutes/Models/institute.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Home/Home.php",
+		"/C/laragon/www/station/public/test.php",
+		"/C/laragon/www/twetter/post_twett.php",
+		"/C/Users/Ahmad/Downloads/Vardot Training Plan - Google Docs.html",
+		"/C/laragon/www/initial/angular/config/routes.config.js",
+		"/C/laragon/www/twetter/vendor/autoload.php",
+		"/C/laragon/www/twetter/composer.json",
+		"/C/laragon/www/initial/angular/app/pages/layout/layout.page.html",
+		"/C/laragon/www/station/node_modules/.bin/webpack-dev-server",
+		"/C/Users/Ahmad/Downloads/omar.html",
+		"/C/laragon/www/initial/.production.env",
+		"/C/laragon/www/initial/.local.env",
+		"/C/laragon/www/initial/app/Models/post.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/parts/Mangment.php",
+		"/C/laragon/www/initial/app/Http/Controllers/Routing/HomeController.php",
+		"/C/laragon/www/initial/app/library/FileUpload.php",
+		"/C/laragon/www/initial/app/Http/Controllers/VClass/Permissions.php",
+		"/C/laragon/www/station/app/Http/Controllers/PostsController.php",
+		"/C/laragon/www/initial/app/Http/Controllers/InstituteController.php",
+		"/C/laragon/www/station/routes/web.php",
+		"/C/laragon/www/station/resources/views/crud/index.blade.php",
+		"/C/laragon/www/initial/app/Http/routes/groupRoute.php",
+		"/C/laragon/www/station/.env",
+		"/C/Users/Ahmad/AppData/Roaming/Sublime Text 3/Packages/User/CodeFormatter.sublime-settings",
+		"/C/Users/Ahmad/AppData/Roaming/Sublime Text 3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/C/Users/Ahmad/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/laragon/www/station/config/app.php",
+		"/C/laragon/www/station/vendor/composer/installed.json",
+		"/C/laragon/www/station/.gitignore",
+		"/C/laragon/www/5.3/.git/config",
+		"/C/Users/Ahmad/.ssh/station",
+		"/C/Users/Ahmad/.ssh/known_hosts",
+		"/C/laragon/www/station/.git/config",
+		"/C/Users/Ahmad/.ssh/id_rsa.pub",
+		"/C/laragon/www/station/composer.json",
+		"/C/Users/Ahmad/Downloads/restructure.sql",
+		"/E/ahmad",
+		"/C/laragon/bin/redis/redis-2.8.17/redis.conf",
+		"/C/laragon/www/initial/angular/services/Post.service.js",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-homework/virtualclass-homework.component.js",
+		"/C/laragon/www/initial/angular/app/components/virtualclass-files/virtualclass-files.component.js",
+		"/C/laragon/www/initial/app/Http/Controllers/Auth/PasswordResetController.php",
+		"/C/laragon/www/baraa/result.html"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 116.0,
+		"where_history":
+		[
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\app\\Http",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\app",
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\app",
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\app\\Http\\routes",
+			"C:\\laragon\\www\\restucture\\app\\Models",
+			"<current file>",
+			"C:\\laragon\\www\\restucture\\app\\Models",
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular\\app\\components",
+			"C:\\laragon\\www\\initial\\app",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial\\angular\\app",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial\\app",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\web3\\js",
+			"C:\\laragon\\www\\initial\\app",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular\\directives\\rM - Copy",
+			"C:\\laragon\\www\\initial\\angular\\app\\components",
+			"C:\\laragon\\www\\initial\\app\\Http\\Controllers",
+			"C:\\laragon\\www\\initial\\angular\\app\\components",
+			"C:\\laragon\\www\\initial\\angular\\app",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\hcb\\public\\css",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial\\angular\\app\\components",
+			"C:\\laragon\\www\\initial\\angular\\run",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\initial",
+			"C:\\laragon\\www\\initial\\angular",
+			"C:\\laragon\\www\\m",
+			"C:\\laragon\\www\\m\\angular",
+			"C:\\laragon\\www\\m",
+			"C:\\laragon\\www\\edz",
+			"C:\\laragon\\www\\ang",
+			"C:\\laragon\\www\\sample-app\\ang",
+			"C:\\laragon\\www\\sample-app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"user",
+			"get()",
+			"$user",
+			"ananymous",
+			"$this->ananymous = ",
+			"$ananymous",
+			"$var-",
+			"$var",
+			"Redis::",
+			"Redis::get",
+			"profile",
+			"$Node",
+			"$this->Node",
+			"$this->one",
+			"name",
+			"created_at",
+			"mappings",
+			" App\\Models",
+			"AUTO_INCREMENT=",
+			"$value",
+			"me",
+			"classusers",
+			"attr('",
+			"attr.attr",
+			"attr.",
+			"form[exam.assessments_id]",
+			"exam_name",
+			"this[exam.exam_name]",
+			"{{exam.exam_name}}",
+			"exam.exam_name",
+			"{{exam.assessments_id}}",
+			"'markForm_'",
+			"statusform",
+			"1:",
+			"1",
+			"{mark:",
+			"{mark:'1'",
+			"assessments_id:1",
+			"id",
+			"array",
+			"$action",
+			"get()",
+			"get(",
+			"group",
+			"Group",
+			"group",
+			",\n",
+			"mappingInst",
+			"dd(",
+			"dd",
+			"$this->last_id",
+			"this->last_id",
+			"spectialization_id",
+			"specialition_id",
+			"spectialization",
+			"Spectialization",
+			"spectialization",
+			"Spectialization",
+			"spectialization",
+			"$this->last_type",
+			"$this->option",
+			"Redis::get",
+			"Redis::set",
+			"$this->last_type",
+			"getId",
+			"last_type",
+			"last_id",
+			"$this->last_id",
+			"last_id",
+			"node",
+			"mapping",
+			"(new mapping)",
+			"university",
+			"= $this",
+			"$v->",
+			"$parent->",
+			"parent",
+			"id",
+			"mapping",
+			"$node->",
+			"arg",
+			"grntr_nid1",
+			"guarantor2",
+			"req",
+			"'status'          => 'enabled',",
+			"mthr_name",
+			"'court,section,school,year,class'",
+			"'university,collage,department,spectialization,year,class'",
+			"child_types",
+			"addDebug",
+			"            $this->addDebug(\"(+value-$id) \");\n            $this->addDebug(\"$cat->name\");",
+			"addDebug",
+			"stop",
+			"option",
+			"$cat->parent",
+			"$e",
+			"=>",
+			"#",
+			"$name",
+			"name",
+			"$this->arg['mthr_name']",
+			"addDebug",
+			"1, 1",
+			"dd(",
+			"die",
+			"ddD",
+			"dd",
+			"collage",
+			"university",
+			"$university",
+			"change",
+			"all",
+			"setup",
+			"http\\Controllers\\Institutes\\Models",
+			"updater",
+			"main",
+			"value2",
+			"$request",
+			"$history",
+			"history",
+			"instructorEducation",
+			"this->input",
+			"input",
+			"sort",
+			"Join",
+			"'s'",
+			"ins__",
+			"ins__institutes"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"', ['uses'=>'",
+			"']);",
+			"Models",
+			"('App\\Models",
+			"('App\\\\Models",
+			"('App\\\\Models;",
+			"namespace App\\\\Models;",
+			"App\\\\Models",
+			"App\\Models",
+			"/",
+			"');\n",
+			"angular.element('nav').scope().$root",
+			"http://lorempixel.com/965/350/city/",
+			"http://lorempixel.com/480/320/city/",
+			"<a ui-sref=\"app.profile.about({id: post.userid})\" class=\"user-name\"  ng-bind=\"post.name ",
+			" ",
+			"this.log",
+			"this.scope.log ",
+			"this.timeout",
+			"this.scope",
+			" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumbs-up-down\"></i>{{post.sadCount}}</a>",
+			" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumbs-up-down\"></i>{{post.normalCount}}</a>",
+			"<a ng-click=\"vm.exprission(post.id,'normal',$index)\" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumbs-up-down\"></i>{{post.normalCount}}</a>",
+			"<a ng-click=\"vm.exprission(post.id,'happy',$index)\" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumb-up\"></i>{{post.happyCount}}</a>",
+			"md-thumbs-up-down",
+			" <a ng-click=\"vm.exprission(post.id,'sad',$index)\" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumb-down\"></i></a>",
+			" <a ng-click=\"vm.exprission(post.id,'normal',$index)\" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumb-up-down\"></i></a>",
+			" <a ng-click=\"vm.exprission(post.id,'happy',$index)\" class=\"btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn m-t-5\">\n                                                        <i class=\"md  md-thumb-up\"></i></a>",
+			"",
+			"#563d7c",
+			"../../../assets",
+			"",
+			" controller: \"GeneralPageController\",\n              data: {pageTitle: '',header:'header.html'},\n            ",
+			"pageTitle: '',header:'header.html'",
+			"  data: {pageTitle: 'العقود'},\n            resolve: {\n           ",
+			"edzance",
+			",\n            resolve: {\n                deps: ['$ocLazyLoad', function($ocLazyLoad) {\n                    return $ocLazyLoad.load({\n                        name: 'MetronicApp',\n                        files: [\n                            '../../../assets/global/plugins/select2/select2.css',                             \n                            '../../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap-rtl.css', \n                            '../../../assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css',\n                            '../../../assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',\n                            '../../../assets/global/plugins/select2/select2.min.js',\n                            '../../../assets/global/plugins/datatables/all.min.js',\n                            'js/scripts/table-advanced.js',\n                            'js/controllers/GeneralPageController.js'\n                        ]\n                    });\n                }]\n            }})\n         .state(",
+			"",
+			"    <!-- Begin page content -->",
+			"",
+			"\">",
+			"ui-sref=\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/laragon/www/5.3/database/seeds/DatabaseSeeder.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1040,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1039,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_005744_migrate_customers.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1356,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1117,
+								1117
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/laragon/www/initial/config/database.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2027,
+								2039
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 640.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_005914_migrate_contracts.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								900,
+								900
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/E/laragon/www/aqsaat/database/migrations/2017_12_20_011409_migrate_histories.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1346,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								679,
+								679
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/E/laragon/www/aqsaat/database/seeds/DatabaseSeeder.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 981,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								422,
+								422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"file": "/E/laragon/www/aqsaat/database/factories/ModelFactory.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1553,
+								1553
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 12.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/laragon/www/5.3/config/database.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 4474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 783.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 144.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 94.0
+	},
+	"pinned_build_system": "Packages/User/build/PSR-2.sublime-build",
+	"project": "initial.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"bio.php",
+				"initial\\app\\Http\\Controllers\\bio.php"
+			],
+			[
+				"han",
+				"initial\\app\\Exceptions\\Handler.php"
+			],
+			[
+				"handler",
+				"initial\\app\\Exceptions\\Handler.php"
+			],
+			[
+				"virtualclass",
+				"initial\\angular\\app\\components\\virtualclass-exam\\virtualclass-exam.component.js"
+			],
+			[
+				"virt",
+				"initial\\angular\\app\\components\\virtualclass-exam\\virtualclass-exam.component.html"
+			],
+			[
+				"rev-ma",
+				"initial\\public\\build\\rev-manifest.json"
+			],
+			[
+				"rev",
+				"initial\\public\\build\\rev-manifest.json"
+			],
+			[
+				"views/i",
+				"initial\\resources\\views\\index.blade.php"
+			],
+			[
+				"rev-",
+				"initial\\public\\build\\rev-manifest.json"
+			],
+			[
+				"virtumarks.php",
+				"initial\\app\\Http\\Controllers\\Classes\\VirtualClass\\MarksClass.php"
+			],
+			[
+				"marks.com",
+				"initial\\angular\\app\\components\\virtualclass-marks\\virtualclass-marks.component.js"
+			],
+			[
+				"controller/ins",
+				"initial\\app\\Http\\Controllers\\Institutes\\institutes.php"
+			],
+			[
+				"institute.php",
+				"initial\\app\\Http\\Controllers\\Institutes\\Models\\institute.php"
+			],
+			[
+				"home.php",
+				"initial\\app\\Http\\Controllers\\Home\\Home.php"
+			],
+			[
+				"indexbl",
+				"initial\\resources\\views\\index.blade.php"
+			],
+			[
+				"station.dev",
+				"station\\node_modules\\.bin\\webpack-dev-server"
+			],
+			[
+				"layout.pa",
+				"initial\\angular\\app\\pages\\layout\\layout.page.html"
+			],
+			[
+				"profile.php",
+				"initial\\app\\Http\\Controllers\\Profile\\profile.php"
+			],
+			[
+				"handler.php",
+				"initial\\app\\Exceptions\\Handler.php"
+			],
+			[
+				"vendor/composer/installed.json",
+				"station\\vendor\\composer\\installed.json"
+			],
+			[
+				"vitualclass-files",
+				"initial\\angular\\app\\components\\virtualclass-files\\virtualclass-files.component.js"
+			],
+			[
+				"virtualclass-e",
+				"initial\\angular\\app\\components\\virtualclass-exam\\virtualclass-exam.component.js"
+			],
+			[
+				"post.ser",
+				"initial\\angular\\services\\Post.service.js"
+			],
+			[
+				"config.js",
+				"initial\\node_modules\\laravel-elixir\\Config.js"
+			],
+			[
+				"storage/framework/cache/0f/19/0f19710ba1d64304269913e4b1762e266715e07a",
+				"initial\\storage\\framework\\cache\\0f\\19\\0f19710ba1d64304269913e4b1762e266715e07a"
+			],
+			[
+				"route.con",
+				"initial\\angular\\config\\routes.config.js"
+			],
+			[
+				"vituialclass.com",
+				"initial\\angular\\app\\components\\virtualclass\\virtualclass.component.html"
+			],
+			[
+				"social/chil",
+				"initial\\app\\Http\\Controllers\\Social\\childs\\vc.php"
+			],
+			[
+				"sidebar.com",
+				"www\\initial\\angular\\app\\components\\sidebar\\sidebar.component.js"
+			],
+			[
+				"institutes/models/ca",
+				"initial\\app\\Http\\Controllers\\Institutes\\Models\\category.php"
+			],
+			[
+				"homecontroller",
+				"initial\\app\\Http\\Controllers\\Routing\\HomeController.php"
+			],
+			[
+				"route.config.",
+				"initial\\angular\\config\\routes.config.js"
+			],
+			[
+				"authc",
+				"initial\\app\\Http\\Controllers\\Auth\\AuthController.php"
+			],
+			[
+				"sidebar.c",
+				"initial\\angular\\app\\components\\sidebar\\sidebar.component.html"
+			],
+			[
+				"members",
+				"initial\\app\\Http\\Controllers\\Members\\members.php"
+			],
+			[
+				"postfather",
+				"initial\\app\\Http\\Controllers\\Social\\parents\\PostFather.php"
+			],
+			[
+				"postf",
+				"initial\\app\\Http\\Controllers\\Social\\parents\\PostFather.php"
+			],
+			[
+				"social",
+				"initial\\app\\Http\\Controllers\\SocialController.php"
+			],
+			[
+				"mec",
+				"initial\\app\\Http\\Controllers\\meController.php"
+			],
+			[
+				"models/user",
+				"initial\\app\\Models\\User.php"
+			],
+			[
+				"mecon",
+				"initial\\app\\Http\\Controllers\\meController.php"
+			],
+			[
+				"home.com",
+				"initial\\angular\\app\\components\\home\\home.component.js"
+			],
+			[
+				"post.html",
+				"initial\\public\\pages\\post\\post.html"
+			],
+			[
+				"home.comp",
+				"initial\\angular\\app\\components\\home\\home.component.js"
+			],
+			[
+				"rev-man",
+				"initial\\public\\build\\rev-manifest.json"
+			],
+			[
+				"index.b",
+				"initial\\resources\\views\\index.blade.php"
+			],
+			[
+				"app.min.css",
+				"initial\\public\\css\\app.min.3.css"
+			],
+			[
+				"",
+				"initial\\angular\\index.modules.js"
+			],
+			[
+				"home.component",
+				"initial\\angular\\app\\components\\home\\home.component.js"
+			],
+			[
+				"vcc",
+				"initial\\app\\Http\\Controllers\\web\\VcController.php"
+			],
+			[
+				"vc.php",
+				"initial\\app\\Http\\Controllers\\Social\\childs\\vc.php"
+			],
+			[
+				"postfa",
+				"initial\\app\\Http\\Controllers\\Social\\parents\\PostFather.php"
+			],
+			[
+				"files.php",
+				"initial\\app\\Http\\Controllers\\VClass\\parts\\Files.php"
+			],
+			[
+				"posts",
+				"initial\\app\\Http\\Controllers\\Social\\posts.php"
+			],
+			[
+				"info.php",
+				"initial\\app\\Http\\Controllers\\VClass\\parts\\Info.php"
+			],
+			[
+				"hanlder",
+				"initial\\app\\Exceptions\\Handler.php"
+			],
+			[
+				"meconrt",
+				"initial\\app\\Http\\Controllers\\meController.php"
+			],
+			[
+				"user",
+				"initial\\app\\Models\\User.php"
+			],
+			[
+				"vclassc",
+				"initial\\app\\Http\\Controllers\\VClassController.php"
+			],
+			[
+				"chat.serv",
+				"initial\\angular\\services\\chatMessages.service.js"
+			],
+			[
+				"routes.php",
+				"initial\\app\\Http\\routes.php"
+			],
+			[
+				"authco",
+				"initial\\app\\Http\\Controllers\\Auth\\AuthController.php"
+			],
+			[
+				"login-box",
+				"initial\\angular\\app\\components\\login-box\\login-box.component.js"
+			],
+			[
+				"route.config",
+				"initial\\angular\\config\\routes.config.js"
+			],
+			[
+				"mecontroller",
+				"initial\\app\\Http\\Controllers\\meController.php"
+			],
+			[
+				"group",
+				"initial\\app\\Http\\Controllers\\Classes\\Groupes.php"
+			],
+			[
+				"posts.php",
+				"initial\\app\\Http\\Controllers\\Classes\\Posts.php"
+			],
+			[
+				"usercontroller",
+				"initial\\app\\Http\\Controllers\\UserController.php"
+			],
+			[
+				"ahmad",
+				"initial\\angular\\app\\components\\ahmad-test\\ahmad-test.component.js"
+			],
+			[
+				"ahmad.co",
+				"initial\\angular\\app\\components\\ahmad-test\\ahmad-test.component.html"
+			],
+			[
+				"userc",
+				"initial\\app\\Http\\Controllers\\UserController.php"
+			],
+			[
+				"hand",
+				"initial\\app\\Exceptions\\Handler.php"
+			],
+			[
+				"meco",
+				"initial\\app\\Http\\Controllers\\meController.php"
+			],
+			[
+				"rou",
+				"initial\\app\\Http\\routes.php"
+			],
+			[
+				"bower_components/jquery/src/wrap.js",
+				"initial\\bower_components\\jquery\\src\\wrap.js"
+			],
+			[
+				"app/route.php",
+				"initial\\app\\Http\\routes.php"
+			],
+			[
+				"user.",
+				"initial\\app\\User.php"
+			],
+			[
+				"categories.php",
+				"restucture\\database\\migrations\\2017_06_04_104821_categories.php"
+			],
+			[
+				"institute__",
+				"restucture\\database\\migrations\\2017_06_06_091107_institute__variables.php"
+			],
+			[
+				".env",
+				"restucture\\.env"
+			],
+			[
+				"route.c",
+				"angular\\config\\routes.config.js"
+			],
+			[
+				"route",
+				"app\\Http\\routes.php"
+			],
+			[
+				"nav.",
+				"angular\\app\\components\\nav\\nav.component.js"
+			],
+			[
+				"nav.c",
+				"angular\\app\\components\\nav\\nav.component.html"
+			],
+			[
+				"grc",
+				"app\\Http\\Controllers\\grController.php"
+			],
+			[
+				"vcco",
+				"app\\Http\\Controllers\\vcController.php"
+			],
+			[
+				"post",
+				"app\\post.php"
+			],
+			[
+				"profile",
+				"angular\\app\\components\\profile\\profile.component.html"
+			],
+			[
+				"profile.",
+				"angular\\app\\components\\profile\\profile.component.html"
+			],
+			[
+				"group.ht",
+				"public\\pages\\misc\\group.html"
+			],
+			[
+				"group-all",
+				"angular\\app\\components\\group-all\\group-all.component.html"
+			],
+			[
+				"group.co",
+				"angular\\app\\components\\group\\group.component.html"
+			],
+			[
+				"chat",
+				"app\\Http\\Controllers\\Classes\\Chat.php"
+			],
+			[
+				"grou",
+				"app\\Http\\Controllers\\Classes\\Groupes.php"
+			],
+			[
+				"notifi",
+				"app\\library\\notifications\\Notifications.php"
+			],
+			[
+				"noti",
+				"app\\notification.php"
+			],
+			[
+				"route.",
+				"app\\Http\\routes.php"
+			],
+			[
+				"vccontroller",
+				"app\\Http\\Controllers\\vcController.php"
+			],
+			[
+				"comment.php",
+				"app\\comment.php"
+			],
+			[
+				"virtual",
+				"app\\virtualclass.php"
+			],
+			[
+				"nav.co",
+				"angular\\app\\components\\nav\\nav.component.js"
+			],
+			[
+				"home.co",
+				"angular\\app\\components\\home\\home.component.js"
+			],
+			[
+				"post.ht",
+				"public\\pages\\post\\post.html"
+			],
+			[
+				"comment.ht",
+				"public\\pages\\comment\\comment.page.html"
+			],
+			[
+				"home.c",
+				"angular\\app\\components\\home\\home.component.js"
+			],
+			[
+				"ahmad-tes",
+				"angular\\app\\components\\ahmad-test\\ahmad-test.component.js"
+			],
+			[
+				"ahmad-test",
+				"angular\\app\\components\\ahmad-test\\ahmad-test.component.js"
+			],
+			[
+				"vitual-class-inf",
+				"angular\\app\\components\\virtualclass-information\\virtualclass-information.component.js"
+			],
+			[
+				"chatc",
+				"app\\Http\\Controllers\\ChatController.php"
+			],
+			[
+				"ahmad.c",
+				"angular\\app\\components\\ahmad-test\\ahmad-test.component.js"
+			],
+			[
+				"sidebar.co",
+				"angular\\app\\components\\sidebar\\sidebar.component.js"
+			],
+			[
+				"message-r",
+				"angular\\app\\components\\message-room\\message-room.component.html"
+			],
+			[
+				"message-roo",
+				"angular\\app\\components\\message-room\\message-room.component.js"
+			],
+			[
+				"profile.c",
+				"angular\\app\\components\\profile\\profile.component.html"
+			],
+			[
+				"handl",
+				"app\\Exceptions\\Handler.php"
+			],
+			[
+				"chat.com",
+				"angular\\app\\components\\chat\\chat.component.js"
+			],
+			[
+				"group-ch",
+				"angular\\app\\components\\group-chat\\group-chat.component.html"
+			],
+			[
+				"virtual-class-cha",
+				"angular\\app\\components\\virtualclass-chat\\virtualclass-chat.component.html"
+			],
+			[
+				"virtual-class-chat",
+				"angular\\app\\components\\virtualclass-chat\\virtualclass-chat.component.js"
+			],
+			[
+				"chat.co",
+				"angular\\app\\components\\chat\\chat.component.html"
+			],
+			[
+				"group-cha",
+				"angular\\app\\components\\group-chat\\group-chat.component.js"
+			],
+			[
+				"virtualclass-s",
+				"angular\\app\\components\\virtualclass-student\\virtualclass-student.component.js"
+			],
+			[
+				"angular/app/components/profile-photo/profile-photo.component.html",
+				"angular\\app\\components\\profile-photo\\profile-photo.component.html"
+			],
+			[
+				"virual-class-ch",
+				"angular\\app\\components\\virtualclass-chat\\virtualclass-chat.component.js"
+			],
+			[
+				"profile.com",
+				"angular\\app\\components\\profile\\profile.component.html"
+			],
+			[
+				".loca",
+				".local.env"
+			],
+			[
+				".en",
+				".env"
+			],
+			[
+				"message",
+				"angular\\app\\components\\message\\message.component.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\laragon\\www\\station\\station.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"$onInit"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}

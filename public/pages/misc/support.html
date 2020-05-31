@@ -1,0 +1,38 @@
+<div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+    <div ng-repeat="(key,post) in dat | orderBy: 'created_at':true track by $index"  class="media animated">
+        <div class="card">
+            <div class="card-body card-padding">
+                <div class="media">
+                    <div class="pull-right p-l-5">
+                        <i class="md md-bug-report bug-icon"></i>
+                    </div>
+                    <div class="pull-right">
+                        <div class="user-name">
+                            <a ng-bind="$root.me.name + '' + $root.me.last_name"></a>
+                        </div>
+                        <div ng-bind="moment(post.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()"></div>
+                    </div>
+                </div>
+                <div ng-bind="post.title" class="text-bold"></div>
+                <pre ng-bind="post.description"></pre>
+                 <div ng-if="post.file">
+                     <img src="img/icons/infinity.svg" lazy-img="{{post.file}}" class="image-post" />
+                 </div>
+            </div>
+            <div class="card-body card-padding reply-box" ng-if="post.comment"> 
+                <div class="media">
+                    <div class="pull-right">
+                        <img src="img/logo-small.svg">
+                    </div>
+                    <div class="pull-right">
+                        <div class="user-name">
+                            <a>ادزانس</a>
+                        </div>
+                        <div ng-bind="moment(post.comment_date, 'YYYY-MM-DD hh:mm:ss').fromNow()"></div>
+                    </div>
+                </div>
+                <div ng-bind="post.comment"></div>
+            </div>
+        </div>
+    </div>
+</div>

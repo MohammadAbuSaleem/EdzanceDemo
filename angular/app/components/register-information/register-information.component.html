@@ -1,0 +1,59 @@
+<div class="p8">
+  <form name="userForm">
+     <h4>اختر تخصصك</h4>
+    <input type="text" ng-model="reginf.stateParams.university" placeholder="ابحث عن الجامعة او الكلية او التخصص" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" ng-required="true" name="university">
+    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+    <div ng-show="noResults">
+      <i class="glyphicon glyphicon-remove"></i> لا توجد نتائج
+    </div>
+    <div ng-show="reginf.stateParams.type=='Teacher'" class="docotr-input m-t-20">
+    <h4 class="c-black f-500 m-b-10">
+      <i class="md md-access-time"></i>
+       الوقت المتاح للاتصال بك
+     </h4>
+    <div class="m-b-20 row m-r-0 m-l-0">
+      <div class="col-md-6 col-6-sm col-xs-12 p-0">
+        <div class="p-l-10 p-b-5">من الساعة</div>
+        <input ng-required="true" ng-model="reginf.stateParams.from" type="time" name="from" class="input-time">
+      </div>
+      <div class="col-md-6 col-6-sm col-xs-12 p-0 text-right">
+        <div class="p-l-10 p-b-5">الى الساعة</div>
+        <input ng-required="true" ng-model="reginf.stateParams.to" type="time" name="to" class="input-time">
+      </div>
+    </div>
+     <div class="row m-t-20">
+                <div class="col-md-12 co-sm-12 col-xs-12 f-16">
+                  <!-- <a>
+                   <button ng-click="side.addclass()" type="button" class="btn btn-primary pull-left m-t-10">إضافة</button>
+                  </a> -->
+                </div>
+              </div>
+    <div ngf-drop ngf-select="logu.watch(files)" ng-model="reginf.stateParams.files" class="drop-box" 
+         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+         accept="*/*" 
+         ngf-pattern="'*/*'" value="{{files}}" ng-bind="files[0].name || files.$error || files.$errorParam || 'رفع السيرة الذاتية الخاصة بك/ أو قم بادراجها هنا'" ng-required="true">
+                   
+    </div>
+    <div class="checkbox padding-input">
+        <label>
+        <input type="checkbox" ng-model="regconf.stateParams.agree" ng-click="regconf.check()" value="" ng-required="true" >
+        <i class="input-helper"></i>
+        اوافق على شروط الاستخدام
+        </label>
+    </div>
+</div>
+</form>
+</div>
+      <a ng-show="reginf.stateParams.type=='Teacher'" ng-disabled="!userForm.$valid"    ng-click="userForm.$valid == true ? $parent.$parent.reg.go('logins.login.register.mail') : $parent.$parent.reg.test('no no no')"  class="btn btn-lg con-btn btn-primary">
+            <span>
+            استمرار
+           </span>
+        </a>
+           <a ng-show="reginf.stateParams.type!='Teacher'"  ng-disabled="!userForm.university.$valid"   ng-click="userForm.university.$valid == true ? $parent.$parent.reg.go('logins.login.register.mail') : $parent.$parent.reg.test(userForm)"  class="btn btn-lg con-btn btn-primary">
+            <span>
+            استمرار
+           </span>
+        </a>
+  <script type="text/javascript">
+     $(".con").removeClass("hidden");
+  </script>

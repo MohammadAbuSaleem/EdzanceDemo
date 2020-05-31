@@ -1,0 +1,116 @@
+<aside id="chat"> 
+<!--   <ul class="tab-nav tn-justified" role="tablist">
+    <li role="presentation">
+      <a data-target="#online" class="active" aria-controls="online" role="tab" data-toggle="tab">المراسلات
+      </a>
+    </li>
+  </ul> -->
+  <div class="chat-search"> 
+    <div class="fg-line">
+      <input ng-model="searchText" type="text" class="form-control" placeholder="بحث في الأصدقاء">
+    </div>
+  </div>
+  <div class="tab-content">
+    <!-- <div role="tabpanel" class="tab-pane fade" id="friends">
+      <div class="listview">
+        <a ng-repeat="friend in $parent.$parent.me.friends| orderBy: 'created_at':true| filter:searchText" class="lv-item" data-id="{{friend.friend_id}}" data-name="{{friend.name}}" data-type="new" ng-click="register_popup(friend.friend_id,friend.name)">
+          <div class="media">
+            <div class="pull-right p-relative">
+              <img class="lv-img-sm" ng-src="{{friend.avatar}}" src="img/profile-pics/2.jpg" alt="">
+              <i class="chat-status-busy">
+              </i>
+            </div>
+            <div class="media-body">
+              <div  ng-bind="friend.name" class="lv-title">
+              </div>
+              <small  ng-if="friend.logged" class="lv-small">موجود
+              </small>
+            </div>
+          </div>
+        </a>
+      </div> 
+    </div> -->
+    <div role="tabpanel" class="tab-pane fade in active" id="online">
+      <div class="listview">
+        <div ng-click="$root.register_popup(friend.name,friend.display);GetRoom(friend.name)" ng-if="!friend.deleted" ng-repeat="friend in $root.Rooms | orderBy: 'updatedAt':true | filter:searchText" class="lv-item media" ng-class="{active: $index == $root.selected}">
+            <div class="lv-avatar pull-right">
+                <img ng-src="{{friend.avatar}}" src="img/profile-pics/1.jpg" alt="">
+            </div>
+            <div class="media-body">
+                <div class="lv-title chat-username row">
+                    <span ng-bind="friend.display" class="username-chat"></span>
+                    <i class="chat-count text-bold" ng-bind="friend.unReaded" ng-show="friend.unReaded != 0"></i>
+                    <span class="text-gray pull-left">{{moment(friend.updatedAt).locale('en').format("ddd, hA")}}</span>
+                </div>
+                <div class="row m-0 p-r-8">
+                    <span class="last-message" ng-bind-html="$crypto.decrypt(friend.lastMessage) | trustHtml"></span>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+<div ng-repeat="(key,user) in popups| orderBy: 'key':true">
+  <div class="popup-box chat-popup" id="{{user.id}}" ng-style="user.myObj">
+      <div class="popup-head" ng-click="vma.toggleMenu(user.id)">
+          <div class="popup-head-right long-chat-text" ng-bind="user.name">
+          </div>
+          <div class="popup-head-left">
+              <a ng-click="close_popup(user.id)">&#10005;</a>
+          </div>
+          <div style="clear: both">
+          </div>
+      </div>
+      <div class="popup-messages lv-message" when-scrolled="infiniteScroll(user.id)" scroll-bottom-on="loaded" userid="{{user.id}}">
+        <div class="lv-item message-padding media" ng-repeat="message in $root.messages[user.id]  | unique: 'message_id' | orderBy: 'message_id'" ng-class="{ 'left': $root.me.FB_UID != message.id}">
+            <div class="lv-avatar m-r-5" ng-class="($root.me.FB_UID != message.id) ? 'pull-left' : 'hidden'">
+            <!-- {{user.avatar}} -->
+                <img ng-if="$root.me.FB_UID != message.id" ng-src="{{$root.avatar[user.id][message.id]}}" alt="">
+                <img ng-if="$root.me.FB_UID == message.id" ng-src="{{$root.me.avatar}}" alt="">
+                <!-- <img ng-if="{{($root.me.FB_UID != message.id) ? friend.avatar : $root.me.avatar}}" alt=""> -->
+            </div> 
+            <div class="media-body" ng-class="($root.me.FB_UID != message.id) ? 'text-left' : 'text-right'"> 
+               	<div ng-if="message.type == 'text'" class="ms-item" ng-bind-html="$crypto.decrypt(message.content) | trustHtml"></div>
+                <img height="100" ng-src="{{ message.content }}" class="chat-img" img-model data-toggle="modal" data-target="#imgModel" ng-if="message.type == 'image'"/>
+            	<div ng-if="message.type == 'file'" class="ms-item">
+       				<a href="{{message.content}}" download>
+       					<span ng-bind="message.fileName"></span>
+           				<i class="md md-file-download f-16"></i>
+           			</a>
+               	</div>
+                <small title="{{message.timestamp}}" class="text-gray display-block chat-margin-left">{{moment(message.timestamp).fromNow()}}</small>
+            </div>
+        </div>
+        <div class="chat-loader" ng-if="chatLoader"></div>
+      </div>
+      <div class="input-chat-border">
+        <div class="form-group position-relative">
+         <span>
+           <i ngf-drop 
+               ngf-select="chatMessages.UploadFile(file[key],user.id)" 
+               ng-model="file[key]"
+               class="md md-attach-file chat-box-upload" 
+               ngf-drag-over-class="'dragover'" 
+               ngf-multiple="true" 
+               ngf-allow-dir="true"
+               accept="image/*" 
+               ngf-pattern="'image/*,application/pdf,.doc,.docx,.xdoc,.xls,.xlsx,.ppt,.pptx,.odt,.rtf,.txt'"
+               value="{{files}}"
+               ngf-max-size="4MB"
+               name="uploadfile"
+               ng-class="{'error-color' : submitTextForm.uploadfile.$invalid}"
+               id="emojionearea[key+1]"
+               ></i>
+          </span>
+          <textarea ng-model="message[key]"
+                my-enter="chatMessages.addMessage($root.me.FB_UID,$root.me.name,message[key],user.id)"
+                room-id="{{user.id}}"
+                type="text"
+                class="form-control input-chat chat-textarea textarea-control"
+                placeholder="أكتب رسالة هنا..."
+                emojo-face></textarea>
+        </div>
+      </div>
+  </div>
+</div>

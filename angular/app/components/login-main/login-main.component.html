@@ -1,0 +1,89 @@
+<section>
+    <div class="container margin-container reset-password-container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>
+                    معلومات الجامعة
+                </h1>
+            </div>
+        </div>
+        <hr/>
+         <form role="form">
+            <div class="form-group">
+              <select class="form-control" id="sel1">
+                <option>جنسية الجامعة التي تنتمي اليها</option>
+                <option>الأردنية</option>
+              </select>
+            </div>
+             <div class="form-group">
+              <select class="form-control" id="sel1">
+                <option>اختر جامعتك, لن تتمكن من تغيرها لاحقا</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+             <div class="form-group">
+              <select class="form-control" id="sel1">
+                <option>الكلية التي تنتسب لها</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+             <div class="form-group">
+              <select class="form-control" id="sel1">
+                <option>التخصص الدراسي الذي تدرس فيه</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+             <div class="btn-group btn-group-justified mb-lg" role="group" data-toggle="buttons" id="employee">
+                <div class="btn-group employee-btn" role="group">
+                  <label for="employee" class="btn btn-default">
+                      طالب
+                      <input value="0" name="employee" type="radio" class="employee">
+                  </label>
+                </div>
+                <div class="btn-group employee-btn" role="group">
+                  <label for="employee" class="btn btn-default">
+                      مدرس
+                      <input value="1" name="employee" type="radio" class="employee">
+                  </label>
+                </div>
+              </div>
+              <div class="btn-group btn-group-justified mb-lg hidden-element" role="group" data-toggle="buttons" id="student">
+                <div class="btn-group" role="group">
+                  <label for="student" class="btn btn-default">
+                      تخرجت
+                      <input value="0" name="student" type="radio" class="student">
+                  </label>
+                </div>
+                <div class="btn-group" role="group">
+                  <label for="student" class="btn btn-default">
+                      طالب
+                      <input value="1" name="student" type="radio" class="student">
+                  </label>
+                </div>
+              </div>
+            <div class="mb">
+              <button type="submit" class="btn btn-success btn-lg btn-block">تابع</button>
+            </div>
+          </form>
+          <form id="form-user_v1" name="form-user_v1">
+    <div class="typeahead__container">
+        <div class="typeahead__field input-group">
+            <span class="typeahead__query">
+                <input class="js-typeahead-user_v1 form-control" name="user_v1[query]" type="search" placeholder="Search" autocomplete="off">
+            </span>
+            <span class="typeahead__button input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+    </div>
+</section>

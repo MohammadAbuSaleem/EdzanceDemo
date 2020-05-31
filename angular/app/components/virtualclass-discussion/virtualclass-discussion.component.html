@@ -1,0 +1,6 @@
+<div class="p-l-0" ng-init="$root.controller='virtualclass-discussion'">
+    <post-new req-url="vc/post/{{vm.stateParams.classid}}" req-type="classpost" req-parent="virtualclass"  ng-if="permission('post.add')"></post-new>
+    <div ng-class=""></div>
+        <!-- post --> 
+    <div ui-view="post"></div>
+</div>

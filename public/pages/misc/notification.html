@@ -1,0 +1,20 @@
+<div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+    <div ng-repeat="(key,notification) in dat | orderBy: 'created_at':true track by $index" class="media animated">
+        <a class="lv-item" href="">
+            <div class="media">
+                <div class="pull-right"> 
+                    <img class="lv-img-sm" src="img/icons/infinity.svg" lazy-img="notification.icon" alt="">
+                </div>  
+                <div class="media-body">
+                    <div class="lv-title" ng-bind="notification.body">
+                            
+                    </div>
+                    <small class="lv-small">
+                        <i class="md md-access-time"></i>
+                        <span ng-bind="notification.created_at">منذ 6دقائق</span>
+                    </small>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

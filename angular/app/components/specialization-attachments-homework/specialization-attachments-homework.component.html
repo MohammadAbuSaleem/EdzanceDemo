@@ -1,0 +1,114 @@
+<div class="media animated">
+  <div>
+    <div class="media-body">
+        <div class="card w-item vc-con">
+            <div class="card-body card-padding f-15">
+            <div class="media">
+              <div class="pull-right">
+                  <a ui-sref="app.profile.timeline({id: post.userid})">
+                      <img class="post-img" ng-src="upload/profile/avatar/ffbea6986395c2ecde21206fd1ce9e70.jpg">
+                  </a>
+              </div>
+              <div>
+                  <div class="pull-right">
+                      <a class="user-name ng-binding" href="#/profile-3/timeline">حمزة النتشة</a>
+                      <div class="data-post ng-binding">
+                        منذ ٦ أيام
+                      </div>
+                  </div>
+                  <!-- ngIf: post.userid == vm.userData.id --><!-- end ngIf: post.userid == vm.userData.id -->
+              </div>
+             <div class="pull-left">
+                <ul class="actions">
+                    <li class="dropdown">
+                        <a href="" data-toggle="dropdown" aria-expanded="false">
+                            <i class="md md-more-vert"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="b-bottom">
+                                <a data-pmb-action="delete" class="close-menu sa-params"  ng-click="$root.swalConfirm(post,'homework',post.key);" data-post-id="{{post.id}}" data-post-key="{{post.key =key}}"  data-post-key="{{post.index =key}}" data-post-type="homework" >
+                                <i class="md md-delete"></i>
+                                حذف
+                                </a>
+                                
+                            </li>
+                            <li >
+                               <!--  <a data-pmb-action="delete" href="#" ng-click="vm.edit(post.id,$index)"> -->
+                                 <a href="javascript:void(0)" ng-click="editableForm.$show()" ng-hide="editableForm.$visible" class="close-menu" >
+                                  <i class="md md-mode-edit"></i>
+                                تعديل<!-- </a> --></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </div>
+               <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 m-t-15">
+                  <div class="pull-right p-l-20">
+                   <div class="homwork-img"></div>
+                  </div>
+                 <div class="m-t-2 pull-left">
+                    <a href="{{post.file}}" download class="btn btn-default f-15 down-btn">
+                      <i class="md md-file-download"></i>
+                      تحميل
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div>
+                        <span>
+                          جديد جديد
+                        </span>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div>
+                          <div>
+                            <i class="md md-description"></i>
+                            وصف الواجب
+                          </div>
+                          <span>
+                            جديد جديدجديد جديدجديد جديدجديد جديدجديد جديدجديد جديد
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                   <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="pull-right"> 
+                        <div class="homework-type">
+                          <i class="md md-now-widgets"></i>
+                          <span>البحث</span>
+                        </div>
+                        <div class="homework-type">
+                          <i class="md md-filter-9-plus"></i>
+                          <span>علامه الواجب </span> 32
+                        </div>
+                        <div class="m-b-10 homework-type">
+                          <i class="md md-today"></i>
+                          <span>موعد التسليم</span> 2017/12/21
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+     <!-- Comment -->
+     <!--  <comment-repeat ng-init="$root.controller='virtualclass-homework'"  req-url="homework" comment-id="{{post.id}}" comment-index="{{key}}" req-parent="virtualclass-homework"></comment-repeat> -->
+     <!-- End Comment -->
+          </div>
+      </div>
+  </div>
+</div>
+<div ng-if="nohome">
+  <div class="card">
+    <div class="card-body card-padding empty-text">
+      لا يوجد واجبات
+    </div>
+  </div>
+</div>

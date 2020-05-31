@@ -1,0 +1,61 @@
+<header id="header">
+  <div class="container login-container">
+    <ul class="header-inner p-t-0">
+      <li class="logo">
+        <a ui-sref="app.landing">
+          <img src="img/logo.svg" alt="EDZANCE logo" class="logo-home"/>
+           <span class="v-l-middle"></span>
+        </a>
+    </ul>
+  </div>
+</header>
+<section class="homepage">
+    <div class="container margin-container login-container retry-login-box">
+        <div class="row m-0">
+            <div class="col-md-12 col-sm-12 col-xs-12 new-login-box">
+                <div class="text-center hidden-lg hidden-md hidden-sm">
+                  <img src="img/edzance-logo/white-logo.svg" class="white-logo" alt="edzance logo" />
+                </div>
+                <div class="login-mobile">
+                    <div class="card">
+                        <div class="card-body p-15">
+                            <div class="f-20 text-center edzance-color">
+                                تسجيل دخول
+                            </div>
+                            <login-box></login-box>
+                        </div>
+                    </div>
+                 	<div class="reg-text"> 
+	        	         مستخدم جديد
+	                </div>
+                </div>
+                <div class="hidden reg-con">
+                    <div class="card">
+                        <div class="card-body p-15">
+                            <registration-box></registration-box>
+                        </div>
+                    </div>
+                  	<div class="hidden login-text">
+	                   	تسجيل دخول
+	                </div>
+                </div>
+                <div class="text-gray text-center">EDZANCE 2016 ©</div>
+                <!-- -->
+            </div>
+        </div>
+    </div>
+</section> 
+<script type="text/javascript">
+    $(".reg-text").click(function(){
+      $('.reg-con').removeClass('hidden');
+      $('.login-text').removeClass('hidden');
+      $('.login-mobile').addClass('hidden');
+      $('.reg-text').addClass('hidden');
+    });
+    $(".login-text").click(function(){
+      $('.reg-con').addClass('hidden');
+      $('.login-mobile').removeClass('hidden');
+      $('.reg-text').removeClass('hidden');
+      $('.login-text').addClass('hidden');
+    });
+</script>

@@ -1,0 +1,283 @@
+<div class="download-app" ng-if="mobile">
+    <a href="https://play.google.com/store/apps/details?id=com.edzance">
+        <i class="md md-android"></i>
+        حمل تتطبيق إدزانس
+    </a>
+</div>
+<header id="header" ng-init="vm.change()">
+    <div class="position-relative">
+        <ul class="header-inner container">
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+            <li class="logo">
+                <a ui-sref="app.landing">
+                    <img src="img/logo.svg" alt="EDZANCE" class="edzance-logo hidden-xs"/>
+                    <img src="img/logo-small.svg" alt="EDZANCE" class="edzance-logo hidden-md hidden-sm hidden-lg"/>
+                </a>
+            </li>
+            <li class="pull-left">
+                <ul class="top-menu">
+                    <li id="top-search" class="header-search-icon">
+                        <a href="" class="text-center">
+                            <i class="md md-search mail-icon "></i>
+                        </a>
+                    </li>
+                    <li class="dropdown notification-dropdown p-l-10">
+                        <!-- <a class="text-center dropdown-toggle" data-toggle="dropdown" ng-click="seenNotifications()">
+                            <i class="md md-people mail-icon"></i>
+                            <i class="tmn-counts" ng-bind="$root.me.un_seen_notifications" ng-if="$root.me.un_seen_notifications != 0"></i>
+                        </a> -->
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview" id="people">
+                                <div class="lv-header">
+                                    <i class="md md-people"></i>
+                                    طلبات الصداقة
+                                </div>
+                                <div class="lv-body c-overflow">
+                                    <md-content class="Page-container overflow-hidden">
+                                        <div class="media animated">
+                                            <div class="lv-item not-border" href="#">
+                                                <div class="media">
+                                                    <div class="pull-right">
+                                                        <img class="lv-img" src="img/icons/infinity.svg" alt="">
+                                                    </div>  
+                                                    <div class="media-body">
+                                                        <div class="lv-title">
+                                                            <div class="f-16 m-b-5">
+                                                                <a href="#">
+                                                                    <strong>
+                                                                        Hamzeh Alnatsheh
+                                                                    </strong>
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <a class="btn btn-primary join-post waves-effect waves-button waves-float">
+                                                                    تأكيد
+                                                                </a>
+                                                                 <a class="btn btn-default join-post down-btn waves-effect waves-button waves-float">
+                                                                    رفض الطلب
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="noNotification == 3" class="noNotification">
+                                            لا يوجد طلبات الصداقة
+                                        </div>
+                                    </md-content>  
+                               </div>
+                                <a class="lv-footer all-notifications edzance-color" ui-sref="app.friendsrequests">
+                                جميع طلبات الصداقة</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown notification-dropdown p-l-10" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <a class="text-center dropdown-toggle" data-toggle="dropdown" ng-click="seenNotifications()">
+                            <i class="md md-notifications mail-icon"></i>
+                            <i class="tmn-counts" ng-bind="$root.me.un_seen_notifications" ng-if="$root.me.un_seen_notifications != 0"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview" id="notifications">
+                                <div class="lv-header">
+                                    <i class="md md-notifications"></i>
+                                    الإشعارات
+                                </div>
+                                <div class="lv-body c-overflow">
+                                    <md-content class="Page-container overflow-hidden" infinite-scroll='getNotification();' infinite-scroll-disabled='$root.notificationBusy' infinite-scroll-distance='1'>
+                                        <div ng-repeat="(key,notification) in not | orderBy: 'created_at':true track by $index" class="media animated" ng-show="noNotification == 1">
+                                            <a class="lv-item not-border" ng-class="{'active': notification.seen == 0}" href="{{notification.click_action || notification.link}}">
+                                                <div class="media">
+                                                    <div class="pull-right">
+                                                        <img class="lv-img-sm" src="img/icons/infinity.svg" lazy-img="{{notification.icon}}" alt="">
+                                                    </div>  
+                                                    <div class="media-body">
+                                                        <div class="lv-title" ng-bind="notification.body">
+                                                        </div>
+                                                        <small class="lv-small">
+                                                            <i class="md md-access-time"></i>
+                                                            <span ng-bind="moment(notification.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()"></span>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div ng-show="noNotification == 3" class="noNotification">
+                                            لا يوجد اشعارات
+                                        </div>
+                                    </md-content>  
+                               </div>
+                                <a class="lv-footer all-notifications edzance-color" ui-sref="app.notifications">
+                                جميع الإشعارات</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="chat-trigger" data-trigger="#chat" class="text-center p-l-15" ng-class="!$root.me.activated_at ? 'disabled':''">
+                        <a href="">
+                            <i class="md md-email mail-icon"></i>
+                            <i class="tmn-counts" ng-bind="$root.messagesCount" ng-if="$root.messagesCount != 0"></i>
+                        </a>
+                    </li>
+                    <li class="header-info home-text">
+                        <a ui-sref="app.landing">
+                            <span>الصفحة الرئيسية</span>
+                        </a>
+                    </li>
+                    <li class="header-info">
+                        <a ui-sref="app.profile.timeline({id: $root.me.id})" class="header-border-info" ng-class="!$root.me.activated_at ? 'disabled':''">
+                            <span ng-bind="$root.me.name + ' ' + $root.me.last_name"></span>
+                        </a>
+                    </li>
+                 <!-- 
+                    <li id="chat-trigger" data-trigger="#chat" class="text-center p-l-10">
+                        <a href="">
+                            <i class="md md-message mail-icon"></i>
+                        </a>
+                    </li> -->
+                    <li class="dropdown vertical-align-top m-l-15">
+                        <a data-toggle="dropdown" class="dropdown-toggle text-center" href="">
+                            <img src="img/icons/infinity.svg" lazy-img="{{$root.me.avatar}}" alt="" class="menu-img">
+                        </a>
+                        <ul class="dropdown-menu dm-icon pull-right text-right">
+                            <li class="b-bottom">
+                                <a ui-sref="app.profile.timeline({id: $root.me.id})" class="p-l-10" ng-class="!$root.me.activated_at ? 'disabled':''">
+                                <i class="md md-person"></i>ملفك الشخصي</a>
+                            </li> 
+                            <li class="b-bottom">
+                                <a ui-sref="app.profile.about({id: $root.me.id})" class="p-l-10">
+                                <i class="md md-settings"></i>الاعدادات</a>
+                            </li>
+                            <li class="b-bottom">
+                                <a ui-sref="app.support" class="p-l-10">
+                                <i class="md md-help"></i>المساعدة</a>
+                            </li>
+                            <li>
+                                <a ui-sref="app.logout" class="p-l-10"><i class="md md-history"></i>الخروج</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div id="top-search-wrap">
+            <script type="text/ng-template" id="searchTemplate.html">
+                <a>
+                    <div class="row m-0">
+                        <div class="pull-right m-l-10">
+                            <img ng-src="{{match.model.avatar}}" width="45">
+                        </div> 
+                        <div  class="media-body">
+                          <div ng-bind="match.model.name" class="text-bold f-15"></div>
+                          <div ng-bind="match.model.university" class="f-14"></div>
+                        </div>
+                    </div>
+                </a>
+            </script>
+            <!-- ng-keyup="search(query);"  
+                    typeahead-wait-ms ="1000" as result.name
+                    ng-change="search(query);"  -->
+            <input type="search" name="query" ng-model="query" class="form-control"  
+                    ng-paste="getLocation(query);"
+                    uib-typeahead="name  for result in getLocation($viewValue)" 
+                    typeahead-template-url="searchTemplate.html" 
+                    typeahead-min-length="1" 
+                    typeahead-is-open = "showResult"
+                    typeahead-loading="searching"
+                    typeahead-on-select="GoToUser($item.id)" 
+                    placeholder="ابحث في إدزانس" autocomplete="off" my-enter="GoToUser(query)" 
+            />  
+            <i id="top-search-close">&times;</i>
+        </div>
+    </div>
+</header>
+<section class="container" ng-show="!$root.me.activated_at">
+    <div class="notactive-content">
+        <div class="col-md-12 col-sm-12 col-xs-12 notactive-padding">  
+            <div class="notactive">  
+                <span>
+                    الرجاء زيارة بريدك الالكتروني <strong ng-bind="$root.me.email"></strong> لتفعيل حسابك وإكمال عملية التسجيل
+                </span>
+                <span class="left-notactive">
+                    <a class="text-blue p-l-20" ng-click="$root.resendVerification()">
+                        إعادة ارسال بريد التفعيل
+                    </a>
+                    <a class="text-blue" data-toggle="modal" data-target="#verifyEmail">
+                        تغيير البريد الالكتروني
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section  ng-if="!$root.meFlag && $root.me.status == 'd_unconfirmed'">
+    <div> 
+        <section class="notactive-content notactive">
+            <span>
+                الرجاء انتظار <strong>فريق إدزانس</strong> لاتصال بك والتاكد من صحة معلوماتك
+            </span>
+        </section>
+    </div>
+</section>
+<div class="modal fade" id="verifyEmail" tabindex="-1" role="dialog" aria-labelledby="newGroupLabel">
+  <div class="modal-dialog doctor-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-15">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+            <i class="md md-add-box"></i>
+            تعديل البريد الالكتروني
+        </h3>
+      </div>
+      <div class="modal-body p-l-10 p-r-10">
+        <div class="m-b-10">
+            ادخل البريد الالكتروني الجديد, ,وسيتم ارسال تفعيل للبريد الجديد
+        </div>
+        <div class="m-b-10 row m-0">
+           <span class="col-md-3 col-sm-3 col-xs-3 p-0 notactive-text">البريد القديم:</span>
+           <span class="col-md-9 col-sm-9 col-xs-9 p-0 text-blue notactive-text" ng-bind="$root.me.email"></span>
+        </div>
+        <form novalidate name="vm.emailVerification" ng-submit="$root.changeEmail($root.newEmail,vm.emailVerification)">
+            <div class="m-b-10 row m-0">
+               <span class="col-md-3 col-sm-3 col-xs-3 p-0 notactive-text">البريد الجديد:</span>
+               <span class="col-md-9 col-sm-9 col-xs-9 p-0">
+                   <input type="text" name="newEmail" class="form-control" placeholder="ادخل بريدك الالكتروني الجديد" ng-model="$root.newEmail" required>
+                   <div ng-show="vm.emailVerification.newEmail.$invalid && vm.emailVerification.$submitted" class="help-block type-acc-error">الرجاء اختيار النوع</div>
+               </span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary btn-block p-12">
+                    تحديث
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="imgModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-modal-dialog" role="document">
+        <div class="text-center">
+          <div>
+            <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div>
+            <div>
+            <img src="" class="img-mirror">
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".dropdown").click(function(){
+            $(".dropdown").removeClass("open");
+        });
+    });
+</script>

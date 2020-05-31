@@ -1,0 +1,493 @@
+ <div ng-repeat="(key,post) in dat| orderBy: 'created_at':true track by $index" class="for-delete media animated">
+  <div ng-show="nopost == 1">
+      <input type="hidden" name="post-{{key}}" id="post-{{key}}" ng-model="post_delete[key]">
+      <div class="pull-right hidden-xs p-l-5 postimg-web">
+          <a ui-sref="app.profile.timeline({id: post.userid})" class="img-fram" user-content>
+              <img class="post-img" ng-src="{{post.avatar}}" alt="{{post.name}} {{post.last_name}}"> 
+          </a>
+          <div class="webui-popover-content">
+            <div>
+              <div class="pull-right">
+                <img ng-src="{{post.avatar}}" class="popover-user-info">
+              </div>
+              <div class="media-body text-right p-12"> 
+                <a ui-sref="app.profile.timeline({id: post.userid})">
+                  <div class="user-name m-b-5 f-20 username" ng-bind="post.name + ' ' + post.last_name">
+                  </div>
+                </a>
+                <div class="f-15 line-height-small" ng-bind="post.university">
+                  </div>
+                  <div class="m-b-15 f-15" ng-bind="post.specialition">
+                  </div>
+                <div>
+                 <!--  <a ng-if="$root.me.id != post.users_id" class="btn btn-primary waves-effect waves-button waves-float fn-lg rate-follow-btn p-l-20 p-r-20">
+                      <i class="md md-person-add"></i>
+                       <span> متابعة</span>
+                    </a> -->
+                    
+                    <!-- {{post.users_id}} -->
+                 <!--    <div class="text-center p-t-10" ng-if="(post.userid == $root.me.id) && $root.me.activated_at.length > 1">
+                      <span ng-click="($root.prodata.isfriend == false ? $root.prodata.isfriend=true : $root.prodata.isfriend=false) ">
+                        <a ng-click ="($root.prodata.isfriend == false ? $root.follow($root.prodata.id,'follower') : $root.follow($root.prodata.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg" >
+                        <i class="md md-person-add"></i>
+                        <span ng-if="$root.prodata.isfriend== false">متابعة</span>
+                        <span ng-if="$root.prodata.isfriend!= false">الغاء المتابعة</span> 
+                        </a>
+                      </span>
+                   </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div  class="media-body post-pos">
+          <div class="card w-item">
+              <div class="card-body card-padding p-b-0">
+                  <div class="media">
+                      <div class="pull-right hidden-md hidden-sm hidden-lg postimg-mobile p-l-5">
+                          <a ui-sref="app.profile.timeline({id: post.userid})" user-content>
+                              <img class="post-img" ng-src="{{post.avatar}}" alt="{{post.name}} {{post.last_name}}">
+                          </a>
+                          <div class="webui-popover-content">
+                            <div>
+                              <div class="pull-right">
+                                <img ng-src="{{post.avatar}}" class="popover-user-info">
+                              </div>
+                              <div class="media-body text-right p-12"> 
+                                <a ui-sref="app.profile.timeline({id: post.userid})">
+                                  <div class="user-name m-b-5 f-20 username" ng-bind="post.name + ' ' + post.last_name">
+                                  </div>
+                                </a>
+                                <div class="f-15 line-height-small" ng-bind="post.university">
+                                  </div>
+                                  <div class="m-b-15 f-15" ng-bind="post.specialition">
+                                  </div>
+                                <div>
+                                  <a class="btn btn-primary waves-effect waves-button waves-float fn-lg rate-follow-btn p-l-20 p-r-20">
+                                      <i class="md md-person-add"></i>
+                                       <span>متابعة</span>
+                                    </a>
+                                    <!-- {{post.users_id}} -->
+                                 <!--    <div class="text-center p-t-10" ng-if="(post.userid == $root.me.id) && $root.me.activated_at.length > 1">
+                                      <span ng-click="($root.prodata.isfriend == false ? $root.prodata.isfriend=true : $root.prodata.isfriend=false) ">
+                                        <a ng-click ="($root.prodata.isfriend == false ? $root.follow($root.prodata.id,'follower') : $root.follow($root.prodata.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg" >
+                                        <i class="md md-person-add"></i>
+                                        <span ng-if="$root.prodata.isfriend== false">متابعة</span>
+                                        <span ng-if="$root.prodata.isfriend!= false">الغاء المتابعة</span> 
+                                        </a>
+                                      </span>
+                                   </div> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="pull-right">
+                              <a ui-sref="app.profile.timeline({id: post.userid})" class="user-name username"  ng-bind="post.name + ' ' + post.last_name | capitalize"></a>
+                              <div class="data-post" title="{{post.created_at}}" ng-bind="moment(post.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()"></div>
+                          </div>
+                          <div class="pull-left" ng-if="permission(post.userid,$root.me.id)">
+                            <ul class="actions">
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="b-bottom">
+                                            <a ng-click="deleteNode(post,false);" data-pmb-action="delete"  class="close-menu sa-params" data-post-id="{{post.id}}" data-post-key="{{post.key =key}}" data-post-index="{{post.index = $index}}" data-post-type="{{type}}" >
+                                            <i class="md md-delete"></i>
+                                            حذف
+                                            </a>
+                                        </li>
+                                        <li ng-if="post.userid == $root.me.id">
+                                             <a ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" class="close-menu" >
+                                              <i class="md md-mode-edit"></i>
+                                            تعديل</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- text body -->
+                  <div>
+                      <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="updateData($data,post.id,$root.post_url)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-0" r-m>
+                        <div ng-if="post.body.length > 0">
+                          <pre>{{post.body}}</pre>
+                        </div>
+                      </div>
+                      <div class="m-h-m10 video-post" ng-if="post.type == 'video'">
+                        <!-- <iframe ng-src="{{post.media}}" width="100%" height="315"></iframe> -->
+                          <a data-src="{{$root.youtubevideo(post.media)}}" video-post data-post-video="video{{post.id}}" class="position-relative vpost" ng-if="post.mediaimage != ''"> 
+                            <img ng-src="{{$root.trustSrc(post.mediaimage)}}" class="modalButton image-post" width="100%" />
+                            <i class="md md-play-circle-fill yvideo-icon"></i>
+                          </a>
+                          <iframe src="{{$root.youtubevideo(post.media)}}" ng-if="post.mediaimage == ''" height="315" width="100%"></iframe>
+                          <iframe class="embed-responsive-item hidden-element" frameborder="0" height="315" width="100%" id="video{{post.id}}"></iframe>
+                      </div> 
+                      <div ng-if="post.type == 'image'"> 
+                          <img ng-src="{{$root.trustSrc(post.media)}}" img-model class="image-post" data-toggle="modal" data-target="#commentModel{{post.id}}"/>
+                      </div>
+                      <div class="profile-pic media m-t-5 p-0" ng-if="post.type == 'url'">
+                       <a href="{{$root.trustSrc(post.media)}}" target="_blank" class="url-container link-shadow">
+                          <div class="position-relative"> 
+                            <!-- <div class="link-label">رابط</div> -->
+                             <img alt="" class="url-user-img" ng-src="{{$root.trustSrc(post.mediaimage)}}">
+                          </div>
+                          <div class="media-body url-body-padding"> 
+                              <div class="user-name m-b-5 username" ng-bind="post.mediatitle.split('\\').pop().split('/').pop()"></div>
+                              <div class="m-b-5 f-13 text-black" ng-bind="post.mediadesc"></div>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                  <!-- end url body -->
+                  <div class="row faces-padding">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="pull-right p-t-10">
+                      <a class="f-15" data-toggle="modal" data-target="#reaction" ng-click="exprissionUser(post.id,post.exprission)">
+                        <img src="img/faces/faces.svg" width="40px"/>
+                        <span ng-bind="post.all" class="faces-number"></span>
+                      </a>
+                    </div>
+                       <div data-toggle="modal" data-target="#commentModel{{post.id}}" video-post-popup data-src="{{$root.trustSrc(post.media)}}" data-video-id="{{post.id}}">
+                        <div class="pull-left p-t-10 mouse-pointer" ng-if="post.comment.length == 2">
+                          <a>
+                          <i class="md md-comment"></i>
+                          <span ng-bind="post.comment.length"></span>
+                          تعليقين
+                          </a>
+                        </div>
+                         <div class="pull-left p-t-10" ng-if="(post.comment.length > 2 && post.comment.length < 11)">
+                          <a>
+                          <i class="md md-comment"></i>
+                          <span ng-bind="post.comment.length"></span>
+                          تعليقات
+                          </a>
+                        </div>
+                         <div class="pull-left p-t-10" ng-if="(post.comment.length > 10 || post.comment.length == 1)">
+                          <a>
+                          <i class="md md-comment"></i>
+                          <span ng-bind="post.comment.length"></span>
+                          تعليق
+                          </a>
+                        </div>
+                        </div>
+                  </div>
+                  </div>
+                  <hr class="m-0 m-t-5 m-b-5" />
+                <div class="row faces-padding m-t-0">
+                    <div class="col-md-12 col-sm-12 col-xs-12 m-b-5">
+                      
+                    
+                      <a ng-click="exprission(post.id,'happy');post.present='happy'" class="facs-size"   active-face ng-class="(post.present =='happy') ? 'active' : ''">
+                        <img src="img/faces/smiling.svg" class="smile-face" title="مناسب">
+                        مناسب
+                      </a>
+                       <a ng-click="exprission(post.id,'normal');post.present='normal'"  class="facs-size" active-face ng-class="(post.present=='normal') ? 'active' : ''">
+                          <img src="img/faces/neutral.svg" class="smile-face" title="عادي"> 
+                           عادي     
+                        </a>
+                       <a ng-click="exprission(post.id,'sad');post.present='sad';" class="facs-size" active-face ng-class="(post.present=='sad') ? 'active' : ''">
+                          <img src="img/faces/unamused.svg" class="smile-face" title="غير مناسب">    غير مناسب
+                        </a>
+                  
+                    </div>
+                </div>
+              </div>
+              <!-- Comment -->
+                <comment-repeat req-url="{{$root.type}}" comment-id="{{post.id}}"  comment-index="{{$index}}" req-parent="{{$root.type}}" req-controller="{{$root.controller}}"></comment-repeat>
+              <!-- End Comment -->
+          </div>
+      </div>
+  </div>
+</div>
+    <div ng-show="nopost == 3">
+      <div class="media-body post-pos">
+          <div class="card w-item">
+              <div class="card-body card-padding">
+                  <div class="media empty-post">
+                      <div>
+                           <img class="edzance-logo" src="img/logo-small.svg" alt="edzance">
+                      </div>
+                      <div class="edzance-title">
+                            اهلا  بك في إدزانس
+                      </div>
+                      <div class="row p-b-10 p-t-5">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-black empty-post-des">
+                        لا يوجد أي منشورات , قم بنشر منشورك الأول .
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>              <!--End post text -->
+  <div ng-show="nopost == 2 || $root.busy">
+    <div>
+      <div class="pull-right hidden-xs p-l-5 postimg-web">
+        <a class="img-fram">
+          <div class="empty-img"></div>
+        </a>
+      </div>
+      <div class="media-body post-pos">
+          <div class="card w-item">
+              <div class="card-body card-padding p-b-0 empty-post">
+                  <div class="media">
+                      <div class="pull-right hidden-md hidden-sm hidden-lg postimg-mobile">
+                          <a href="#">
+                              <div class="post-img"></div>
+                          </a>
+                      </div>
+                      <div>
+                          <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-20">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                          <div class="row m-b-10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="loader"></div>
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade " id="reaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-reaction" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div role="tabpanel">
+            <ul class="tab-nav text-center" role="tablist">
+                <li class="active">
+                  <a href="#home1" aria-controls="home1" role="tab" data-toggle="tab">
+                  <img src="img/faces/smiling.svg" class="smile-face-small" title="مناسب">
+                  مناسب <span ng-bind='"(" + exprissions.happy.length + ")"' ng-if="exprissions.happy"></span>
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#profile1" aria-controls="profile1" role="tab" data-toggle="tab">
+                    <img src="img/faces/neutral.svg" class="smile-face-small" title="عادي">
+                  عادي <span ng-bind='"(" + exprissions.normal.length + ")"' ng-if="exprissions.normal"></span>
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#messages1" aria-controls="messages1" role="tab" data-toggle="tab">
+                  <img src="img/faces/unamused.svg" class="smile-face-small" title="غير مناسب">
+                  غير مناسب <span ng-bind='"(" + exprissions.sad.length + ")"' ng-if="exprissions.sad"></span>
+                  </a>
+                </li>
+            </ul>
+          
+            <div class="tab-content p-t-10 p-b-10">
+                <div role="tabpanel" class="tab-pane active" id="home1">
+               
+                  <div ng-if="$root.happyexp == 1">
+                    <div ng-repeat="(key,happy) in exprissions.happy | orderBy: key:true track by $index" class="media animated">
+                        <a ui-sref="app.profile.timeline({id: happy.id})">
+                        <div class="pull-right p-r-10 p-l-0 p-b-10"> 
+                            <img alt="{{happy.full_name}}" class="rate-img" ng-src="{{happy.avatar}}">
+                        </div>
+                        <div class="media-body p-r-10 p-t-10 pull-right">
+                             <div class="user-name m-b-5 username" ng-bind="happy.full_name | capitalize">
+                             </div>
+                        </div>
+                        </a>
+                     <div class="media-body p-l-10 pull-left" ng-if="happy.id != $root.me.id && $root.me.activated_at.length > 1">
+                        <div ng-click="(happy.isfriend == null ? happy.isfriend=true : happy.isfriend=null) ">
+                          <a ng-click ="(happy.isfriend == null ? $root.follow(happy.id,'follower') : $root.follow(happy.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg rate-follow-btn" >
+                            <i  class="md md-person-add"></i>
+                             <span ng-if="happy.isfriend== null">متابعة</span>  <span ng-if="happy.isfriend!= null">الغاء المتابعة</span> 
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ng-if="$root.happyexp == 0" class="position-relative"> 
+                    <div class="floatingBarsG">
+                      <div class="blockG rotateG_01"></div>
+                      <div class="blockG rotateG_02"></div>
+                      <div class="blockG rotateG_03"></div>
+                      <div class="blockG rotateG_04"></div>
+                      <div class="blockG rotateG_05"></div>
+                      <div class="blockG rotateG_06"></div>
+                      <div class="blockG rotateG_07"></div>
+                      <div class="blockG rotateG_08"></div>
+                    </div>
+                  </div>
+                  <div ng-if="$root.happyexp == 2" class="empty-smile"> 
+                    لا يوجد تفاعل
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile1">
+                <div class="exp-box-padding">
+                <div ng-if="$root.normalexp == 1">
+                  <div ng-repeat="(key,normal) in exprissions.normal | orderBy: key:true track by $index" class="media animated">
+                      <a ui-sref="app.profile.timeline({id: normal.id})">
+                        <div class="pull-right p-r-5 p-l-0 p-b-10"> 
+                            <img alt="{{normal.full_name}}" class="rate-img" ng-src="{{normal.avatar}}">
+                        </div>
+                        <div class="media-body p-r-10 p-t-10 pull-right">
+                             <div class="user-name m-b-5 username" ng-bind="normal.full_name | capitalize">
+                             </div>
+                        </div>
+                      </a>
+                      <div class="media-body p-l-10 pull-left" ng-if="normal.id != $root.me.id && $root.me.activated_at.length > 1">
+                        <div ng-click="(normal.isfriend == null ? normal.isfriend=true : normal.isfriend=null) "><a ng-click ="(normal.isfriend == null ? $root.follow(normal.id,'follower') : $root.follow(normal.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg rate-follow-btn" >
+                            <i  class="md md-person-add"></i>
+                           <span ng-if="normal.isfriend== null">متابعة</span>  <span ng-if="normal.isfriend!= null">الغاء المتابعة</span> 
+                        </a>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                 <div ng-if="$root.normalexp == 0" class="position-relative"> 
+                   <div class="floatingBarsG">
+                      <div class="blockG rotateG_01"></div>
+                      <div class="blockG rotateG_02"></div>
+                      <div class="blockG rotateG_03"></div>
+                      <div class="blockG rotateG_04"></div>
+                      <div class="blockG rotateG_05"></div>
+                      <div class="blockG rotateG_06"></div>
+                      <div class="blockG rotateG_07"></div>
+                      <div class="blockG rotateG_08"></div>
+                    </div>
+                  </div>
+                  <div ng-if="$root.normalexp == 2" class="empty-smile"> 
+                    لا يوجد تفاعل
+                  </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages1">
+                   <div ng-if="$root.sadexp == 1">
+                     <div ng-repeat="(key,sad) in exprissions.sad | orderBy: key:true track by $index" class="media animated">
+                       <a ui-sref="app.profile.timeline({id: sad.id})">
+                      <div class="pull-right p-r-10 p-l-0 p-b-10"> 
+                          <img alt="{{sad.full_name}}" class="rate-img" ng-src="{{sad.avatar}}">
+                      </div>
+                      <div class="media-body p-r-10 p-t-10 pull-right">
+                           <div class="user-name m-b-5 username" ng-bind="sad.full_name | capitalize">
+                           </div>
+                      </div>
+                      </a>
+                       <div class="media-body p-l-10 pull-left" ng-if="sad.id != $root.me.id && $root.me.activated_at.length > 1">
+                       <div ng-click="(sad.isfriend == null ? sad.isfriend=true : sad.isfriend=null) "><a ng-click ="(sad.isfriend == null ? $root.follow(sad.id,'follower') : $root.follow(sad.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg rate-follow-btn" >
+                            <i  class="md md-person-add"></i>
+                           <span ng-if="sad.isfriend== null">
+                           متابعة
+                           </span>  
+                           <span ng-if="sad.isfriend!= null">الغاء المتابعة</span> 
+                        </a>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                    <div ng-if="$root.sadexp == 0" class="position-relative"> 
+                     <div class="floatingBarsG">
+                      <div class="blockG rotateG_01"></div>
+                      <div class="blockG rotateG_02"></div>
+                      <div class="blockG rotateG_03"></div>
+                      <div class="blockG rotateG_04"></div>
+                      <div class="blockG rotateG_05"></div>
+                      <div class="blockG rotateG_06"></div>
+                      <div class="blockG rotateG_07"></div>
+                      <div class="blockG rotateG_08"></div>
+                    </div>
+                  </div>
+                  <div ng-if="$root.sadexp == 2" class="empty-smile"> 
+                    لا يوجد تفاعل
+                  </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+<script type="text/javascript">
+  // jQuery('#postbody').on('paste', function() {alert('text pasted!')})
+    /*
+     * Notifications
+     */
+    function notify(from, align, icon, type, animIn, animOut){
+        $.growl({
+            icon: icon,
+            title: ' Bootstrap Growl ',
+            message: 'Turning standard Bootstrap alerts into awesome notifications',
+            url: ''
+        },{
+                element: 'body',
+                type: type,
+                allow_dismiss: true,
+                placement: {
+                        from: from,
+                        align: align
+                },
+                offset: {
+                    x: 20,
+                    y: 85
+                },
+                spacing: 10,
+                z_index: 1031,
+                delay: 2500,
+                timer: 1000,
+                url_target: '_blank',
+                mouse_over: false,
+                animate: {
+                        enter: animIn,
+                        exit: animOut
+                },
+                icon_type: 'class',
+                template: '<div data-growl="container" class="alert" role="alert">' +
+                  '<button type="button" class="close" data-growl="dismiss">' +
+                      '<span aria-hidden="true">&times;</span>' +
+                      '<span class="sr-only">Close</span>' +
+                  '</button>' +
+                  '<span data-growl="icon"></span>' +
+                  '<span data-growl="title"></span>' +
+                  '<span data-growl="message"></span>' +
+                  '<a href="#" data-growl="url"></a>' +
+              '</div>'
+        });
+    };
+    
+    $('.notifications > div > .btn').click(function(e){
+        e.preventDefault();
+        var nFrom = $(this).attr('data-from');
+        var nAlign = $(this).attr('data-align');
+        var nIcons = $(this).attr('data-icon');
+        var nType = $(this).attr('data-type');
+        var nAnimIn = $(this).attr('data-animation-in');
+        var nAnimOut = $(this).attr('data-animation-out');
+        
+        notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut);
+    });
+     setTimeout(function(){
+        $(".close-menu").click(function() {
+            $(".dropdown").removeClass("open");
+        });
+    }, 3000);
+   $('.tab-nav').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+</script>

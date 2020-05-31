@@ -1,0 +1,63 @@
+<div class="row" ng-if="permission('exam.add')">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <h3 class="m-t-10"><i class="md md-add-box"></i> إضافة امتحان جديد</h3>
+    <div class="card">
+      <div class="card-body card-padding">
+      <form novalidate name="vmex.examform" ng-submit="addexam(vmex.examform,vmex)" autocomplete="off">
+        <div class="row" >
+          <div class="col-sm-6 col-xs-12">
+            <div class="m-b-5">
+              <i class="md md-today"></i>  
+               تاريخ الامتحان
+            </div>
+            <div class="form-group position-relative fg-line" ng-class="{ 'has-error': vmex.examform.date.$invalid && vmex.examform.$submitted }"> 
+              <input name="date" type="date" ng-model="$root.newPost.date" class="form-control text-right" placeholder="تاريخ الامتحان" ng-change="vmex.update()" format="dd/MM/yyyy" required name="date">
+               <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل تاريخ الامتحان" ng-show="vmex.examform.date.$invalid && vmex.examform.$submitted" aria-hidden="false"></i>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="m-b-5">
+              <i class="md md-access-time"></i>
+               وقت الامتحان
+            </div>
+            <div class="form-group vc-calendar position-relative" ng-class="{ 'has-error': ($root.newPost.mytime.getHours()==0 && $root.newPost.mytime.getMinutes()==0 ) && vmex.examform.$submitted }">
+                <div name="mytime" uib-timepicker ng-model="$root.newPost.mytime" ng-change="vmex.changed($root.newPost.mytime)" hour-step="hstep" minute-step="mstep" show-meridian="true" required></div>
+                 <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل وقت الامتحان" ng-show="($root.newPost.mytime.getHours()==0 && $root.newPost.mytime.getMinutes()==0 ) && vmex.examform.$submitted" aria-hidden="false"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" ng-class="{ 'has-error': vmex.examform.examtype.$invalid && vmex.examform.$submitted }">
+              <select ng-model="$root.newPost.type" class="form-control" required name="examtype">
+                  <option selected value="">نوع الامتحان</option>
+                  <option value="first">الأول</option>
+                  <option value="second">الثاني</option>
+                  <option value="final">النهائي</option>
+                  <option value="quiz">قصير</option>
+                 <option value="mackup">تكميلي</option>
+              </select>
+                <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل نوع الامتحان" ng-show="vmex.examform.examtype.$invalid && vmex.examform.$submitted" aria-hidden="false"></i>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" ng-class="{ 'has-error': vmex.examform.examhall.$invalid && vmex.examform.$submitted }">
+              <input ng-model="$root.newPost.hall" type="text" class="form-control" placeholder="قاعات الامتحان" required name="examhall">
+               <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل قاعات الامتحان" ng-show="vmex.examform.examhall.$invalid && vmex.examform.$submitted" aria-hidden="false"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 text-left">
+              <button type="submit" class="btn btn-primary waves-effect waves-button waves-float f-15">
+                إضافة الامتحان
+              </button>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<h3><i class="md md-description"></i>امتحانات المادة</h3>
+<div ui-view="exam"></div>

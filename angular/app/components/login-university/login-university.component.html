@@ -1,0 +1,146 @@
+<section class="homepage">
+    <div class="container margin-container reset-password-container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>
+                    معلومات الجامعة
+                </h1>
+            </div>
+        </div>
+        <hr class="row m-b-10"/>
+       <form role="form" id="signupForm" name="logu.registerForm" ng-submit="logu.register(logu.registerForm.$valid)" novalidate> 
+       <input type="hidden" name="email" mg-model="logu.email">  
+       <input type="hidden" name="password" mg-model="logu.password">  
+        <div class="form-group">
+              <select name="country" ng-model="logu.country" class="form-control" id="country" required>
+                    <option value="">جنسية الجامعة التي تنتمي اليها</option>
+                <option>الأردنية</option>
+              </select>        
+            </div>
+             <div class="form-group">
+              <select name="university" ng-change="logu.getcollege(logu.university)"  ng-model="logu.university" class="form-control" id="university" required ng-class="{ 'has-error': logu.registerForm.university.$invalid && ( logu.formSubmitted || logu.registerForm.university.$touched) }">
+                <option value="">اختر جامعتك, لن تتمكن من تغيرها لاحقا</option>
+                <option ng-repeat="univ in university| orderBy: 'created_at':true" value="{{univ.id}}">{{univ.mthr_name}}</option>
+              </select>
+                <p ng-show="logu.registerForm.university.$error.required && ( logu.formSubmitted || logu.registerForm.university.$touched)" class="help-block">اختر جامعتك من فضلك</p>
+                <p ng-show="logu.registerForm.university.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logu.registerForm.university.$invalid && (logu.formSubmitted || logu.errors.university)" class="help-block">{{logu.errors.university}}</p>
+            </div>
+             <div class="form-group">
+                <select name="college"  ng-change="logu.getspecialize(logu.college)"  ng-model="logu.college" class="form-control" id="college" required ng-class="{ 'has-error': logu.registerForm.college.$invalid && ( logu.formSubmitted || logu.registerForm.college.$touched) }">
+               <option value="">الكلية التي تنتسب لها</option>
+                <option ng-repeat="college in univ| orderBy: 'created_at':true" value="{{college.id}}">{{college.mthr_name}}</option>
+              </select>
+                <p ng-show="logu.registerForm.college.$error.required && ( logu.formSubmitted || logu.registerForm.college.$touched)" class="help-block">الرجاء اختيار الكلية.</p>
+                <p ng-show="logu.registerForm.college.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logu.registerForm.college.$invalid && (logu.formSubmitted || logu.errors.college)" class="help-block">{{logu.errors.college}}</p>
+            </div>
+             <div class="form-group">
+              <select name="specialize"  class="form-control" id="specialize" ng-model="logu.specialize" required ng-class="{ 'has-error': logu.registerForm.specialize.$invalid && ( logu.formSubmitted || logu.registerForm.specialize.$touched) }">
+                <option value="">التخصص الدراسي الذي تدرس فيه</option>
+                <option ng-repeat="specialize in college| orderBy: 'created_at':true" value="{{specialize.id}}">{{specialize.mthr_name}}</option>
+             </select>
+                <p ng-show="logu.registerForm.specialize.$error.required && ( logu.formSubmitted || logu.registerForm.specialize.$touched)" class="help-block">ادخل تخصصك لإكمال عملية التسجيل.</p>
+                <p ng-show="logu.registerForm.specialize.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logu.registerForm.specialize.$invalid && (logu.formSubmitted || logu.errors.specialize)" class="help-block">{{logu.errors.specialize}}</p>
+                  
+            </div>
+             <div class="btn-group btn-group-justified m-b-20" role="group" data-toggle="buttons" id="employee">
+                <div class="btn-group employee-btn p-l-5" role="group">
+                  <label for="employee" class="btn btn-primary student-input">
+                      طالب
+                      <input ng-model="logu.type" value="1" name="type" id="studentcheck" type="radio" class="employee">
+                  </label>
+                </div>
+                <div class="btn-group employee-btn " role="group">
+                  <label for="employee" class="btn btn-primary doctor-input">
+                      مدرس
+                      <input ng-model="logu.type" value="2" name="type" id="doctorcheck"  type="radio" class="employee">
+                  </label>
+                </div>
+                <p ng-show="logu.registerForm.type.$error.required && ( logu.formSubmitted || logu.registerForm.type.$touched)" class="help-block">ادخل صفتك .</p>
+                <p ng-show="logu.registerForm.type.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logu.registerForm.type.$invalid && (logu.formSubmitted || (logu.errors.type!=0||logu.errors.type!=1))" class="help-block">{{logu.errors.type}}</p>
+              </div>
+              <div class="btn-group btn-group-justified m-b-20 hidden-element student-radio-btn" role="group" data-toggle="buttons" id="student">
+                <div class="btn-group p-l-5" role="group">
+                  <label for="student" class="btn btn-primary graduated">
+                      تخرجت
+                      <input  type="radio"  ng-model="logu.status" name="status" value="1"  id="graduated"   class="student">
+                  </label>
+                </div>
+                <div class="btn-group" role="group">
+                  <label for="student" class="btn btn-primary studying">
+                      طالب
+                      <input  type="radio"  ng-model="logu.status" name="status" value="2"  id="studying"  class="student">
+                  </label>
+                </div>
+              </div>
+              <div class="docotr-input m-b-20 hidden-element">
+                <p class="c-black f-500 m-b-10"><i class="md md-access-time"></i> الوقت المتاح للاتصال بك</p>
+           <div class="m-b-20">
+              <div class="col-md-6 col-6-sm col-xs-12 p-0">
+                <span class="p-l-10">من الساعة</span>
+                <input ng-model="logu.from" type="time" name="from">
+              </div>
+              <div class="col-md-6 col-6-sm col-xs-12 p-0 text-left">
+                <span class="p-l-10">الى الساعة</span>
+                <input ng-model="logu.to" type="time" name="to">
+              </div>
+               <div class="row m-t-20">
+                <div class="col-md-12 co-sm-12 col-xs-12 f-16">
+                  <!-- <a>
+                   <button ng-click="side.addclass()" type="button" class="btn btn-primary pull-left m-t-10">إضافة</button>
+                  </a> -->
+                </div>
+              </div>
+
+            </div>
+            <div ngf-drop ngf-select="logu.watch(files)" ng-model="logu.files" class="drop-box" 
+              ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+              accept="*/*" 
+              ngf-pattern="'*/*'" value="{{files}}" ng-bind="files[0].name || files.$error || files.$errorParam || 'اضغط هنا لرفع صوره / أو قم بادراجها هنا'">
+                   
+              </div>
+              </div>
+            <div class="mb">
+              <button type="submit" class="btn btn-primary btn-block waves-effect f-16">تابع</button>
+            </div>
+          </form>
+    </div>
+</section>
+<script type="text/javascript">
+if($( "section").hasClass("homepage") == true){
+        $("body").addClass("homepage-background");
+    }
+  //gender radio button
+  $( document ).ready( function () {
+    $('.student-input').click(function(){
+      $(".student-radio-btn").fadeIn();
+      $(".docotr-input").fadeOut("fast");
+      $("#studentcheck").prop("checked", true);
+      $("#doctorcheck").prop("checked", false);
+    
+     console.log( $( "input:checked" ).length);
+   });
+    $('.doctor-input').click(function(){
+     $("#doctorcheck").prop("checked", true);
+     $("#studentcheck").prop("checked", false);
+     $(".student-radio-btn").fadeOut("fast");
+     $(".docotr-input").fadeIn();
+    
+     console.log( $( "input:checked" ).length);});
+     $('.graduated').click(function(){
+     $("#graduated").prop("checked", true);
+     $("#studying").prop("checked", false);
+    
+     console.log( $( "input:checked" ).length);
+   });
+     $('.studying').click(function(){
+     $("#graduated").prop("checked", false);
+     console.log( $( "input:checked" ).length);
+     $("#studying").prop("checked", true);
+    });
+
+  });
+</script> 

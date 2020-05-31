@@ -1,0 +1,15 @@
+{
+  "name": "jquery.classyloader.min",
+  "_cacheHeaders": {
+    "ETag": "\"995-528cf648f2f80-gzip\"",
+    "Last-Modified": "Fri, 08 Jan 2016 09:41:34 GMT",
+    "Content-Length": "1025",
+    "Content-Type": "application/javascript"
+  },
+  "_release": "e-tag:995-528cf",
+  "main": "index.js",
+  "_source": "https://vox.space/files/jquery/classyloader/js/jquery.classyloader.min.js",
+  "_target": "*",
+  "_originalSource": "https://vox.space/files/jquery/classyloader/js/jquery.classyloader.min.js",
+  "_direct": true
+}

@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-md-8 col-sm-8">
+		<div class="row">
+		</div>
+	</div>
+	<div class="col-md-4 col-sm-4">
+		<div class="row">
+			<div class="row">
+				<div class="col-md-9 col-sm-6">
+				
+					<input class="form-control" type="text" ng-model="skip" name="skip" ng-value="0" />
+				</div>
+				<div class="col-md-3 col-sm-6">
+					skip	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-9 col-sm-6">
+					<input class="form-control" type="text" ng-model="take" name="take" ng-value="30" />
+				</div>
+				<div class="col-md-3 col-sm-6">
+					take
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-9 col-md-3 col-sm-6">
+					<button ng-click="vm.Register()" >start</button>
+					<button ng-click="vm.stop()" >stop</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<div class="row">
+		<div class="col-md-4 col-sm-4">
+			 new	
+		</div>
+		<div class="col-md-4 col-sm-4">
+			 old
+		</div>
+		<div class="col-md-4 col-sm-4">
+			user
+		</div>
+</div>
+<div class="row">
+	<div ng-repeat="(key, user) in users" ng-if="user.new_uid" class="row">
+
+		<div class="col-md-4 col-sm-4 ">
+			{{user.new_uid }}	
+		</div>
+		<div class="col-md-4 col-sm-4">
+			{{user.FB_UID}}	
+		</div>
+		<div class="col-md-4 col-sm-4">
+			{{user.counter  +'-'+user.name}}	
+		</div>
+	</div>
+</div>

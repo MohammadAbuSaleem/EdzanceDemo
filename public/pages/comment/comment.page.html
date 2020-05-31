@@ -1,0 +1,129 @@
+<div class="wi-comments" ng-init="limit = 2" ng-if="permission('comment.add')">
+    <div class="p-5" ng-show="results.length != post.comment.length" ng-hide="results.length === post.comment.length">
+        <a class="m-t-5" ng-click="limit = limit +5">
+        مشاهده جميع التعلقيات ...
+        </a>
+    </div>
+    <div class="list-group" ng-repeat="(key,comments) in post.comment | orderBy: 'created_at':true | limitTo: limit as results " class="for-delete media animated fadeIn">
+        <div class="for-delete list-group-item media">
+            <div class="pull-left" ng-if="commentPermission('comment.delete',comments.user_id, $root.me.id,post.user_id)">
+                <ul class="actions">
+                    <li class="dropdown">
+                        <a href="" data-toggle="dropdown" aria-expanded="false">
+                            <i class="md md-more-vert"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="b-bottom">
+                                <a ng-click="deleteNode(comments,true);" data-pmb-action="delete" class="close-menu com-params" data-post-id="{{comments.id}}" data-post-key="{{comments.index =key}}" data-post-type="comment" id="post.id">
+                                    <i class="md md-delete"></i> حذف
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right  p-l-8">
+                <ul class="list-unstyled p-r-0">
+                    <li>
+                        <a ui-sref="app.profile.timeline({id: comments.uid})" id="login">
+                            <img class="post-img" src="img/icons/infinity.svg" lazy-img="{{comments.avatar}}" alt="{{comments.name}} {{comments.last_name}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="media-body">
+                <a ui-sref="app.profile.timeline({id: comments.uid})" ng-bind="comments.name + ' ' + comments.last_name" class="user-name"></a>
+                <pre ng-bind="comments.body" class="text-black" r-m></pre>
+                <div title="{{comments.created_at}}" ng-bind="moment(comments.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()" class="m-b-5 comment-title"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Comment form -->
+    <div class="wic-form toggled row m-r-0 m-l-0 comments-border-top">
+        <img src="img/icons/infinity.svg" lazy-img="{{$root.me.avatar}}" class="comment-img">
+        <textarea my-enter="submitComment(post.id,key,comment[post.id],comment_type)" ng-model="comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control auto-size" auto-grow></textarea>
+    </div>
+</div>
+<div class="modal fade" id="commentModel{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document" ng-class="(post.type == 'text' || post.type == 'url') ? 'modal-comment' : 'modal-comment-withimg'">
+        <div class="position-relative text-left">
+            <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="comment-img-div" ng-hide="post.type == 'text' || post.type == 'url'">
+                    <div class="m-t-10 m-h-m10" ng-if="post.type == 'video'" class="comment-modal-img">
+                        <iframe width="100%" height="400px" class="videopopup{{post.id}}"></iframe>
+                    </div>
+                    <div ng-if="post.type != 'video'" class="comment-modal-img">
+                        <img src="img/icons/infinity.svg" lazy-img="{{post.media}}" class="image-post image-max-height" />
+                    </div>
+                </div>
+                <div class="media-body comment-img-body">
+                    <div class="comment-header">
+                        <i class="md md-sms"></i>
+                        <span class="p-l-5">التعليقات</span>
+                        <span ng-if="post.comment.length == 2">
+                <a>
+                <span ng-bind="post.comment.length"></span> تعليقين
+                        </a>
+                        </span>
+                        <span ng-if="(post.comment.length > 2 && post.comment.length < 11)">
+                <a>
+                    <span ng-bind="post.comment.length"></span> تعليقات
+                        </a>
+                        </span>
+                        <span ng-if="(post.comment.length > 10 || post.comment.length == 1)">
+                <a>
+                    <span ng-bind="post.comment.length"></span> تعليق
+                        </a>
+                        </span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md md-keyboard-arrow-left f-24"></i></span></button>
+                    </div>
+                    <div class="wi-comments">
+                        <div class="list-group" ng-repeat="(key,comments) in post.comment | orderBy: 'created_at':true track by $index" class="for-delete media animated fadeIn">
+                            <div class="for-delete list-group-item media">
+                                <div class="pull-left" ng-if="comments.uid == $root.me.id || ((comments.place=='classpost'||comments.place=='class_files'||comments.place=='exams'||comments.place=='homework') && $root.me.acctype=='2')">
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="md md-more-vert"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li class="b-bottom">
+                                                    <a ng-click="deleteNode(comments,true);" data-pmb-action="delete" class="close-menu com-params" data-post-id="{{comments.id}}" data-post-key="{{comments.index =key}}" data-post-type="comment" id="post.id">
+                                                        <i class="md md-delete"></i> حذف
+                                                    </a>
+
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pull-right p-l-8">
+                                    <ul class="list-unstyled p-r-0">
+                                        <li>
+                                            <a data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-html="true" ui-sref="app.profile.timeline({id: comments.uid})" id="login" data-original-title="" title="">
+                                                <img class="post-img" src="img/icons/infinity.svg" lazy-img="{{comments.avatar}}" alt="{{comments.name}} {{comments.last_name}}">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="media-body">
+                                    <a ui-sref="app.profile.timeline({id: comments.uid})" ng-bind="comments.name + ' ' + comments.last_name" class="user-name"></a>
+                                    <div title="{{comments.created_at}}" ng-bind="moment(comments.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()" class="m-b-5 comment-title"></div>
+                                </div>
+                                <pre ng-bind="comments.body" class="text-black" r-m></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comment form -->
+                    <div class="wic-form toggled row m-r-0 m-l-0 comments-border-top">
+                        <img src="img/icons/infinity.svg" lazy-img="{{$root.me.avatar}}" class="comment-img">
+                        <textarea my-enter="submitComment(post.id,key,comment[post.id],comment_type)" ng-model="comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control" auto-grow></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

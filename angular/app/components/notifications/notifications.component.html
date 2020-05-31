@@ -1,0 +1,46 @@
+ <section id="content">
+    <div class="container">
+    	<div class="row m-0">
+	    	<div class="col-md-7 col-sm-7 col-xs-12 m-b-10">
+		  		<div class="notification-con">
+			  		<div class="row">
+			  			<div class="col-md-12 col-sm-12 col-xs-12">
+			  				<h1 class="not-header">
+			  					<i class="md md-notifications"></i>
+			  					جميع الإشعارات
+			  				</h1>
+			  			</div>
+			  		</div>
+			  		<div>
+				  		<md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+						    <div ng-repeat="(key,notification) in dat | orderBy: 'created_at':true track by $index" class="media animated not-body-con">
+					         	<a class="lv-item" href="{{notification.click_action || notification.link}}">
+	                                <div class="media"> 
+	                                    <div class="pull-right">
+	                                        <img class="lv-img-sm not-user-img" ng-src="{{notification.icon}}" alt="">
+	                                    </div>  
+	                                    <div class="media-body">
+	                                        <div class="lv-title f-16 text-black" ng-bind="notification.body">
+	                                                
+	                                        </div>
+	                                        <small class="lv-small text-gray">
+	                                            <i class="md md-access-time"></i>
+	                                            <span ng-bind="moment(notification.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()" title="{{notification.created_at}}" class="f-14"></span>
+	                                        </small>
+	                                    </div>
+	                                </div>
+	                            </a>
+						    </div>
+					        <div ng-show="nopost == 3">
+								لا يوجد اشعارات
+						  	</div>  
+						</md-content>
+			    	</div>
+		    	</div>
+	    	</div>
+	    	<div class="col-md-4 col-sm-5 col-xs-12">
+
+	    	</div>
+    	</div>
+    </div>
+</section>

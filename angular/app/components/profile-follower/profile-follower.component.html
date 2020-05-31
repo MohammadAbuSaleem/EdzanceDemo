@@ -1,0 +1,38 @@
+<div class="contacts clearfix">
+  <md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1' ng-show="nopost == 1">
+    <div ng-repeat="(key,friend) in dat| orderBy: 'key':true track by $index" class="col-md-3 col-sm-3 col-xs-6 follower-box">
+        <div ng-show="nopost == 1" class="c-item">
+            <a ui-sref="app.profile.timeline({id:friend.id})" class="ci-avatar">
+              <img src="img/icons/infinity.svg" lazy-img="{{friend.avatar}}" alt="{{friend.name}}"> 
+            </a>
+            <div class="c-info folower-box">
+              <a ui-sref="app.profile.timeline({id:friend.id})" class="ci-avatar">
+                <strong ng-bind="friend.name" class="long-text"></strong>
+              </a>  
+              <div ng-bind="friend.university" class="long-text"></div>
+            </div>
+            <div>
+              <span ng-click="(friend.isfriend == false ? friend.isfriend=true : friend.isfriend=false) ">
+                  <a ng-click ="(friend.isfriend == false ? $root.follow(friend.id,'follower') : $root.follow(friend.id,'deleted'))" class="btn btn-primary btn-block border-radius-0 waves-effect waves-button waves-float fn-lg" >
+                      <i class="md md-person-add"></i>
+                      <span ng-if="friend.isfriend == false">متابعة</span>
+                      <span ng-if="friend.isfriend!= false">الغاء المتابعة</span> 
+                  </a>
+              </span>
+            </div>
+        </div>
+    </div>
+  </md-content>
+  <div ng-show="nopost == 3" class="position-relative">
+    <div class="empty-img-profile">
+      <div class="empty-div">
+        <div>
+          <img src="img/faces/sad-face.svg">
+        </div>
+        <div class="text">  
+         لا يوجد اصدقاء
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <h4>
+        <i class="md md-info"></i>
+        هذه النقاشات متاحة للطلبة والمدرسين من تخصصك الدراسي 
+    </h4>
+    <div class="pmb-block">
+      <div class="card">
+        <div role="tabpanel">
+          <ul class="tab-nav tab-nav-right tn-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#text" aria-controls="texttab" role="tab" data-toggle="tab">
+                <i class="md md-create m-l-5"></i>
+                  نص
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#file" aria-controls="filetab" role="tab" data-toggle="tab">
+                <i class="md md-description m-l-5"></i>
+                ملف
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#img" aria-controls="imgtab" role="tab" data-toggle="tab">
+                <i class="md md-camera m-l-5"></i>
+                صورة
+                </a>
+              </li>
+          </ul>
+          <div class="tab-content p-10">
+            <div role="tabpanel" class="tab-pane active animated fadeIn in" id="text">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form id="submitTextForm" ng-submit="$root.PostText($parent.$$childHead)" name="submitTextForm" novalidate="" class="ng-dirty ng-valid-parse ng-invalid ng-invalid-required">
+                    <div class="row post-text">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="fg-line m-b-10">
+                                <textarea id="postbody" h-a="postbody" my-enter="$root.PostText($parent.$$childHead)" ng-model="$root.textpost" class="form-control post-textarea auto-size ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" rows="4" url-title="" url-description="" url-url="" url-image="" placeholder="أكتب ما يفيد..." name="textpost" data-ng-trim="false" required="" aria-invalid="true"></textarea>
+                            </div>
+                                <div class="liveurl-loader"></div>
+                                <div class="liveurl">
+                                    <div class="close" title="اغلاق"></div>
+                                    <div class="inner">
+                                        <div ng-bind="live_image" class="image ng-binding"></div>
+                                        <div class="details">
+                                            <div class="info">
+                                                <input type="hidden" h-a="title" class="title" value="" autocomplete="off">
+                                                <div ng-bind="live_title" class="title ng-pristine ng-untouched ng-valid ng-binding ng-empty" ng-model="title" aria-invalid="false"></div>
+                                                <input type="hidden" h-a="description" class="description" value="" autocomplete="off">
+                                                <div ng-bind="live_description" class="description ng-pristine ng-untouched ng-valid ng-binding ng-empty" ng-model="description" aria-invalid="false"></div> 
+                                                <input type="hidden" h-a="url" class="url" value="" autocomplete="off">
+                                                <div ng-bind="live_url" h-a="url" type="hidden" id="url" name="url" class="url ng-pristine ng-untouched ng-valid ng-binding ng-empty" ng-model="media" aria-invalid="false"></div>
+                                            </div>
+                                            <div class="thumbnail">
+                                                <div class="pictures">
+                                                    <div class="controls">
+                                                        <div class="prev button inactive"></div>
+                                                        <div class="next button inactive"></div>
+                                                        <div class="count">
+                                                            <span class="current">0</span><span> من </span><span class="max">0</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="video"></div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            <div class="fg-line keyword-div m-b-10">
+
+                                      <div class="typeahead__container">
+                                        <div class="typeahead__field">
+                                 
+                                            <span class="type   head__query">
+                                                 <span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><span class="typeahead__cancel-button"></span><input class="js2-typeahead form-control auto-size tags ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="$root.tag" type="search" name="q" autocomplete="off" placeholder=" أدخل الكلمة الأكثر تعبيرا عن ما كتبت" required="" aria-invalid="true">
+                                            </span>
+                                      </div>
+                                    </div>
+                            </div> 
+                            <button type="submit" class="btn btn-primary btn-sm waves-effect waves-button waves-float pull-left fn-lg" ng-disabled="submitTextForm.textpost.$dirty &amp;&amp; (submitTextForm.textpost.$invalid || submitTextForm.q.$invalid ) || submitTextForm.q.$dirty &amp;&amp; ( submitTextForm.textpost.$invalid || submitTextForm.q.$invalid )" disabled="disabled">
+                                نشر
+                                <i class="md md-send"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                  </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane animated fadeIn in" id="file">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form ng-submit="$root.PostPhoto(files,timeout,logs, stateParams.classid,$parent.$$childHead)" class="ng-dirty ng-valid-parse ng-invalid ng-invalid-required">
+                  <div class="row post-img1">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="fg-line m-b-10">
+                            <textarea id="postbody" h-a="postbody" ng-model="textpost" class="form-control post-textarea auto-size ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" rows="4" url-title="" url-description="" url-url="" url-image="" placeholder="أكتب ما يفيد..." name="textpost" data-ng-trim="false" required="" aria-invalid="true" style=""></textarea>
+                        </div>
+                           <div ngf-drop="" ngf-select="watch(files)" ng-model="files" class="drop-box ng-pristine ng-untouched ng-valid ng-binding ng-empty" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" value="" ng-bind="files.name || files.$error || files.$errorParam || 'اضغط هنا لرفع صوره / أو قم بادراجها هنا'" aria-invalid="false">اضغط هنا لرفع صوره / أو قم بادراجها هنا</div>
+                        <div ngf-no-file-drop="" style="display: none;">هذا المتصح لا يدعم رفع الصور</div>
+                        <input class="form-control auto-size input-height ng-pristine ng-untouched ng-valid ng-empty" ng-model="imgTag" type="text" placeholder=" أدخل الكلمة الأكثر تعبيرا عن ما كتبت" aria-invalid="false">
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg tag-height" ng-click="">
+                            نشر
+                            <i class="md md-send"></i>
+                        </button>
+                    </div>
+                  </div>
+                </form>
+                  </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane animated fadeIn in" id="img">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form ng-submit="$root.PostPhoto(files,timeout,logs, stateParams.classid,$parent.$$childHead)" class="ng-dirty ng-valid-parse ng-invalid ng-invalid-required">
+                  <div class="row post-img1">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="fg-line m-b-10">
+                            <textarea id="postbody" h-a="postbody" ng-model="textpost" class="form-control post-textarea auto-size ng-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-required ng-touched" rows="4" url-title="" url-description="" url-url="" url-image="" placeholder="أكتب ما يفيد..." name="textpost" data-ng-trim="false" required="" aria-invalid="true" style=""></textarea>
+                        </div>
+                           <div ngf-drop="" ngf-select="watch(files)" ng-model="files" class="drop-box ng-pristine ng-untouched ng-valid ng-binding ng-empty" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true" accept="image/*" ngf-pattern="'image/*'" value="" ng-bind="files.name || files.$error || files.$errorParam || 'اضغط هنا لرفع صوره / أو قم بادراجها هنا'" aria-invalid="false">اضغط هنا لرفع صوره / أو قم بادراجها هنا</div>
+                        <div ngf-no-file-drop="" style="display: none;">هذا المتصح لا يدعم رفع الصور</div>
+                        <input class="form-control auto-size input-height ng-pristine ng-untouched ng-valid ng-empty" ng-model="imgTag" type="text" placeholder=" أدخل الكلمة الأكثر تعبيرا عن ما كتبت" aria-invalid="false">
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg tag-height" ng-click="">
+                            نشر
+                            <i class="md md-send"></i>
+                        </button>
+                    </div>
+                  </div>
+                </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="specialization">
+     <post-repeat req-url="me/post" req-type="post" req-parent="home" ></post-repeat>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.tab-nav a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+</script>

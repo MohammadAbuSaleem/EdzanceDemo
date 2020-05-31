@@ -1,0 +1,32 @@
+<md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1' ng-show="nopost == 1">
+  <div class="lightbox row m-0" id="lightgallery" angular-grid="dat" ag-options="{gridWidth : 200, gutterSize: 1}">
+    <div ng-repeat="post in dat| orderBy: 'created_at':true" class="p-h-5"  data-src="{{post.media}}" >
+      <div class="lightbox-item p-item"> 
+    		<img lazy-img="{{post.media}}" alt="" />
+        </div>
+    </div> 
+  </div>
+</md-content>
+ <div ng-show="nopost == 3" class="position-relative">
+    <div class="empty-img-profile">
+      <div class="empty-div">
+        <div>
+          <img src="img/faces/sad-face.svg">
+        </div>
+        <div class="text">  
+         لا يوجد صور لعرضها
+        </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+ //setTimeout(function(){
+ 	$(document).ready(function() {
+        setTimeout(function(){
+          $('#lightgallery').lightGallery({
+        	    thumbnail:true
+        	}); 
+        }, 3000);
+	}); 
+ //}, 3000);
+</script> 

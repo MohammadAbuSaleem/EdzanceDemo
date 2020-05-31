@@ -1,0 +1,243 @@
+ <form novalidate editable-form name="editableForm" onaftersave="vm.editableForm(editableForm)" class="info-form">
+ 	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12 m-t-10 m-b-10">
+      	<span class="vc-information-title f-22">معلومات المادة</span>
+        <span href="javascript:void(0)" ng-click="editableForm.$show()" ng-hide="editableForm.$visible || ($root.vc.instructor != $root.me.id)" class="btn btn-primary pull-left">تعديل البيانات</span>   
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      <div class="vc-information-title">اسم المادة</div> 
+		      	<div class="position-relative">
+		      		<span ng-click="itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-text="vc_info.name" e-name="vc_info_name" ng-bind="vc_info.name  || 'لم يتم ادخال اسم المادة'" e-required></span>
+	      		    <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل اسم المادة" ng-show="editableForm.vc_info_name.$invalid && editableForm.vc_info_name.$touched" aria-hidden="false"></i>
+		      	</div>
+		      </div>
+	      </div> 
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      <div class="vc-information-title">وصف المادة</div>
+		      	<div class="position-relative">
+		      		<!-- 
+		      		<div class="f-16" ng-bind="$root.vc.Description"></div> -->
+                        <span ng-click="itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-textarea="vc_info.Description" e-name="vc_info_Description" ng-bind="vc_info.Description  || 'لم يتم ادخال وصف المادة'" e-required></span>
+              		    <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل وصف المادة" ng-show="editableForm.vc_info_Description.$invalid && editableForm.vc_info_Description.$touched" aria-hidden="false"></i>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-6 col-sm-6 col-xs-12 p-l-5-web">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">الشعبة</div><!-- 
+		      		<div class="f-16" ng-bind="vm.rscope.vc.class_number"></div> -->
+		      		<span ng-click="itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-text="vc_info.class_number" e-name="vc_info.class_number" ng-bind="vc_info.class_number  || 'لم يتم ادخال الشعبة'"></span>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	   <div class="col-md-6 col-sm-6 col-xs-12 p-r-5-web">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      <div class="vc-information-title">القاعة</div> 
+		      	<div class="position-relative">
+		      		<div class="f-16" ><span ng-click="itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-text="vc_info.class_hall" e-name="vc_info_class_hall" ng-bind="vc_info.class_hall  || 'لم يتم ادخال القاعة'"  e-required></span>
+  				    <i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل القاعة" ng-show="editableForm.vc_info_class_hall.$invalid && editableForm.vc_info_class_hall.$touched" aria-hidden="false"></i>
+		      		</div>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	   <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div class="position-relative">
+		      		<div class="vc-information-title">الأيام</div>
+		      		<div class="f-16 info-day">
+		      			 <span href="#" editable-checklist="myday" e-name="vc_info_class_myday" e-selected="s.selected" e-multiple e-ng-options="s.value as s.text for s in ::days track by s.value" e-required>
+					    {{ showDays() }}
+					  </span> 
+				    	<i class="md md-error form-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل الأيام" ng-show="editableForm.$data.vc_info_class_myday.length == 0" aria-hidden="false"></i>
+					</div> 
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-4 col-sm-4 col-xs-12 p-l-5-web">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">عدد الساعات</div>
+					<span editable-select="vc_info.Hours" e-ng-options="g.value as g.text for g in Hours">
+					    {{ vc_info.Hours || 'لم يتم ادخال' }}
+				    </span>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	   <div class="col-md-4 col-sm-4 col-xs-12 p-r-5-web p-l-5-web">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">الفصل الدراسي</div>
+		      		<span editable-select="vc_info.season" e-ng-options="g.value as g.text for g in season">
+					    {{ seasonAr(vc_info.season) || 'لم يتم ادخال' }}
+				    </span>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	   <div class="col-md-4 col-sm-4 col-xs-12 p-r-5-web">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">نوع المادة</div>
+		      		 <span href="#" editable-select="vc_info.Privacy" e-ng-options="g.value as g.text for g in Privacy">
+					    {{ privacyAr(vc_info.Privacy) || 'لم يتم ادخال' }}
+				    </span>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">كتاب المادة الرئيسي</div>
+		      		<div class="vc-book" ng-if="!editableForm.$visible" ng-bind="vc_info.book.split('/')[3] || 'لا يوجد كتاب للماده' ">
+		      			لا يوجد كتاب للماده
+		      		</div>
+		      		<div class="edit-book" ng-if="editableForm.$visible">
+			      		<div class="f-16 text-blue m-t-15 m-b-10">
+			      			قم برفع الكتاب الأساسي للمادة من هنا, ليستطيع طلابك الوصول اليه بسهولة.
+			      		</div>
+	            		<div ngf-drop ngf-select="vcfl.watch(vc_info.book)" ng-model="vc_info.book" class="drop-box"
+		                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+		                accept="image/*,application/pdf,.doc,.docx,.xdoc,.ppt,.pptx" 
+		                ngf-pattern="'image/*,application/pdf,.doc,.docx,.xdoc,.ppt,.pptx'" ng-bind="vc_info.book.name || vc_info.book.split('/')[3] || vc_info.book.$error || vc_info.book.$errorParam || 'اضغط هنا لرفع ملف / أو قم بادراجها هنا'">
+		                </div>
+		      		</div>
+		      		<div class="pull-left" ng-if="vc_info.book">
+		      			<a href="{{vc_info.book}}" download target="_blank">
+		      				<i class="md md-file-download download-vc-book"></i>
+		      			</a>
+		      		</div>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">خطة المادة</div>
+		      		<div class="vc-syllabus" ng-bind="vc_info.syllabus.split('/')[3] || 'لا يوجد خطة للماده' " ng-if="!editableForm.$visible">
+		      		</div>
+		      		<div class="edit-syllabus" ng-if="editableForm.$visible">
+			      		<div class="f-16 text-blue m-t-15 m-b-10">
+			      			قم برفع خطة الأساسي للمادة من هنا, ليستطيع طلابك الوصول اليه بسهولة.
+			      		</div>
+			      		<div ngf-drop ngf-select="vcfl.watch(vc_info.syllabus)" ng-model="vc_info.syllabus" class="drop-box" 
+		                ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+		                accept="image/*,application/pdf,.doc,.docx,.xdoc,.ppt,.pptx" 
+		                ngf-pattern="'image/*,application/pdf,.doc,.docx,.xdoc,.ppt,.pptx'" ng-bind="vc_info.syllabus.name || vc_info.syllabus.split('/')[3] || vc_info.syllabus.$error || vc_info.syllabus.$errorParam || 'اضغط هنا لرفع ملف / أو قم بادراجها هنا'">
+		                </div>
+		      		</div>
+		      		<div class="pull-left" ng-if="vc_info.syllabus">
+		      			<a href="{{vc_info.syllabus}}" download target="_blank">
+		      				<i class="md md-file-download download-vc-book"></i>
+		      			</a>
+	      			</div>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>
+<!-- 	<div class="row">
+	  <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div>
+		      		<div class="vc-information-title">القسم الدراسي</div>
+		      		<div class="f-16">قسم هندسة الحاسوب</div>
+		      	</div>
+		      </div>
+	      </div>
+	  </div>
+	</div>  -->
+	<div class="row">
+	   <div class="col-md-12 col-sm-12 col-xs-12">
+	      <div class="card">
+		      <div class="card-body card-padding">
+		      	<div class="row">
+		      	 <div class="col-md-6 col-sm-6 col-xs-12 vc-calendar">
+			      <i class="md md-today"></i>  
+			      وقت بدأ المحاضرة &emsp;
+			      	<span ng-hide="editableForm.$visible">
+			      		<span ng-bind="vc_info.from | date:'HH:mm a' || ' لم يتم ادخال الوقت'"></span>
+		      		</span>  
+			        <span e-form="editableForm" e-name="from" editable-bstime="vc_info.from" e-show-meridian="true" e-minute-step="1" ng-show="editableForm.$visible">
+			          {{ (vc_info.from | date:'HH:mm a') || 'لم يتم ادخال الوقت' }}
+			        </span>
+			    </div>  
+			     <div class="col-md-6 col-sm-6 col-xs-12 vc-calendar">
+			      <i class="md md-today"></i>  
+			      وقت انتهاء المحاضرة &emsp;	
+			      <span ng-hide="editableForm.$visible">
+		      		<span ng-bind="vc_info.to | date:'HH:mm a' || 'لم يتم ادخال الوقت'"></span>
+			      </span>  
+			        <span e-form="editableForm" e-name="to" editable-bstime="vc_info.to" e-show-meridian="true" e-minute-step="1" ng-show="editableForm.$visible">
+			          {{ (vc_info.to | date:"HH:mm a") || 'لم يتم ادخال الوقت'}}
+			        </span>
+			    </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+    </div>
+    <div class="card">
+      	<div class="card-body card-padding permission-vc">
+		    <a href="#" editable-checkbox="vc_info.Permission" e-title="الحصول على موافقتي لإنضمام الطلاب">
+			    {{ vc_info.Permission ? "الحصول على موافقتي لإنضمام الطلاب" : "عدم الحصول على موافقتي لإنضمام الطلاب" }}
+		  	</a>
+	  	</div>
+  	</div>
+	<div ng-show="editableForm.$visible" class="text-left">
+        <button type="submit" class="btn btn-primary close-edit" ng-disabled=" editableForm.$invalid || editableForm.$data.vc_info_class_myday.length == 0">
+          حفظ
+        </button>
+        <button type="button" class="btn btn-danger close-edit" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          الغاء
+        </button>
+ 	</div>
+</form>
+<script type="text/javascript">
+	$(".edit-information").click(function() {
+		$(".edit-book").removeClass('hidden');
+		$(".edit-syllabus").removeClass('hidden');
+		$(".download-vc-book").addClass('hidden');
+		$(".vc-book").addClass('hidden');
+	});
+	$(".close-edit").click(function() {
+		$(".edit-book").addClass('hidden');
+		$(".edit-syllabus").addClass('hidden');
+		$(".download-vc-book").removeClass('hidden');
+		$(".vc-book").removeClass('hidden');
+		$(".vc-syllabus").removeClass('hidden');
+	});
+</script>

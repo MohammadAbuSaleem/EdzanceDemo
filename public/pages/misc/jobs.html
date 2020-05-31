@@ -1,0 +1,28 @@
+<md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+    <div ng-repeat="(key,jobs) in dat | orderBy: 'created_at':true track by $index">
+        <div class="card">
+            <div class="card-body">
+                <div class="row m-0 m-t-15">    
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <img ng-src="{{jobs.company_logo}}" class="jop-img"/>
+                    </div>  
+                    <div class="col-md-9 col-sm-9 col-xs-12 p-t-10 p-b-10">
+                        <div class="f-20 text-bold" ng-bind="jobs.job_title"></div>
+                        <div class="f-15 text-bold">
+                            <span ng-bind="jobs.company_name"></span> - <span ng-bind="jobs.address"></span>
+                        </div>
+                        <div class="p-b-10 text-gray" ng-bind="moment(jobs.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()">
+                        </div>
+                        <div class="read-more" r-m ng-bind="jobs.job_description"></div>
+                        <div ng-if="jobs.apply_link" class="p-t-10">
+                            <strong><i class="md md-link"></i> رابط التقديم</strong>
+                            <div class="read-more" r-m>
+                                <a href="{{jobs.apply_link}}" ng-bind="jobs.apply_link" target="_blank" class="break-word"></a>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>

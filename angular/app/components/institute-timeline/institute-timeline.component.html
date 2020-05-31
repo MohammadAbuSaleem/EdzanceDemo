@@ -1,0 +1,169 @@
+<div class="row">
+    <div class="col-md-7 col-sm-7 col-xs-12  p-l-0-web">
+        <div>
+            <post-institute req-url="me/post" req-type="post" req-parent="home"></post-institute>
+        </div> 
+        <div class="m-t-10">
+            <div class="for-delete media animated" aria-hidden="false">
+              <div>
+                  <div class="pull-right hidden-xs p-l-5 postimg-web">
+                      <a class="img-fram" user-content="" href="/profile-5/timeline" data-target="webuiPopover54">
+                          <img class="post-img" src="img/edzance-logo/edzanec-logo.jpg" alt="Moath Mohammad"> 
+                      </a>
+                  </div>
+                  <div class="media-body post-pos">
+                      <div class="card w-item">
+                          <div class="card-body card-padding p-b-0">
+                              <div class="media">
+                                  <div class="pull-right hidden-md hidden-sm hidden-lg postimg-mobile p-l-5">
+                                      <a ui-sref="app.profile.timeline({id: post.userid})" user-content="" href="/profile-5/timeline">
+                                          <img class="post-img" src="upload/profile/avatar/vknu5epmqxbpkcmvo417.jpg" lazy-img="upload/profile/avatar/vknu5epmqxbpkcmvo417.jpg" alt="Moath Mohammad">
+                                      </a>
+                                      <div class="webui-popover-content">
+                                        <div>
+                                          <div class="pull-right">
+                                            <img src="upload/profile/avatar/vknu5epmqxbpkcmvo417.jpg" lazy-img="upload/profile/avatar/vknu5epmqxbpkcmvo417.jpg" class="popover-user-info">
+                                          </div>
+                                          <div class="media-body text-right p-12"> 
+                                            <a ui-sref="app.profile.timeline({id: post.userid})" href="/profile-5/timeline">
+                                              <div class="user-name m-b-5 f-20 username">Moath Mohammad</div>
+                                            </a>
+                                            <div class="f-15 line-height-small">العلوم والتكنولوجيا </div>
+                                              <div class="m-b-15 f-15">هندسة حاسوب</div><div class="ng-scope">
+                                                <a ng-disabled="$root.sending" ng-click="$root.sendMessage(post.userid,post.name + ' ' + post.last_name | capitalize,post.FB_UID);" class="btn btn-default waves-effect waves-button waves-float fn-lg edzance-color m-r-5">
+                                                    <i class="md md-email"></i>
+                                                    رسالة
+                                                </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <div class="pull-right">
+                                        <a ui-sref="app.profile.timeline({id: post.userid})" class="user-name username" href="/profile-5/timeline">Moath Mohammad</a>
+                                        <div class="data-post" title="2017-05-28 13:27:04">منذ شهر</div>
+                                      </div>
+                                      <div class="pull-right full-width-mobile">
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- text body -->
+                              <div>
+                                  <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="updateData($data,post.id,$root.post_url)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-0 ng-scope editable" r-m="" style="max-height: none;"><div class="ng-scope">
+                                      <pre class="">ahmad </pre>
+                                    </div>
+                                  </div>
+
+                              </div>
+                              <!-- end url body -->
+                              <div class="row faces-padding">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="pull-right p-t-10">
+                                  <a class="f-15" data-toggle="modal" data-target="#reaction" ng-click="exprissionUser(post.id,post.id)">
+                                    <img src="img/faces/faces.svg" width="40px">
+                                    <span class="faces-number">1</span>
+                                  </a>
+                                </div>
+                                   <div data-toggle="modal" data-target="#commentModel15" video-post-popup="" data-src="" data-video-id="15">
+                                    </div>
+                              </div>
+                              </div>
+                              <hr class="m-0 m-t-5 m-b-5">
+                            <div class="row faces-padding m-t-0">
+                                <div class="col-md-12 col-sm-12 col-xs-12 m-b-5">
+                                  <a ng-click="exprission(post.id,'happy');post.present='happy'" class="facs-size" active-face="" ng-class="(post.present =='happy') ? 'active' : ''">
+                                    <img src="img/faces/smiling.svg" class="smile-face" title="مناسب">
+                                    مناسب
+                                  </a>
+                                   <a ng-click="exprission(post.id,'normal');post.present='normal'" class="facs-size" active-face="" ng-class="(post.present=='normal') ? 'active' : ''">
+                                      <img src="img/faces/neutral.svg" class="smile-face" title="عادي"> 
+                                       عادي     
+                                    </a>
+                                   <a ng-click="exprission(post.id,'sad');post.present='sad';" class="facs-size" active-face="" ng-class="(post.present=='sad') ? 'active' : ''">
+                                      <img src="img/faces/unamused.svg" class="smile-face" title="غير مناسب">    غير مناسب
+                                    </a>
+                              
+                                </div>
+                            </div>
+                          </div>
+                          <!-- Comment -->
+                            <comment-repeat req-url="post" comment-id="15" comment-index="11" req-parent="post" req-controller="home"><!-- ngIf: $root.me.activated_at.length > 1 --><div class="wi-comments ng-scope" ng-init="limit = 2">
+                <div class="p-5 ng-hide" ng-show="results.length != post.comment.length" ng-hide="results.length === post.comment.length" aria-hidden="true">
+                    <a class="m-t-5" ng-click="limit = limit +5">
+                    مشاهده جميع التعلقيات ...
+                </a>
+                </div>
+                <!-- ngRepeat: (key,comments) in post.comment | orderBy: 'created_at':true | limitTo: limit as results -->
+
+                <!-- Comment form -->
+                <div class="wic-form toggled row m-r-0 m-l-0 comments-border-top">
+                    <img src="upload/profile/avatar/aq922f3imuchsbj7g50p.jpg" lazy-img="upload/profile/avatar/aq922f3imuchsbj7g50p.jpg" class="comment-img">
+                    <textarea my-enter="submitComment(post.id,key,comment[post.id],comment_type)" ng-model="comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control auto-size ng-pristine ng-untouched ng-valid ng-empty" auto-grow="" aria-invalid="false" style="height: 30px;"></textarea>
+                </div>
+            </div><!-- end ngIf: $root.me.activated_at.length > 1 -->
+            <div class="modal fade" id="commentModel15" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog  modal-comment" role="document" ng-class="(post.type == 'text' || post.type == 'url') ? 'modal-comment' : 'modal-comment-withimg'">
+                    <div class="position-relative text-left">
+                        <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="comment-img-div ng-hide" ng-hide="post.type == 'text' || post.type == 'url'" aria-hidden="true">
+                              <div class="comment-modal-img ng-scope">
+                                    <img src="img/icons/infinity.svg" lazy-img="" class="image-post image-max-height">
+                                </div><!-- end ngIf: post.type != 'video' -->
+                            </div>
+                            <div class="media-body comment-img-body">
+                                <div class="comment-header">
+                                    <i class="md md-sms"></i>
+                                    <span class="p-l-5">التعليقات</span>
+                                    <!-- ngIf: post.comment.length == 2 -->
+                                    <!-- ngIf: (post.comment.length > 2 && post.comment.length < 11) -->
+                                    <!-- ngIf: (post.comment.length > 10 || post.comment.length == 1) -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="md md-keyboard-arrow-left f-24"></i></span></button>
+                                </div>
+                                <div class="wi-comments">
+                                    <!-- ngRepeat: (key,comments) in post.comment | orderBy: 'created_at':true track by $index -->
+                                </div>
+                                <!-- Comment form -->
+                                <div class="wic-form toggled row m-r-0 m-l-0 comments-border-top">
+                                    <img src="upload/profile/avatar/aq922f3imuchsbj7g50p.jpg" lazy-img="upload/profile/avatar/aq922f3imuchsbj7g50p.jpg" class="comment-img">
+                                    <textarea my-enter="submitComment(post.id,key,comment[post.id],comment_type)" ng-model="comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control ng-pristine ng-untouched ng-valid ng-empty" auto-grow="" aria-invalid="false" style="height: 0px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </comment-repeat>
+                          <!-- End Comment -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-5 col-xs-12">
+        <div class="card">
+          <div class="card-body card-padding">
+              <div>
+                  <div class="pull-right">
+                      عن وزارة التربية والتعليم
+                  </div>
+                  <div class="text-gray text-left">
+                      عرض المزيد
+                  </div>
+              </div>
+              <div class="m-t-10 m-b-15">
+                  تمتلك المملكة الأردنية الهاشمية منظومات من الموارد البشرية ذات جودة تنافسية كفؤه وقادرة على تزويد المجتمع بخبرات تعليمية مستمرة مدى الحياة ذات صلة وثيقة بحاجاته الراهنة والمستقبلية وذلك استجابة للتنمية الاقتصادية المستدامة وتحفيزها عن طريق إعداد أفراد متعلمين وقوى عمل ماهرة." .
+              </div>
+              <hr/>
+              <div class="text-gray m-t-10">
+                  2,032,334 طالب انضم وزارة التربية والتعليم
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

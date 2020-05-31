@@ -1,0 +1,262 @@
+<!-- Tab panes -->
+<div class="tab-content p-t-0 p-b-10">
+    <div role="tabpanel" class="tab-pane active fade in p-20" id="login">
+        <a onclick="window.location = '/auth/facebook';" class="btn btn-lg facebook-btn btn-soical">
+            <span>
+                <svg viewBox="0 0 14.1 26.9" width="23px" height="23px">
+                <path fill="#fff" d="M1,8.8h2.8V6.1c0-1.2,0-3,0.9-4.1c0.9-1.2,2.1-2,4.3-2c3.5,0,4.9,0.5,4.9,0.5l-0.7,4.1
+                      c0,0-1.2-0.3-2.2-0.3c-1.1,0-2,0.4-2,1.5v3.1h4.4l-0.3,4H8.9v13.9H3.8V12.8H1V8.8z"></path>
+                </svg>
+            </span>
+            <span>
+                facebook
+            </span>
+        </a><!-- 
+        <a  onclick="window.location = '/auth/google';" class="btn btn-lg google-btn btn-soical">
+            <span>
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                     width="30px" height="30px" viewBox="0 0 181.000000 152.000000"
+                     preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,152.000000) scale(0.100000,-0.100000)"
+                   fill="#fff" stroke="none">
+                <path d="M385 1506 c-187 -59 -303 -220 -276 -384 26 -163 150 -275 320 -289
+                      l69 -6 -10 -29 c-14 -40 -4 -105 21 -139 12 -16 21 -31 21 -34 0 -3 -31 -5
+                      -70 -5 -138 0 -264 -45 -351 -126 -141 -133 -140 -302 4 -399 126 -85 366
+                      -119 537 -76 97 24 178 69 225 125 55 62 69 102 73 198 6 127 -13 176 -95 253
+                      -187 174 -183 170 -183 208 0 32 10 46 93 129 103 103 127 148 127 243 0 92
+                      -43 198 -100 242 -12 10 -5 12 39 13 48 0 60 5 108 41 29 23 53 43 53 45 0 2
+                      -127 4 -282 3 -199 0 -295 -4 -323 -13z m171 -91 c89 -52 145 -156 152 -281 4
+                      -72 1 -89 -21 -136 -77 -170 -274 -132 -371 72 -27 57 -31 76 -31 150 0 91 18
+                      141 67 187 53 49 128 52 204 8z m107 -887 c68 -43 125 -95 143 -129 32 -63 8
+                      -185 -47 -236 -84 -77 -289 -101 -414 -48 -116 48 -186 166 -155 261 38 115
+                      192 199 348 190 61 -4 81 -10 125 -38z"/>
+                <path d="M1420 1370 l0 -150 -150 0 -150 0 0 -45 0 -45 150 0 150 0 0 -150 0
+                      -150 40 0 40 0 0 150 0 150 155 0 155 0 0 45 0 45 -155 0 -155 0 0 150 0 150
+                      -40 0 -40 0 0 -150z"/>
+                </g>
+                </svg>
+            </span>
+            <span>
+                +google
+            </span>
+        </a> -->
+        <form role="form" ng-submit="vm.login(vm.loginForm.$valid,vm)" method="post" name="vm.loginForm" autocomplete="off" class="m-t-20">
+            <div class="callout callout-danger" ng-if="vm.loginfailed">
+                <h4>فشل تسجيل الدخول</h4>
+                <p>ايميل او كلمة سر خاطئة.</p>
+            </div>
+            <div class="callout callout-danger" ng-if="vm.unverified">
+                <h4>لم يتم تأكيد الايميل</h4>
+                <p>نرجوا منك الضغط على ايميل التفعيل الموجود في بريدك الالكتروني.</p>
+            </div>
+            <div class="callout callout-success" ng-if="vm.registerSuccess">
+                <h4>تم التسجيل بنجاح</h4>
+                <p>تم ارسال بريد الكتروني اليك يحتوي رابط التفعيل الرجاء الضغط عليه لاكمال عملية التسجيل</p>
+            </div>
+            <div class="callout callout-success" ng-if="vm.successMsg">
+                <h4>Success!</h4>
+                <p>{{ vm.successMsg}}</p>
+            </div>
+            <div class="form-group padding-input m-b-5"> 
+                <input type="text" class="form-control" name="logemail" placeholder="البريد الإلكتروني" ng-model="vm.logemail" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+                <p ng-show="vm.loginForm.logemail.$error.required && (vm.logSubmitted || vm.loginForm.logemail.$touched)" class="help-block">ادخل بريدك الالكتروني</p> 
+                <p ng-show="vm.loginForm.logemail.$error.pattern && vm.loginForm.logemail.$touched" class="help-block">هنالك خطأ في كتابة البريد.</p>
+                <p ng-show="vm.loginForm.logemail.$invalid && (vm.logSubmitted || vm.errors.logemail)" class="help-block">{{vm.errors.logemail}}</p>
+            </div>
+            <div class="form-group padding-input">
+                <input type="password" class="form-control" name="logpassword" placeholder="كلمة السر" ng-minlength="8" ng-maxlength="50" ng-model="vm.logpassword" required>
+                <p ng-show="vm.loginForm.logpassword.$error.required && (vm.logSubmitted || vm.loginForm.logpassword.$touched)" class="help-block">كلمة السر مطلوبة.</p>
+                <p ng-show="vm.loginForm.logpassword.$error.maxlength" class="help-block">كلمة المرور طويلة جداً.</p>
+                <p ng-show="vm.loginForm.logpassword.$invalid && vm.loginForm.logpassword.$error.minlength && vm.loginForm.logpassword.$touched" class="help-block">كلمة المرور قصيرة ، أدخل 8 على الاقل.</p>
+                <p ng-show="vm.loginForm.logpassword.$invalid && (vm.logSubmitted || vm.errors.logpassword)" class="help-block">{{vm.errors.logpassword}}</p>
+            </div>
+            <div class="padding-input text-left">
+                <button type="submit" class="btn btn-primary btn-block waves-effect f-16 login-btn">دخول</button>
+            </div>
+            <div class="checkbox padding-input">
+                <label>
+                <input type="checkbox" value="">
+                <i class="input-helper"></i>
+                احتفظ بتسجيل دخولي
+                </label>
+            </div>
+        </form>
+        <div class="row padding-input m-b-10">
+            <div class="col-md-12 col-sm-12 col-xs-12 f-s-16 m-b-10">
+                <a ui-sref="logins.forgot_password">
+                    نسيت كلمة المرور ؟
+                </a>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 f-s-16">
+                <a href="" class="">الخصوصية و الاستخدام</a>
+            </div>
+        </div>
+        <div class="text-center text-black m-t-10">EDZANCE 2016</div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade p-20" id="signup">
+        <a onclick="window.location = '/auth/facebook';"   class="btn btn-lg facebook-btn btn-soical">
+            <svg viewBox="0 0 14.1 26.9" width="23px" height="23px">
+            <path fill="#fff" d="M1,8.8h2.8V6.1c0-1.2,0-3,0.9-4.1c0.9-1.2,2.1-2,4.3-2c3.5,0,4.9,0.5,4.9,0.5l-0.7,4.1
+                  c0,0-1.2-0.3-2.2-0.3c-1.1,0-2,0.4-2,1.5v3.1h4.4l-0.3,4H8.9v13.9H3.8V12.8H1V8.8z"></path>
+            </svg>
+            <span>
+                facebook
+            </span>
+        </a><!-- 
+        <a onclick="window.location = '/auth/google';" class="btn btn-lg google-btn btn-soical">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                 width="30px" height="22px" viewBox="0 0 181.000000 152.000000"
+                 preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,152.000000) scale(0.100000,-0.100000)"
+               fill="#fff" stroke="none">
+            <path d="M385 1506 c-187 -59 -303 -220 -276 -384 26 -163 150 -275 320 -289
+                  l69 -6 -10 -29 c-14 -40 -4 -105 21 -139 12 -16 21 -31 21 -34 0 -3 -31 -5
+                  -70 -5 -138 0 -264 -45 -351 -126 -141 -133 -140 -302 4 -399 126 -85 366
+                  -119 537 -76 97 24 178 69 225 125 55 62 69 102 73 198 6 127 -13 176 -95 253
+                  -187 174 -183 170 -183 208 0 32 10 46 93 129 103 103 127 148 127 243 0 92
+                  -43 198 -100 242 -12 10 -5 12 39 13 48 0 60 5 108 41 29 23 53 43 53 45 0 2
+                  -127 4 -282 3 -199 0 -295 -4 -323 -13z m171 -91 c89 -52 145 -156 152 -281 4
+                  -72 1 -89 -21 -136 -77 -170 -274 -132 -371 72 -27 57 -31 76 -31 150 0 91 18
+                  141 67 187 53 49 128 52 204 8z m107 -887 c68 -43 125 -95 143 -129 32 -63 8
+                  -185 -47 -236 -84 -77 -289 -101 -414 -48 -116 48 -186 166 -155 261 38 115
+                  192 199 348 190 61 -4 81 -10 125 -38z"/>
+            <path d="M1420 1370 l0 -150 -150 0 -150 0 0 -45 0 -45 150 0 150 0 0 -150 0
+                  -150 40 0 40 0 0 150 0 150 155 0 155 0 0 45 0 45 -155 0 -155 0 0 150 0 150
+                  -40 0 -40 0 0 -150z"/>
+            </g>
+            </svg>
+            <span> 
+                +google
+            </span>
+        </a> -->
+
+        <form role="form" id="signupForm" name="vm.registerForm" ng-submit="vm.register(vm.registerForm.$valid)" novalidate autocomplete="off" class="m-t-20">
+            <div class="form-group padding-input col-md-12 p-r-0 p-l-0 p-t-0" ng-class="{ 'has-error': vm.registerForm.firstname.$invalid && (vm.formSubmitted || vm.registerForm.firstname.$touched) }">
+                <div class="callout callout-danger" ng-show="(vm.registerForm.$invalid && vm.errors.lengh > 0)" >
+                    <h4>error!</h4>
+                    <p>{{ vm.errors[0]}}</p>
+                </div>
+           <!-- <div class="callout callout-danger" ng-if="vm.loginfailed">
+                    <h4>فشل تسجيل الدخول</h4>
+                    <p>ايميل او كلمة سر خاطئة.</p>
+                </div>
+                <div class="callout callout-danger" ng-if="vm.unverified">
+                    <h4>لم يتم تأكيد الايميل</h4>
+                    <p>نرجوا منك الضغط على ايميل التفعيل الموجود في بريدك الالكتروني.</p>
+                </div>
+                <div class="callout callout-success" ng-if="vm.registerSuccess">
+                    <h4>تم التسجيل بنجاح</h4>
+                    <p>تم ارسال بريد الكتروني اليك يحتوي رابط التفعيل الرجاء الضغط عليه لاكمال عملية التسجيل</p>
+                </div> -->
+                <div class="callout callout-success" ng-if="vm.successMsg">
+                    <h4>Success!</h4>
+                    <p>{{ vm.successMsg}}</p>
+                </div>
+                <div class="form-group padding-input col-md-6 pl-input p-r-5 p-l-5" ng-class="{ 'has-error': vm.registerForm.firstname.$invalid && (vm.formSubmitted || vm.registerForm.firstname.$touched) }">
+                    <input type="text" class="form-control" placeholder="الأسم الأول" ng-model="vm.firstname" name="firstname" ng-maxlength="30" required>
+                    <p ng-show="vm.registerForm.firstname.$error.required && (vm.formSubmitted || vm.registerForm.firstname.$touched)" class="help-block">الاسم الأول مطلوب.</p>
+                    <p ng-show="vm.registerForm.firstname.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                    <p ng-show="vm.registerForm.firstname.$invalid && (vm.formSubmitted || vm.errors.firstname)" class="help-block">{{vm.errors.firstname}}</p>
+                </div>
+                <div ng-class="{ 'has-error': vm.registerForm.lastname.$invalid && (vm.formSubmitted || vm.registerForm.lastname.$touched) }" class="form-group padding-input col-md-6 pr-input p-l-5 p-r-5">
+                    <input type="text" ng-model="vm.lastname" name="lastname" class="form-control" placeholder="الأسم الأخير" required>
+                    <p ng-show="vm.registerForm.lastname.$error.required && (vm.formSubmitted || vm.registerForm.lastname.$touched)" class="help-block">الاسم الأخير مطلوب.</p>
+                    <p ng-show="vm.registerForm.lastname.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                    <p ng-show="vm.registerForm.lastname.$invalid && (vm.formSubmitted || vm.errors.lastname)" class="help-block">{{vm.errors.firstname}}</p>
+                </div>
+                <div  ng-class="{ 'has-error': vm.registerForm.email.$invalid && (vm.formSubmitted || vm.registerForm.email.$touched) }" class="form-group padding-input col-md-12 p-r-5 p-l-5">
+                    <input type="text" ng-model="vm.email" name="email" ng-maxlength="30" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required class="form-control" placeholder="البريد الإلكتروني">
+                    <p ng-show="vm.registerForm.email.$invalid && (vm.formSubmitted || vm.errors.email)" class="help-block">{{vm.errors.email}}</p>
+                    <p ng-show="vm.registerForm.email.$error.required && (vm.formSubmitted || vm.registerForm.email.$touched)" class="help-block">الايميل مطلوب للتسجيل.</p>
+                    <p ng-show="vm.registerForm.email.$error.email && vm.registerForm.email.$touched" class="help-block">هنالك خطأ في كتابة الايميل.</p>
+                </div>
+                <div class="row m-0">
+                <div ng-class="{ 'has-error': vm.registerForm.password.$invalid && (vm.formSubmitted || vm.registerForm.password.$touched) }"  class="form-group padding-input col-md-6 pl-input p-r-5 p-l-5">
+                    <input type="password" class="form-control" placeholder="كلمة السر" ng-model="vm.password" name="password" ng-minlength="6" ng-maxlength="50" required>
+                    <p ng-show="vm.registerForm.password.$error.required && (vm.formSubmitted || vm.registerForm.password.$touched)" class="help-block">كلمة السر مطلوبة.</p>
+                    <p ng-show="vm.registerForm.password.$error.maxlength" class="help-block">كلمة المرور طويلة جداً.</p>
+                    <p ng-show="vm.registerForm.password.$invalid && vm.registerForm.password.$error.minlength && vm.registerForm.password.$touched" class="help-block">كلمة المرور قصيرة ، أدخل 8 على الاقل.</p>
+                    <p ng-show="vm.registerForm.password.$invalid && (vm.formSubmitted || vm.errors.password)" class="help-block">{{vm.errors.password}}</p>
+                </div> 
+                <div ng-class="{ 'has-error': vm.registerForm.confirm_password.$invalid && (vm.formSubmitted || vm.registerForm.confirm_password.$touched) }"  class="form-group padding-input col-md-6 pr-input p-l-5 p-r-5">
+                    <input type="password" class="form-control" placeholder="تاكيد كلمة السر" ng-model="vm.password_confirmation" password-verify="vm.password" name="password_confirmation" ng-minlength="6" ng-maxlength="50" required>
+                    <p ng-show="vm.registerForm.password_confirmation.$error.required && (vm.formSubmitted || vm.registerForm.password_confirmation.$touched)" class="help-block">تأكيد كلمة المرور مطلوب.</p>
+                    <p ng-show="vm.registerForm.password_confirmation.$error.passwordVerify && (vm.formSubmitted || vm.registerForm.password_confirmation.$touched)" class="help-block">كلمة المرور وتأكيدها غير متماثلان.</p>
+                    <p ng-show="vm.registerForm.password_confirmation.$error.maxlength" class="help-block">تأكيد كلمة المرور أطول من كلمة المرور.</p>
+                    <p ng-show="vm.registerForm.password_confirmation.$invalid && vm.registerForm.password_confirmation.$error.minlength && vm.registerForm.password_confirmation.$touched" class="help-block">تأكيد كلمة المرور قصير.</p>
+                    <p ng-show="vm.registerForm.password_confirmation.$invalid && (vm.formSubmitted || vm.errors.password_confirmation)" class="help-block">{{vm.errors.password_confirmation}}</p>
+                </div>
+                </div>
+                <div class="row m-0">
+        <div ng-class="{ 'has-error': vm.registerForm.telephone.$invalid && ( vm.formSubmitted || vm.registerForm.telephone.$touched) }"  class="form-group padding-input col-md-6 pl-input p-r-5 p-l-5">
+              <input type="number" class="form-control" placeholder="قم الهاتف" ng-model="vm.telephone" name="telephone" ng-minlength="8" ng-maxlength="14" required>
+                    <p ng-show="vm.registerForm.telephone.$error.required && (vm.formSubmitted || vm.registerForm.telephone.$touched)" class="help-block">الهاتف مطلوب.</p>
+                    <p ng-show="vm.registerForm.telephone.$error.maxlength" class="help-block">هذا الرقم أطول من رقم الهاتف الطبيعي.</p>
+                    <p ng-show="vm.registerForm.telephone.$invalid && vm.registerForm.telephone.$error.minlength && vm.registerForm.telephone.$touched" class="help-block">الرجاء اكمال رقم الهاتف.</p>
+                    <p ng-show="vm.registerForm.telephone.$invalid && (vm.formSubmitted || vm.errors.telephone)" class="help-block">{{vm.errors.telephone}}</p>
+                </div> 
+                <div ng-class="{ 'has-error': vm.registerForm.gender.$invalid && (vm.formSubmitted || vm.registerForm.gender.$touched) }"  class="col-md-6 form-group pr-input m-b-0 p-r-0 p-l-5">
+                    <div class="form-group fg-line">
+                    <div class="btn-group btn-group-justified" role="group" data-toggle="buttons">
+                        <div class="btn-group p-l-5" role="group">
+                            <label for="gender" class="btn btn-primary f-16">
+                                ذكر
+                                <input value="0" name="gender" type="radio" class="gender" ng-model="vm.gender" >
+                            </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <label for="gender" class="btn btn-primary f-16">
+                                انثى
+                                <input value="1" name="gender" type="radio" class="gender" ng-model="vm.gender" >
+                            </label>
+                        </div>
+                    </div>
+                    <p ng-show="vm.registerForm.gender.$error.required && (vm.formSubmitted || vm.registerForm.gender.$touched)" class="help-block">الرجاء اختيار الجنس.</p>
+                    <p ng-show="vm.registerForm.gender.$invalid && (vm.formSubmitted || vm.errors.gender)" class="help-block">{{vm.errors.gender}}</p>
+                </div>
+                </div>
+                </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 clearfix pl-input p-r-5 p-l-5 p-t-5">
+            <div class="form-group fg-line">
+                    <div ng-class="{ 'has-error': vm.registerForm.day.$invalid && ( vm.formSubmitted || vm.registerForm.day.$touched) }"  class="form-group m-b-5">
+            <select class="form-control" id="day" ng-model="vm.day" required>
+                <option  value=""  selected>اليوم</option>
+                    <option ng-repeat="i in vm.getNumber(31)  track by $index" >{{ $index+1 }}</option> 
+            </select>
+          </div>
+                  </div>
+        </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 pr-input pl-input p-t-5 p-l-5 p-r-5">
+                    <div class="form-group fg-line">
+                    <div ng-class="{ 'has-error': vm.registerForm.month.$invalid && (vm.formSubmitted || vm.registerForm.month.$touched) }"  class="form-group m-b-5">
+                        <select class="form-control" id="month" ng-model="vm.month"  required>
+                            <option value="" selected>الشهر</option>
+                            <option ng-repeat="i in vm.getNumber(12) track by $index" >{{ $index+1}}</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 pr-input p-l-5 p-t-5 p-r-5">
+                    <div class="form-group fg-line">
+                    <div ng-class="{ 'has-error': vm.registerForm.year.$invalid && (vm.formSubmitted || vm.registerForm.year.$touched) }"  class="form-group m-b-5">
+                        <select class="form-control" id="year" ng-model="vm.year"  required>
+                            <option value=""  selected>السنة</option> 
+                            <option ng-repeat="i in vm.getNumber(vm.scope.year) track by $index" ng-if=" $index > 1930" >{{ $index + 1}}</option>
+                            <option>السنة</option> 
+                            <option ng-repeat="i in vm.getNumber(vm.scope.year) track by $index" ng-if=" $index > 1930" value="{{ $index + 1}}" >{{ $index + 1}}</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="padding-button col-md-12 col-sm-12 col-xs-12 text-left">
+                    <button type="submit" class="btn btn-primary btn-block waves-effect f-16 login-btn">تسجيل</button>
+                </div>
+            </div>
+        </form>
+        <div class="text-center text-black">EDZANCE © 2016</div>
+    </div>
+</div>
+
+    

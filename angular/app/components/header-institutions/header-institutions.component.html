@@ -1,0 +1,72 @@
+<header id="header" class="edu-ins">
+	<div class="container">
+	    <div class="navbar-header navbar-right m-0">
+            <span class="sidemenu" onclick="openNav()">&#9776;</span>
+            <a class="navbar-brand page-scroll p-r-0-web" ui-sref="app.landing">
+                <img src="img/logo.svg" alt="EDZANCE" class="edzance-logo"/>
+            </a>
+        </div>
+	  <!--   <div class="navbar-edzance navbar-collapse collapse">
+	        <ul class="nav navbar-nav m-0 p-r-0">
+	        	<li class="header-info">
+	                <a>
+	                    <span>اكتشف المزيد</span>
+	                </a>
+	        	</li>
+	        	<li class="header-info">
+	                <a>
+	                    <span>أنواع المؤسسات</span>
+	                </a>
+	        	</li>
+	          	<li class="header-info">
+	                <a href="#contactus">
+	                    <span>تواصل معنا</span>
+	                </a>
+	        	</li>
+	        	<li class="header-info p-l-0">
+	                <a class="btn btn-primary waves-effect waves-button waves-float f-16 p-10">
+	                    <span>انشاء حساب</span>
+	                </a>
+	        	</li>
+        	</ul>
+    	</div> -->
+    	<div id="mySidenav" class="sidenav">
+		  	<a href="javascript:void(0)" class="closebtn hidden-md hidden-lg" onclick="closeNav()">&times;</a>
+		  	<a href="#">اكتشف المزيد</a>
+		  	<a href="#">أنواع المؤسسات</a>
+		  	<a href="#contactus">تواصل معنا</a>
+		  	<a ui-sref="institution.adding" class="btn btn-primary btn-menu waves-effect waves-button waves-float f-16">
+	        	<span>انشاء حساب</span>
+	    	</a>
+		</div> 
+		
+	    <!-- Top Search Content -->
+	    <div id="top-search-wrap">
+	        <script type="text/ng-template" id="searchTemplate.html">
+	            <a>
+	                <div class="row m-0">
+	                    <div class="pull-right m-l-10">
+	                        <img ng-src="{{match.model.avatar}}" width="45">
+	                    </div> 
+	                    <div class="media-body">
+	                      <div ng-bind="match.model.name" class="text-bold f-15"></div>
+	                      <div ng-bind="match.model.university" class="f-14"></div>
+	                    </div>
+	                </div>
+	            </a>
+	        </script>
+	        <input type="search" name="query" ng-model="query" class="form-control" ng-change="search(query);" uib-typeahead="name as result.name for result in a | filter:{name:$viewValue}" typeahead-template-url="searchTemplate.html" typeahead-on-select="GoToUser($item.id)" autocomplete="off" placeholder="ابحث عن المؤسسات التعليمية" my-enter="goToSearch(query)" typeahead-min-length="1" typeahead-loading="loadingLocations"/>  
+	        <i ng-show="loadingLocations" class="md md-cached"></i>
+	        <i id="top-search-close">&times;</i>
+	    </div>
+    </div>
+</header>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>

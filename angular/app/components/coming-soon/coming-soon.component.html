@@ -1,0 +1,92 @@
+
+     <div vs-repeat="50" vs-scrolled-to-end="ctrl.sayyes()" vs-scrolled-to-end-offset="3" vs-scroll-parent="md-content" vs-offset-after="200" vs-offset-before="50" vs-excess="0" vs-autoresize='true'>  <!-- the specified element height is 50px -->
+      <div ng-repeat="post in dat">
+        <!-- content -->
+        <div>
+            <input type="hidden" name="post-{{$index}}" id="post-{{$index}}" ng-model="post_delete[$index]">
+
+            <div  class="media-body post-pos">
+                <div class="card w-item">
+                    <div class="card-body card-padding p-b-0">
+
+                        <!-- text body -->
+                        <div>
+                            <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="updateData($data,post.id,$root.post_url)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-0" r-m>
+                              <div ng-if="post.body.length > 0">
+                                <pre>{{post.body}}</pre>
+                              </div>
+                            </div>
+                            <div ng-if="post.type == 'follow_post'" class="position-relative text-center">
+                              <div class="text-center m-b-10">
+                                <span class="f-18">&nbsp;قام بمتابعة <a ui-sref="app.profile.timeline({id: post.redirect_id})" ng-bind="post.mediadesc" class="text-bold"></a>
+                              </span>
+                              </div>
+                              <div>
+                                <a ui-sref="app.profile.timeline({id: post.userid})">
+                                  <img src="img/icons/infinity.svg" lazy-img="{{post.avatar}}" class="follow-post f-18riend-right"/>
+                                </a>
+                                <a ui-sref="app.profile.timeline({id: post.redirect_id})">
+                                  <img src="img/icons/infinity.svg" lazy-img="{{post.media}}" class="follow-post friend-left"/>
+                                </a>
+                              </div>
+                            </div>
+                            <div ng-if="post.type == 'new_class_post'" class="position-relative m-t-10"> 
+                                <div class="text-center">
+                                  <img src="img/icons/teacher.svg" width="100px"/>
+                                </div>
+                                <div class="text-center m-r-10 m-t-5 f-18">
+                                  <span>تم إضافة مادة</span>
+                                  <span ng-bind="post.mediadesc" class="edzance-color text-bold"></span>
+                                  <span>من قبل</span>
+                                  <span class="m-t-3 edzance-color text-bold">
+                                    <span ng-bind="post.name"></span>
+                                    <span ng-bind="post.last_name"></span>
+                                  </span>
+                                </div>
+                                <div class="text-center" ng-show="$root.me.acctype == 1">
+                                    <a class="btn btn-default join-post down-btn" data-toggle="modal" data-target="#registersemster">
+                                      + الإنضمام الى المادة
+                                    </a>
+                                </div>
+                            </div>
+                            <div ng-if="post.type == 'avatar_image'" class="position-relative"> 
+                                <img src="img/icons/infinity.svg" lazy-img="img/changeAvater.png" width="100%">
+                                <img src="img/icons/infinity.svg" lazy-img="{{$root.trustSrc(post.media)}}" img-model class="new-avatar" data-toggle="modal" data-target="#commentModel{{post.id}}"/>
+                            </div>
+                            <div ng-if="post.type == 'cover_image'"> 
+                                <img src="img/icons/infinity.svg" lazy-img="{{$root.trustSrc(post.media)}}" img-model class="image-post" data-toggle="modal" data-target="#commentModel{{post.id}}"/>
+                            </div>
+                            <div class="m-h-m10 video-post" ng-if="post.type == 'video'">
+                              <!-- <iframe ng-src="{{post.media}}" width="100%" height="315"></iframe> -->
+                                <a data-src="{{$root.youtubevideo(post.media)}}" video-post data-post-video="video{{post.id}}" class="position-relative vpost" ng-if="post.mediaimage != ''"> 
+                                  <img src="img/icons/infinity.svg" lazy-img="{{$root.trustSrc(post.mediaimage)}}" class="modalButton image-post" width="100%" />
+                                  <i class="md md-play-circle-fill yvideo-icon"></i>
+                                </a>
+                                <iframe src="{{$root.youtubevideo(post.media)}}" ng-if="post.mediaimage == ''" height="315" width="100%"></iframe>
+                                <iframe class="embed-responsive-item hidden-element" frameborder="0" height="315" width="100%" id="video{{post.id}}"></iframe>
+                            </div> 
+                            <div ng-if="post.type == 'image'"> 
+                                <img src="img/icons/infinity.svg" lazy-img="{{$root.trustSrc(post.media)}}" img-model class="image-post" data-toggle="modal" data-target="#commentModel{{post.id}}"/>
+                            </div>
+                            <div class="profile-pic media m-t-5 p-0" ng-if="post.type == 'url'">
+                             <a href="{{$root.trustSrc(post.media)}}" target="_blank" class="url-container link-shadow">
+                                <div class="position-relative"> 
+                                  <!-- <div class="link-label">رابط</div> -->
+                                   <img alt="" class="url-user-img" src="img/icons/infinity-tr.svg" lazy-img="{{$root.trustSrc(post.mediaimage)}}">
+                                </div>
+                                <div class="media-body url-body-padding"> 
+                                    <div class="user-name m-b-5 username f-14" ng-bind="post.mediatitle.split('\\').pop().split('/').pop()"></div>
+                                    <div class="m-b-5 f-13 text-black" ng-bind="post.mediadesc"></div>
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+                        <!-- end url body -->
+                        <hr class="m-0 m-t-5 m-b-5" />
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+        

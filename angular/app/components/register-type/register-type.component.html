@@ -1,0 +1,49 @@
+<!--
+<div class="col-md-6 col-sm-6 col-xs-6 p-r-0 p-l-5">
+    <a ui-sref="logins.register.main({type:'student'})" class="btn btn-default btn-block  f-16">
+        <img src="/img/student.svg">
+        <div>
+            طالب
+        </div>
+    </a>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-6 p-r-5 p-l-0">
+     <a ui-sref="logins.register.main({type:'Teacher'})" class="btn btn-default btn-block  f-16">
+        <img src="/img/prof.svg">
+        <div>
+            مدرس
+        </div>
+    </a>
+</div>
+          -->       
+<a ng-hide="regtype.stateParams.logtype == 'social'" onclick="window.location = '/auth/facebook';" class="btn btn-lg facebook-btn btn-soical">
+    <span>
+        <svg viewBox="0 0 14.1 26.9" width="23px" height="23px">
+        <path fill="#fff" d="M1,8.8h2.8V6.1c0-1.2,0-3,0.9-4.1c0.9-1.2,2.1-2,4.3-2c3.5,0,4.9,0.5,4.9,0.5l-0.7,4.1
+              c0,0-1.2-0.3-2.2-0.3c-1.1,0-2,0.4-2,1.5v3.1h4.4l-0.3,4H8.9v13.9H3.8V12.8H1V8.8z"></path>
+        </svg>
+    </span>
+    <span>
+        facebook
+    </span>
+</a>
+
+<div ng-if="regtype.stateParams.logtype == 'social'" class="m-t-20 m-b-20">تابع انشاء حسابك عن طريق الفيسبوك
+</div> 
+<div class="m-t-20 m-b-20">
+    اختر نوع الحساب الذي ترغب بانشاءه من خلال النقر على الصورة المناسبة من التالي:
+</div> 
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6 p-l-6">
+        <a ui-sref="logins.login.register.information({type:'student'})">
+            <div class="text-center register-type">طالب</div>
+            <img src="/img/student.png" class="img-register">
+        </a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 m-b-15 p-r-6">
+        <a ui-sref="logins.login.register.information({type:'Teacher'})">
+            <div class="text-center register-type">مدرس</div>
+            <img src="/img/doctor.png" class="img-register">
+        </a>
+    </div>
+</div>

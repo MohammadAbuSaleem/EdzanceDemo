@@ -1,0 +1,42 @@
+<section class="homepage">
+    <div class="container margin-container login-container">
+        <div class="row m-0">
+            <div class="col-md-6 col-sm-6 col-xs-12 hidden-xs">
+                <div class="edzance-color f-28">
+                    أهلا وسهلا بك في شبكة إدزانس
+                </div>
+                <div class="f-22">
+                    الشبكة الأكادمية الأولى في الوطن العربي للتواصل بين طلبة الجامعات ومدرسيهم وجامعاتهم.
+                </div>
+                <div class="download-text">
+                    حمل التطبيق الآن
+                </div>
+                <div>
+                    <img src="img/store-logo/appstore.png" alt="مرحبًا بك في ادزانس" class="store-logos"/>
+                    <img src="img/store-logo/playstore.png" alt="مرحبًا بك في ادزانس" class="store-logos"/>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 pull-left new-login-box">
+                <div class="hidden-lg hidden-md hidden-sm login-mobile">
+                    <div class="card register-shadow">
+                        <div class="f-20 text-center edzance-color">
+                                تسجيل دخول
+                        </div>
+                        <div class="card-body p-15">
+                            <login-box></login-box>
+                        </div>
+                    </div>
+                </div>
+                <registration-box></registration-box>
+                <div class="text-gray text-center">EDZANCE 2016 ©</div>
+                <!-- -->
+            </div>
+        </div>
+    </div>
+</section> 
+<script type="text/javascript">
+    if($( "section").hasClass("homepage") == true){
+        $("html").addClass("homepage-background");
+        $("body").addClass("login-background");
+    }
+</script>

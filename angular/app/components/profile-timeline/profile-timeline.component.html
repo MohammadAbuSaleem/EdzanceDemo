@@ -1,0 +1,202 @@
+<div ng-init="$root.controller='profile-timeline'" class="timeline m-h-m10">
+    <div class="col-md-5 col-sm-5 col-xs-12 p-l-0-web p-r-0 inf-col">
+        <div class="pmb-block p-0 p-r-10">
+            <div class="card m-b-0" ng-if="timeline.name.length > 0">
+                <div class="pmbb-header box-header">
+                    <h2><i class="md md-info m-l-5 icon-box info-icon"></i>معلومات الشخصية</h2>
+                </div>
+                <div class="pmbb-body p-5 p-t-15">
+                    <div class="pmbb-view">
+                        <div>
+                            <dl>
+                                <span>
+                         <i class="md md-label-outline f-16"></i>
+                       </span>
+                                <span ng-bind="timeline.name" class="edzance-color"></span>
+                            </dl>
+                            <dl class="dl-horizontal" ng-if="timeline.institute != null">
+                                <span>
+                          <i class="md md-school f-16"></i>
+                        </span>
+                                <span>
+                          <span class="edzance-color" ng-bind="timeline.institute">
+                          </span>
+                                </span>
+                            </dl>
+                            <dl class="dl-horizontal" ng-if="timeline.birthdate != null">
+                                <span>
+                          <i class="md md-today f-16"></i>
+                          ولد في 
+                        </span>
+                                <span class="edzance-color" ng-bind="timeline.birthdate"></span>
+                            </dl>
+                            <dl class="dl-horizontal" ng-if="timeline.sex != null">
+                                <span>
+                          <i class="md md-person-outline f-16"></i>
+                          الجنس 
+                        </span>
+                                <span>
+                            <span class="edzance-color" ng-bind="timeline.sex"></span>
+                                </span>
+                            </dl>
+                            <dl class="dl-horizontal" ng-if="timeline.country != null">
+                                <span>
+                          <i class="md md-public f-16"></i>
+                           الجنسية
+                        </span>
+                                <span>
+                          <span class="edzance-color" ng-bind="timeline.country"></span>
+                                </span>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmb-block p-0 p-r-10 m-t-10">
+            <div class="card m-b-0">
+                <div class="pmbb-header box-header">
+                  <h2>
+                    <a ui-sref="app.profile.connection.follower">
+                      <i class="md md-account-circle m-l-5 icon-box follower-icon"></i>
+                      متابِعون
+                      <!-- <span ng-bind="timeline.profile_followers_count" class="text-muted p-r-5"></span> -->
+                    </a>
+                  </h2>
+                </div>
+                <div class="pmbb-body" ng-if="timeline.profile_followers != ''"> 
+                  <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12 p-b-4 p-t-2">
+                          <div class="follower-box-padding">
+                              <div ng-repeat="(key,followers) in timeline.profile_followers | orderBy: $index track by $index">
+                                  <div class="col-md-4 col-sm-4 col-xs-3 timeline-follower-padding">
+                                      <a ui-sref="app.profile.timeline({id: followers.id})">
+                                          <img src="img/icons/infinity.svg" lazy-img="{{followers.avatar}}" class="timeline-follower" />
+                                          <div class="timeline-follower-name">
+                                              <div ng-bind="followers.name" class="line-height"></div>
+                                          </div>
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="pmb-block p-0 p-r-10 m-t-10">
+            <div class="card m-b-0">
+              <div class="pmbb-header box-header">
+                <h2>
+                  <a ui-sref="app.profile.photo.photo">
+                    <i class="md md-camera m-l-5 icon-box photo-icon"></i>
+                    الصور
+                  </a>
+                </h2>
+              </div>
+              <div class="pmbb-body" ng-if="timeline.profile_posts_images != ''">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 p-b-4 p-t-2">
+                        <div class="img-box-padding">
+                            <div ng-repeat="(key,image) in timeline.profile_posts_images | limitTo: 6 | orderBy: $index track by $index">
+                                <div class="col-md-4 col-xs-4 timeline-follower-padding">
+                                    <img src="img/icons/infinity.svg" lazy-img="upload/posts/images/{{image.media}}" class="timeline-follower image-post" img-model data-toggle="modal" data-target="#imgModel" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="pmb-block p-0 p-r-10 m-t-10 left-side-bar">
+            <div class="card m-b-0">
+              <div class="pmbb-header box-header">
+                <h2>
+                  <a ui-sref="app.profile.photo.video">
+                    <i class="md md-play-circle-fill m-l-5 icon-box video-icon"></i>
+                    الفيديو
+                  </a>
+                </h2>
+              </div>
+              <div class="pmbb-body" ng-if="timeline.profile_posts_videos != ''">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 p-t-2 p-b-4">
+                        <div class="follower-box-padding">
+                            <div ng-repeat="(key,video) in timeline.profile_posts_videos | limitTo: 6 | orderBy: $index track by $index">
+                                <div class="col-md-4 col-xs-3 timeline-follower-padding">
+                                    <a data-toggle="modal" data-src="{{$root.trustSrc(video.media)}}" data-target="#myModal" data-video-fullscreen="" youtube-video>
+                                        <img src="img/icons/infinity.svg" lazy-img="{{$root.trustSrc(video.mediaimage)}}" class="modalButton timeline-follower image-post" />
+                                        <i class="md md-play-circle-fill yvideo-icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="text-center m-t-10">
+            <a class="f-15 text-gray" ui-sref="app.privacy-login">الخصوصية</a> - <a class="f-15 text-gray" ui-sref="app.support">مركز المساعدة</a> - <a class="f-15 text-gray" ui-sref="institution.index">المؤسسات التعليمية</a>
+        </div>
+        <div class="f-15 text-gray text-center">
+            <span class="m-r-5">
+            Edzance © 2017 
+        </span>
+            <img src="img/logo-small.svg" class="edzance-logo-xs">
+        </div>
+    </div>
+    <div class="col-md-7 col-sm-7 col-xs-12 post-col">
+        <post-new req-url="me/post" req-type="post" req-parent="profile" ng-if="$root.prodata.itsme"></post-new>
+        <!-- post -->
+        <div class="specialization">
+            <div ui-view="post"></div>
+            <!--         <post-repeat req-url="me/profile-post/{{vm.stateParams.id}}" req-type="post" req-parent="profile"  req-controller="{{$root.controller}}"></post-repeat>
+ -->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="modal fade" id="imgModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-modal-dialog" role="document">
+        <div class="text-center">
+            <div>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div>
+                <div>
+                    <img src="" class="img-mirror">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog img-modal-dialog">
+        <div>
+            <div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" frameborder="0" height="640" width="360"></iframe>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".close-menu").click(function() {
+                $(".dropdown").removeClass("open");
+            });
+        }, 3000);
+    });
+    $('.tab-nav').click(function(e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+</script>

@@ -1,0 +1,100 @@
+<section>
+    <div class="container margin-container reset-password-container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>
+                    معلومات الجامعة
+                </h1>
+            </div>
+        </div>
+        <hr/>
+       <form role="form" id="signupForm" name="logs.registerForm" ng-submit="logs.register(logs.registerForm.$valid)" novalidate> 
+       <input type="hidden" name="email" mg-model="logs.email">  
+       <input type="hidden" name="id" mg-model="logs.id">  
+        <div class="form-group">
+              <select name="country" ng-model="logs.country" class="form-control" id="country" required>
+                    <option value="">جنسية الجامعة التي تنتمي اليها</option>
+                <option>الأردنية</option>
+              </select>        
+            </div>
+             <div class="form-group">
+              <select name="university" ng-change="logs.getcollege(logs.university)"  ng-model="logs.university" class="form-control" id="university" required ng-class="{ 'has-error': logs.registerForm.university.$invalid && ( logs.formSubmitted || logs.registerForm.university.$touched) }">
+                <option value="">اختر جامعتك, لن تتمكن من تغيرها لاحقا</option>
+                <option ng-repeat="univ in university| orderBy: 'created_at':true" value="{{univ.id}}">{{univ.mthr_name}}</option>
+              </select>
+                <p ng-show="logs.registerForm.university.$error.required && ( logs.formSubmitted || logs.registerForm.university.$touched)" class="help-block">اختر جامعتك من فضلك</p>
+                <p ng-show="logs.registerForm.university.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logs.registerForm.university.$invalid && (logs.formSubmitted || logs.errors.university)" class="help-block">{{logs.errors.university}}</p>
+            </div>
+             <div class="form-group">
+                <select name="college"  ng-change="logs.getspecialize(logs.college)"  ng-model="logs.college" class="form-control" id="college" required ng-class="{ 'has-error': logs.registerForm.college.$invalid && ( logs.formSubmitted || logs.registerForm.college.$touched) }">
+               <option value="">الكلية التي تنتسب لها</option>
+                <option ng-repeat="college in univ| orderBy: 'created_at':true" value="{{college.id}}">{{college.mthr_name}}</option>
+              </select>
+                <p ng-show="logs.registerForm.college.$error.required && ( logs.formSubmitted || logs.registerForm.college.$touched)" class="help-block">الرجاء اختيار الكلية.</p>
+                <p ng-show="logs.registerForm.college.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logs.registerForm.college.$invalid && (logs.formSubmitted || logs.errors.college)" class="help-block">{{logs.errors.college}}</p>
+            </div>
+             <div class="form-group">
+              <select name="specialize"  class="form-control" id="specialize" ng-model="logs.specialize" required ng-class="{ 'has-error': logs.registerForm.specialize.$invalid && ( logs.formSubmitted || logs.registerForm.specialize.$touched) }">
+                <option value="">التخصص الدراسي الذي تدرس فيه</option>
+                <option ng-repeat="specialize in college| orderBy: 'created_at':true" value="{{specialize.id}}">{{specialize.mthr_name}}</option>
+             </select>
+                <p ng-show="logs.registerForm.specialize.$error.required && ( logs.formSubmitted || logs.registerForm.specialize.$touched)" class="help-block">ادخل تخصصك لإكمال عملية التسجيل.</p>
+                <p ng-show="logs.registerForm.specialize.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logs.registerForm.specialize.$invalid && (logs.formSubmitted || logs.errors.specialize)" class="help-block">{{logs.errors.specialize}}</p>
+                  
+            </div>
+             <div class="btn-group btn-group-justified mb-lg" role="group" data-toggle="buttons" id="employee">
+                <div class="btn-group employee-btn" role="group">
+                  <label for="employee" class="btn btn-default">
+                      طالب
+                      <input ng-model="logs.type" value="0" name="type" type="radio" class="employee" ng-required="!logs.type">
+                  </label>
+                </div>
+                <div class="btn-group employee-btn" role="group">
+                  <label for="employee" class="btn btn-default">
+                      مدرس
+                      <input ng-model="logs.type" value="1" name="type" type="radio" class="employee" ng-required="!logs.type">
+                  </label>
+                </div>
+                <p ng-show="logs.registerForm.type.$error.required && ( logs.formSubmitted || logs.registerForm.type.$touched)" class="help-block">ادخل صفتك .</p>
+                <p ng-show="logs.registerForm.type.$error.maxlength" class="help-block">الاسم طويل جداً.</p>
+                <p ng-show="logs.registerForm.type.$invalid && (logs.formSubmitted || (logs.errors.type!=0||logs.errors.type!=1))" class="help-block">{{logs.errors.type}}</p>
+                  
+     
+              </div>
+              <div class="btn-group btn-group-justified mb-lg hidden-element" role="group" data-toggle="buttons" id="student">
+                <div class="btn-group" role="group">
+                  <label for="student" class="btn btn-default">
+                      تخرجت
+                      <input value="0" name="student" type="radio" class="student">
+                  </label>
+                </div>
+                <div class="btn-group" role="group">
+                  <label for="student" class="btn btn-default">
+                      طالب
+                      <input value="1" name="student" type="radio" class="student">
+                  </label>
+                </div>
+              </div>
+            <div class="mb">
+              <button type="submit" class="btn btn-success btn-lg btn-block">تابع</button>
+            </div>
+          </form>
+          <form id="form-user_v1" name="form-user_v1">
+    <div class="typeahead__container">
+        <div class="typeahead__field input-group">
+            <span class="typeahead__query">
+                <input class="js-typeahead-user_v1 form-control" name="user_v1[query]" type="search" placeholder="Search" autocomplete="off">
+            </span>
+            <span class="typeahead__button input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+    </div>
+</section>

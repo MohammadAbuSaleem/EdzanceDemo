@@ -1,0 +1,70 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 col-xs-12">
+				<div class="p-t-20">
+					<div class="pull-right">
+						<img src="img/icons/infinity.svg" ng-src="{{$root.me.avatar}}" class="institute-creator" />
+					</div>
+					<div class="media-body creator-name">
+						<div>
+							<a ui-sref="app.profile.timeline({id: $root.me.id})" ng-bind="$root.me.name + ' ' + $root.me.last_name | capitalize" class="f-18 text-bold"></a>
+						</div>
+						<div class="f-16">تقوم بإنشاء حساب لمؤسسة تعليمة عبر هذا الحساب</div>
+					</div>
+				</div>
+				<div class="f-24 edzance-color p-t-30  p-b-10">
+					البيانات الشخصية
+					<hr class="hr-support">
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="رقم الاتصال الخاص بك" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="أوقات الاتصال المناسب" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="المنصب" name="name">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 col-xs-12">
+				<div class="f-24 edzance-color p-t-20 p-b-10">
+					بيانات الحساب
+					<hr class="hr-support">
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="اسم المؤسسة" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<tags-input ng-model="tags" add-on-paste="true" placeholder="المؤسسة الأم" class="b-r-5">
+					      <auto-complete source="loadTags($query)"></auto-complete>
+					    </tags-input>
+				    </div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="نوع المؤسسة" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="فئة المؤسسة (خاصة/حكومية/اجنبية)" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="بلد المؤسسة" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="رقم هاتف المؤسسة" name="name">
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<input type="text" class="form-control b-r-5" placeholder="بريد المؤسسة" name="name">
+					</div>
+				</div>
+				<div class="row p-b-30">
+					<div class="col-md-12 col-sm-12 col-xs-12 m-b-12">
+						<a class="btn btn-danger red-button waves-effect waves-button waves-float f-15 send-btn">إرسال</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

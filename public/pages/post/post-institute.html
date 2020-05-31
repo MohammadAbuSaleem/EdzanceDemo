@@ -1,0 +1,147 @@
+<div class="media" ng-if="!$root.meFlag && $root.me.status != 'd_unconfirmed'">
+  <div class="media-body">
+    <div class="card">
+      <div class="card-body card-padding">
+        <div class="media-body">  
+          <form ng-submit="submitPost(files)" name="submitTextForm" novalidate>
+            <div class="row post-img1">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="fg-line m-b-10">
+                  <textarea id="postbody"
+                            live-url
+                            ng-model="textpost"
+                            my-enter="submitPost(files)" 
+                            class="form-control post-textarea auto-size" 
+                            rows="4" 
+                            url-title="" 
+                            url-description="" 
+                            url-url="" 
+                            url-image=""
+                            placeholder="أكتب ما يفيد..."
+                            name="textpost"
+                            data-ng-trim="false"
+                            required>
+                  </textarea>
+                </div>
+                <div class="liveurl-loader">
+                </div>
+                <div  class="liveurl" ng-show="closeUrl">
+                  <div class="close" title="اغلاق">
+                  </div>
+                  <div  class="inner">
+                    <div ng-bind="live_image" class="image"> 
+                    </div>
+                    <div class="details">
+                      <div class="info">
+                        <div ng-bind="live_title" class="title" ng-model="title"> 
+                        </div>
+                        <div ng-bind="live_description" class="description" ng-model="description"> 
+                        </div> 
+                        <div ng-bind="live_url" type="hidden" id="url" name="url" class="url" ng-model="media" >
+                        </div>
+                      </div>
+                      <div class="thumbnail">
+                        <div class="pictures">
+                          <div class="controls">
+                            <div class="prev button inactive">
+                            </div>
+                            <div class="next button inactive">
+                            </div>
+                            <div class="count">
+                              <span class="current">0
+                              </span>
+                              <span> من 
+                              </span>
+                              <span class="max">0
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="video">
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="event-div hidden">
+                  <div class="row p-t-10 p-b-10">
+                    <div class="col-sm-6 col-xs-12">
+                      <div class="m-b-5">
+                        <strong>
+                          تاريخ انعقاد الفعالية
+                        </strong>
+                      </div>
+                      <input type="date" name="bday" class="form-control">
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                      <div class="m-b-5">
+                        <strong>
+                          تاريخ انتهاء الفعالية
+                        </strong>
+                      </div>
+                      <input type="date" name="bday" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="referendum-div hidden">
+                  <div class="row">
+                    <div class="col-sm-12 col-xs-12 m-b-10">
+                      <input type="text" name="bday" class="form-control" placeholder="الخيار الأول">
+                    </div>
+                    <div class="col-smd-12 col-xs-12 m-b-10">
+                      <input type="text" name="bday" class="form-control" placeholder="الخيار الثاني">
+                    </div>
+                  </div>
+                </div>
+                <div class="readed-con">
+                  <img ng-src="{{imagereaded}}" class="image-readed"/>
+                  <a type="button" class="remove-img" ng-click="removeImg()">
+                    <span aria-hidden="true">×
+                    </span>
+                  </a>
+                </div>
+                <div class="pull-right m-t-5">
+                  <div ngf-drop ngf-select="watch(files)" 
+                       ng-model="files"
+                       class="md md-camera-alt f-24 v-l-m edzance-color" 
+                       ngf-drag-over-class="'dragover'" 
+                       ngf-multiple="false" 
+                       ngf-allow-dir="true"
+                       accept="image/*" 
+                       ngf-pattern="'image/*'"
+                       value="{{files}}"
+                       ng-bind="files.name || fileMaxSize || files.$error || files.$errorParam || ''"
+                       ng-change="imageUpload(submitTextForm.uploadfile,files)"
+                       ngf-max-size="4MB"
+                       name="uploadfile"
+                       ng-class="{'error-color' : submitTextForm.uploadfile.$invalid}"
+                       >
+                  </div>
+                </div>
+                <div class="pull-right m-t-5 m-r-5">
+                  <a class="event" ng-click="showEvent()">
+                    <i class="md md-event  f-24"></i>
+                  </a>
+                </div>
+                <div class="pull-right m-t-5 m-r-5">
+                  <a class="referendum" ng-click="showReferendum()">  
+                    <i class="md md-assessment f-24"></i>
+                  </a>
+                </div>
+                <div ngf-no-file-drop>
+                  هذا المتصح لا يدعم رفع الصور
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm waves-effect waves-button waves-float pull-left fn-lg tag-height p-r-15 p-l-15" ng-disabled="(submitTextForm.textpost.$invalid || $root.post_disable)">
+                  <i class="md md-send">
+                  </i>
+                  نشر
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

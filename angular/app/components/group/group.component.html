@@ -1,0 +1,308 @@
+<section id="content">
+    <div class="container">
+        <div class="p-t-0" ng-if="template == 1 || template == 2">
+            <div class="col-md-8 col-sm-7 col-xs-12">
+                <div>
+                    <img ng-src="{{$root.groupObj.data.cover}}" width="100%" alt="" class="group-cover-img">
+                    <div class="cover-camera-icon group-cover" data-toggle="modal" data-target="#coverImg" ng-if="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator'">
+                        <i class="md md-camera-alt"></i>
+                        <div class="cover-text">تعديل الغلاف</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="group-information">
+                                <h1 class="group-title" ng-bind="$root.groupObj.data.name"></h1>
+                                <div class="p-r-20 p-t-15" ng-show="$root.groupMember != 'no post'">
+                                    <img class="group-view-img" ng-repeat="(key,member) in $root.groupMember | orderBy: 'created_at':true | limitTo: 5" src="img/icons/infinity.svg" lazy-img="{{member.avatar}}" ui-sref="app.profile.timeline({id: member.id})" />
+                                </div>
+                                <div class="p-r-10 p-t-15" ng-if="btnType == 1 && $root.groupObj.member != 'owner'">
+                                    <a ng-click="join($root.me.id,1)" class="btn btn-primary waves-effect waves-button waves-float fn-lg join-group">
+                                        <i class="md md-add"></i> انضمام الى المجموعة
+                                    </a>
+                                </div>
+                                <div class="p-r-10 p-t-15" ng-if="btnType == 2 && $root.groupObj.member != 'owner'">
+                                    <a ng-click="join($root.me.id,2)" class="btn btn-default waves-effect waves-button waves-float fn-lg">
+                                        <i class="md md-clear"></i> الغاء الطلب
+                                    </a>
+                                </div>
+                         <!--        <div class="p-r-10 p-t-15" ng-if="btnType == 3 && $root.groupObj.member != 'owner'">
+                                    <a ng-click="join($root.me.id,2)" class="btn btn-danger waves-effect waves-button waves-float fn-lg">
+                                        <i class="md md-exit-to-app"></i> مغادرة المجموعة
+                                    </a>
+                                </div> -->
+                                <div class="p-r-10 p-t-15" ng-if="btnType == 4 && $root.groupObj.member != 'owner'">
+                                    <a ng-click="join($root.me.id,7)" class="btn btn-primary waves-effect waves-button waves-float fn-lg join-group">
+                                        <i class="md md-done"></i> قبول الدعوة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pm-body clearfix">
+                    <ul class="tab-nav tn-justified m-b-10">
+                        <li ui-sref-active="active" class=" waves-effect" ng-if="template == 1">
+                            <a ui-sref="app.group.discussion">
+                              صندوق النقاش
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" class=" waves-effect" ng-if="template == 1">
+                            <a ui-sref="app.group.attachments.photos">
+                              المرفقات
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" class="waves-effect">
+                            <a ui-sref="app.group.information">
+                              المعلومات
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" class="waves-effect" ng-if="template == 1">
+                            <a ui-sref="app.group.chat">
+                              الدردشة
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" class="waves-effect">
+                            <a ui-sref="app.group.members">
+                              الأعضاء
+                            </a>
+                        </li>
+                    </ul>
+                    <div ui-view="group"></div>
+                </div> 
+            </div>
+            <div class="col-md-4 col-sm-5 col-xs-12 p-r-0 hidden-xs">
+                <div>
+                    <!--            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+                    <!-- edzance-group -->
+                    <!--               <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px"
+                     data-ad-client="ca-pub-2067358913948217"
+                     data-ad-slot="5966777480"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script> -->
+                </div>
+                <div ng-if="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator' || $root.groupObj.member == 'in'">
+                    <div class="card">
+                        <div class="card-body group-suggestion-box">
+                            <div class="row m-0" ng-show="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator' || $root.groupObj.member == 'in'">
+                                <div>
+                                    <div class="m-t-0 f-17 text-gray">
+                                        دعوه عضو جديد
+                                    </div>
+                                </div>
+                                <div class="clear-both add-new-input">
+                                    <script type="text/ng-template" id="customTemplate.html">
+                                        <a>
+                                            <img src="img/icons/infinity.svg" lazy-img="{{match.model.img}}" width="56"> {{match.model.name}}
+                                        </a>
+                                    </script>
+                                    <input  type="text" name="search" 
+                                            ng-model="search" 
+                                            class="form-control" 
+                                            ng-paste="$root.usersearch(query);" 
+                                            uib-typeahead="name for result in $root.usersearch($viewValue)" 
+                                            typeahead-template-url="customTemplate.html" 
+                                            typeahead-on-select="query=$item.name;vm.addmember($item.id,1,0,$item.name,'');" 
+                                            typeahead-min-length="1" 
+                                            typeahead-is-open = "showResult"
+                                            typeahead-loading="searching"
+                                            autocomplete="false" 
+                                            placeholder="+إضافة عضو جديد"/>
+
+                                    <!-- <input type="text" name="search" ng-model="search" class="form-control" ng-change="$root.usersearch(search);" uib-typeahead="name as result.name for result in $root.a | filter:{name:$viewValue}" typeahead-template-url="customTemplate.html" typeahead-on-select="vm.addmember($item.id,1,0,$item.name,'');" autocomplete="false" placeholder="+إضافة عضو جديد" /> -->
+                                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                    <div ng-show="noResults">
+                                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-0" ng-show="$root.groupMember != 'no post'" ng-class="($root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator') ? 'm-t-10' : 'm-b-5'">
+                                <div>
+                                    <div class="f-17 text-gray">
+                                        <span>
+                                            أعضاء المجموعة
+                                        </span>
+                                        <span class="pull-left f-15">
+                                            <a ui-sref="app.group.members">
+                                                <span ng-show="$root.groupObj.data.user_count == 2">
+                                                    عضوين
+                                                </span>
+                                                <span ng-show="($root.groupObj.data.user_count > 2 && $root.groupObj.data.user_count < 11)">
+                                                    <span ng-bind="$root.groupObj.data.user_count"></span> أعضاء
+                                                </span>
+                                                <span ng-show="($root.groupObj.data.user_count > 10 || $root.groupObj.data.user_count == 1)">
+                                                    <span ng-bind="$root.groupObj.data.user_count"></span> عضو
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clear-both">
+                                    <div ng-repeat="(key,member) in $root.groupMember | orderBy: 'key':true track by $index | limitTo: 6" class="col-md-2 col-sm-2 col-xs-4 member-img">
+                                        <a ui-sref="app.profile.timeline({id: member.id})">
+                                            <img src="img/icons/infinity.svg" lazy-img="{{member.avatar}}" width="100%" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-0" ng-show="$root.groupObj.member == 'owner' || $root.groupObj.member == 'modirator'">
+                                <div>
+                                    <div class="m-t-10 m-b-5 f-17 text-gray">
+                                        الأعضاء المقترحين
+                                    </div>
+                                </div>
+                                <div ng-repeat="(key,friend)  in $root.groupsuggested | limitTo: 4 | orderBy:'key' track by $index" class="item animated left-repeat m-b-5" ng-init="vm.fr[friend.user_id] = key" id="friend-{{friend.user_id}}">
+                                    <div ng-model="vm.friend[friend.user_id]" class="row m-0">
+                                        <div class="pull-right">
+                                            <a ui-sref="app.profile.timeline({id: friend.user_id})">
+                                                <img src="img/icons/infinity.svg" lazy-img="{{friend.avatar}}" alt="" class="group-suggestion-img">
+                                            </a>
+                                        </div>
+                                        <div class="media-body col-md-12 col-xs-12">
+                                            <a ui-sref="app.profile.timeline({id: friend.user_id})">
+                                                <div ng-bind="friend.name + ' ' + friend.last_name" class="user-name m-t-5"></div>
+                                            </a>
+                                            <div ng-bind="friend.university"></div>
+                                        </div>
+                                        <div class="pull-left m-t-5">
+                                            <a ng-click="vm.addmember(friend.user_id,2,$index,friend.name,friend.last_name)" class="btn btn-primary waves-effect waves-button waves-float f-15 join-group add-new-member">
+                                                <i class="md md-add"></i> دعوه
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="card-body timeline p-0">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 p-v-2">
+                                    <div class="img-box-padding">
+                                        <div ng-show="images != 'no post'">
+                                            <div class="m-b-5 f-17 text-gray">
+                                                <i class="md md-terrain"></i>
+                                                صور المجموعة
+                                            </div>
+                                            <div ng-repeat="(key,image) in images | limitTo: 6 | orderBy: 'key' track by $index">
+                                                <div class="col-md-4 col-xs-3 timeline-follower-padding">
+                                                    <img src="img/icons/infinity.svg" lazy-img="{{image.media}}" class="timeline-follower image-post" img-model data-toggle="modal" data-target="#imgModel" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="images == 'no post'">
+                                            <div class="empty-img-profile">
+                                                <div class="empty-div">
+                                                    <div>
+                                                        <img src="img/faces/sad-face.svg">
+                                                    </div>
+                                                    <div class="text">
+                                                        لا يوجد صور لعرضها
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="f-15 text-gray" ui-sref="app.privacy-login">الخصوصية</a> - <a class="f-15 text-gray" ui-sref="app.support">مركز المساعدة</a> - <a class="f-15 text-gray" ui-sref="institution.index">المؤسسات التعليمية</a>
+                </div>
+                <div class="f-15 text-gray text-center">
+                    <span class="m-r-5">
+                        Edzance © 2017 
+                    </span>
+                    <img src="img/logo-small.svg" class="edzance-logo-xs">
+                </div> 
+            </div>
+        </div>
+        <div ng-if="template == 0">
+            <div class="progress-div">
+                <img src="img/logo-small.svg" class="progress-img" />
+                <progress class="edzance-progress"></progress>
+            </div>
+        </div>
+        <div ng-if="template == 3">
+            <div class="text-center">
+                <div>
+                    <i class="md md-dnd-on unauthorized-icon"></i>
+                </div>
+                <div class="f-22 text-bold">
+                    عذرًا، هذا المحتوى غير متوفر الآن
+                </div>
+                <div class="f-16 m-t-5">
+                    لا يوجد لديك صلاحية لدخول الى هذه المجموعة,او تم حذفها.
+                </div>
+                <div class="f-16 m-t-5">
+                    <a class="p-l-5" ui-sref="app.landing">الانتقال الى الصفحة الرئيسية</a> -
+                    <a class="p-r-5" ui-sref="app.groups.index">الانتقال الى صفحة المجموعات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="imgModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-modal-dialog" role="document">
+        <div class="text-center">
+            <div>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div>
+                <div>
+                    <img src="" class="img-mirror">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade small-modal" id="coverImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header p-15">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+        <i class="md md-panorama"></i>
+        تحديث صوره الغلاف
+        </h4>
+            </div>
+            <form>
+                <div class="modal-body p-b-0 p-r-15 p-l-15">
+                    <div class="row post-img1">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="f-18">
+                                حدد الصورة:
+                            </div>
+                            <div>
+                                <div class="fileinput fileinput-new m-b-0" data-provides="fileinput">
+                                    <div class="btn-file upload-btn">
+                                        <span class="fileinput-new">اضغط هنا لرفع صوره / أو قم بادراجها هناا</span>
+                                        <span class="fileinput-exists">تغيير</span>
+                                        <input type="file" id="coverInput" accept=".jpg,.png" ng-model="file" />
+                                    </div>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                                </div>
+                                <!--  <input type="file" accept=".jpg,.png" id="fileInput" ng-model="file"/> -->
+                            </div>
+                            <div ng-show="showcovercrop" class="cropArea">
+                                <img-crop image="myCoverImage" area-type="rectangle" result-image="myCroppedCover" init-max-area="true" area-min-size="{w: 300,h: 100}" result-image-size="{w: 900,h: 300}"></img-crop>
+                            </div>
+                            <!-- <div><img lazy-img="{{myCroppedCover}}" /></div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top p-10">
+                    <button id="changecover" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.changecover()">
+                        <i class="md md-save"></i> حفظ التغيرات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

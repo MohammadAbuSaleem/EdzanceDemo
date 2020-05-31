@@ -1,0 +1,212 @@
+<section id="content" class="p-t-0" ng-if="canenter">
+    <div class="container">
+        <div class="" id="profile-main">
+           <div class="profile-padding-bottom"> 
+                <div class="profile-div position-relative profile-img" data-toggle="modal" data-target="#changeImg" ng-if="pro.rscope.prodata.avatar">
+                    <img src="img/icons/infinity.svg" lazy-img="{{pro.rscope.prodata.avatar}}" width="100%" height="100%" alt="{{pro.rscope.prodata.name}}"/>
+                    <!-- <img src="img/edzance-logo/verified-account.png" width="20px" class="verified-account" ng-if="pro.rscope.prodata.active == 1"/> -->
+                    <div class="profile-camera-icon">
+                      <img src="/img/icon-camera.svg"/>
+                      <div>تعديل الصورة الشخصية</div>
+                    </div>
+                </div>
+                <div class="position-relative profile-img" ng-if="!pro.rscope.prodata.itsme">
+                    <img src="img/icons/infinity.svg" lazy-img="{{pro.rscope.prodata.avatar}}" alt="{{pro.rscope.prodata.name}}" width="100%" height="100%"/>
+              <!--       <img src="img/edzance-logo/verified-account.png" width="20px" class="verified-account" ng-if="pro.rscope.prodata.active == 1"/> -->
+                </div> 
+                <div class="position-relative">
+                 <div class="profile-username">
+                   <div ng-if="pro.rscope.prodata.name">
+                     <h1 class="profile-user-name username" ng-bind="pro.rscope.prodata.name">
+                     </h1> 
+                    <!--  <div ng-if="pro.rscope.prodata.level == 4" class="profile-user-name">
+                        طالب
+                     </div>
+                     <div ng-if="pro.rscope.prodata.level == 5" class="profile-user-name">
+                        مدرس
+                     </div> --> 
+                   </div>
+                   <div class="text-center p-t-10" ng-if="!pro.rscope.prodata.itsme && !$root.meFlag  && $root.me.status != 'd_unconfirmed'">
+                      <span ng-click="($root.prodata.isfriend == false ? $root.prodata.isfriend=true : $root.prodata.isfriend=false) ">
+                        <a ng-click ="($root.prodata.isfriend == false ? $root.follow($root.prodata.id,'follower') : $root.follow($root.prodata.id,'deleted'))" class="btn btn-primary waves-effect waves-button waves-float fn-lg p-r-20 p-l-20" >
+                          <i class="md md-person-add"></i>
+                          <span ng-if="$root.prodata.isfriend== false">متابعة</span>
+                          <span ng-if="$root.prodata.isfriend!= false">الغاء المتابعة</span> 
+                        </a>
+                      </span>
+                     <!--  <div ng-switch="$root.me.friend[$root.prodata.id]" class="inline-block">
+                        <div ng-switch-when="friend">
+                          <a class="btn btn-default waves-effect waves-button waves-float fn-lg p-r-20 p-l-20" ng-click="$root.friendRequest($root.prodata.id,'remove')">
+                            <i class="md md-clear"></i>
+                            الغاء الصداقة   
+                          </a>
+                        </div>
+                        <div ng-switch-when="requested">
+                          <a class="btn btn-primary waves-effect waves-button waves-float fn-lg p-r-20 p-l-20 join-group" ng-click="$root.friendRequest($root.prodata.id,'accepted')">
+                            <i class="md md-done-all"></i>
+                              الاستجابة لطلب
+                          </a>
+                          <a class="btn btn-danger waves-effect waves-button waves-float fn-lg p-r-20 p-l-20" ng-click="$root.friendRequest($root.prodata.id,'refused')">
+                            <i class="md md-clear"></i>
+                              رفض الطلب
+                          </a>
+                        </div>
+                        <div ng-switch-when="requester">
+                           <a class="btn btn-default waves-effect waves-button waves-float fn-lg p-r-20 p-l-20" ng-click="$root.friendRequest($root.prodata.id,'cancel')" >
+                            <i class="md md-clear"></i>
+                              الغاء طلب الصداقة
+                          </a>
+                        </div>
+                        <div ng-switch-default>
+                          <a class="btn btn-primary waves-effect waves-button waves-float fn-lg p-r-20 p-l-20" ng-click="$root.friendRequest($root.prodata.id,'add')">
+                            <i class="md md-person-add"></i>
+                              إضافة كصديق
+                          </a>
+                        </div>
+                      </div> -->
+                     <a ng-disabled="$root.sending" ng-click="$root.sendMessage(pro.rscope.prodata.id,pro.rscope.prodata.name,pro.rscope.prodata.FB_UID);" class="btn btn-default waves-effect waves-button waves-float fn-lg edzance-color m-r-5" >
+                        <i class="md md-email"></i>
+                        رسالة
+                    </a>
+                   </div>
+                 </div>
+                    <img src="img/icons/default.png" ng-src="{{pro.rscope.prodata.showcase}}" class="cover-img"/>
+                    <div class="cover-camera-icon" data-toggle="modal" data-target="#coverImg" ng-if="pro.rscope.prodata.itsme" >
+                      <i class="md md-camera-alt"></i>
+                      <div class="cover-text">تعديل الغلاف</div>
+                    </div>
+                </div>
+           </div> 
+            <div class="pm-body clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li  ui-sref-active="active" class=" waves-effect">
+                      <a ui-sref="app.profile.timeline">
+                      الحائط
+                      </a>
+                    </li>
+                    <li ui-sref-active="active" class="waves-effect">
+                      <a ui-sref="app.profile.about">
+                      السيرة الذاتية
+                      </a>
+                    </li>
+                    <li  ui-sref-active="active" class=" waves-effect" ng-if="pro.rscope.prodata.level == 4 || pro.rscope.prodata.level == 5">
+                      <a ui-sref="app.profile.schedule">
+                      الجدول الدراسي
+                      </a>
+                    </li>
+                    <li ui-sref-active="active" class="waves-effect">
+                      <a ui-sref="app.profile.photo.photo">الصور</a>
+                    </li>
+                     <li ui-sref-active="active" class="waves-effect">
+                      <a ui-sref="app.profile.photo.video">الفيديو</a>
+                    </li>
+                    <li ui-sref-active="active" class="waves-effect">
+                      <a ui-sref="app.profile.connection.follower">
+                      المتابعات
+                      </a>
+                    </li>
+                </ul>
+                <div ui-view="pro"></div>
+             </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="changeImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog profile-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-10">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+          <i class="md md-filter-hdr"></i>
+          تحديث صوره الملف الشخصي
+        </h3>
+      </div>
+      <form>
+        <div class="modal-body p-15">
+          <div class="row post-img1">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="f-18">
+                  حدد الصورة:
+                </div>
+                <div>
+                <div class="fileinput fileinput-new m-b-0" data-provides="fileinput">
+                  <div class="btn-file upload-btn">
+                      <span class="fileinput-new">اضغط هنا لرفع صوره / أو قم بادراجها هناا</span>
+                      <span class="fileinput-exists">تغيير</span>
+                      <input type="file" accept=".jpg,.png" id="fileInput" ng-model="file">
+                  </div>
+                  <span class="fileinput-filename"></span>
+                  <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+              </div>
+               </div>
+                <div  ng-show="showcrop" class="cropArea">
+                  <img-crop image="myImage" area-type="square" result-image="myCroppedImage" result-image-size='{w: 150,h: 150}' init-max-area="true"></img-crop>
+                </div>
+                <div>
+                    
+                </div>
+                <div  ng-show="false"><img src="img/icons/infinity.svg" lazy-img="{{myCroppedImage}}"/></div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top p-10">
+          <button id="changeavatar" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="pro.changeavatar()">حفظ التغيرات</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="coverImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-10">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+        <i class="md md-panorama"></i>
+          تحديث صوره الغلاف
+        </h3>
+      </div>
+      <form>
+        <div class="modal-body p-15">
+          <div class="row post-img1">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="f-18">
+                  حدد الصورة:
+                </div>
+                <div>
+                <div class="fileinput fileinput-new m-b-0" data-provides="fileinput">
+                  <div class="btn-file upload-btn">
+                      <span class="fileinput-new">اضغط هنا لرفع صوره / أو قم بادراجها هناا</span>
+                      <span class="fileinput-exists">تغيير</span>
+                      <input type="file" id="coverInput" accept=".jpg,.png" ng-model="file"/>
+                  </div>
+                  <span class="fileinput-filename"></span>
+                  <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+              </div>
+               <!--  <input type="file" accept=".jpg,.png" id="fileInput" ng-model="file"/> --></div>
+                <div ng-show="showcovercrop" class="cropArea">
+                 <img-crop image="myCoverImage" area-type="rectangle" result-image="myCroppedCover"  init-max-area="true" area-min-size="{w: 300,h: 100}" result-image-size="{w: 900,h: 300}" ></img-crop>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top p-10">
+          <button id="changecover" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="pro.changecover()">
+              <i class="md md-save"></i>
+              حفظ التغيرات
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#changecoverbutton").click(function(){
+        angular.element('nav').scope().$root.file =$('#ngf-coverfile').val() ;
+        angular.element('nav').scope().$apply();
+        console.log(angular.element('nav').scope().$root.file);
+    });
+});
+</script>

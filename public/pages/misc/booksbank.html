@@ -1,0 +1,154 @@
+<md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'> 
+    <div class="col-md-3 col-sm-3 col-xs-12 book-box">
+        <div class="book-border">
+            <div class="new-book-padding" ng-click="vm.modalOpen()" role="button" tabindex="0">
+                <a class="add-new-group">
+                    <div>
+                        <i class="md  md-add-circle-outline add-newgroup-icon"></i>
+                    </div>
+                    <div class="f-18">                          
+                        إضافة كتاب جديدة 
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="(key,booksbank) in $root.books | orderBy: 'created_at':true track by $index" class="col-md-3 col-sm-3 col-xs-12 book-box">
+        <div class="book-border">
+            <div class="book-image">   
+                <img src="img/icons/infinity.svg" ng-src="{{booksbank.book_image}}">
+            </div>
+            <div class="edzance-color f-20 m-t-10" ng-bind="booksbank.book_name"></div>
+            <div class="f-18">
+                الحاله: <span ng-bind="status(booksbank.type)"></span>
+            </div>
+            <div class="f-18 text-red p-b-20" ng-if="booksbank.price != 0">
+                <span ng-bind="booksbank.price"></span> JD 
+            </div>
+        </div>
+        <div class="overlay">
+            <div class="p-15">
+                <div ng-bind="booksbank.book_description"></div>
+               <!--  <a ui-sref="app.book({bookId: booksbank.id})" class="text-white f-16">
+                    عرض المزيد
+                </a> -->
+                <div class="m-t-10 text-bold">نشر بواسطه:</div>
+                <div>
+                    <a ui-sref="app.profile.timeline({id: booksbank.user_id})" class="f-16">
+                        <img src="img/icons/infinity.svg" lazy-img="{{booksbank.avatar}}" alt="" class="menu-img">
+                        <span ng-bind="booksbank.name" class="text-white"></span>
+                    </a>
+                </div>
+                <div class="m-t-10 text-bold">
+                    الرجاء التواصل من خلال:
+                </div>
+                <div class="text-bold" ng-bind="booksbank.contact"></div>
+                <div class="m-t-10 text-bold">
+                    تاريخ النشر:
+                </div>
+                <div ng-bind="moment(booksbank.created_at).format('D-M-YYYY')" class="f-16"></div>
+                <div class="m-t-10" ng-if="$state.current.name == 'app.mybooks'">
+                    <button class="btn btn-danger waves-effect waves-button waves-float" ng-click="deleteNode(booksbank,false)">
+                        حذف الكتاب 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>
+<script type="text/ng-template" id="newBook.html">
+    <div class="modal-content">
+      <div class="modal-header p-10">
+        <button type="button" class="close" ng-click="mvm.cancel()"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+            <i class="md md-add-box"></i>
+            إضافة كتاب جديد
+        </h3>
+      </div>
+       <form name="mvm.newbookform" novalidate ng-submit="mvm.addNewBook(mvm.newbookform,files)" autocomplete="off">
+        <div class="modal-body p-15">
+            <div class="form-group position-relative">
+                <label for="groupname">اسم كتاب</label>
+                <input ng-model="$root.newBook.name" type="text"  class="form-control" placeholder="اسم كتاب" name="bookname" required="required">
+                <i class="md md-error form-error left-6 group-error" tooltip-placement="bottom" uib-tooltip="ادخل اسم كتاب" ng-show="mvm.newbookform.bookname.$invalid && mvm.newbookform.$submitted" aria-hidden="false"></i>
+            </div>
+            <div class="form-group">
+                <label for="groupdes">وصف كتاب</label>
+                <textarea ng-model="$root.newBook.description" class="form-control group-textarea" rows="5" cols="3" placeholder="ادخل وصف كتاب..." name="bookdes"></textarea>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12 col-sm-12 col-xs-12 position-relative">
+                  <div>
+                        <label for="sel1">حالة الكتاب</label>
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" name="booktype" value="sale" ng-required="!$root.newBook.type" ng-model="$root.newBook.type">
+                            <i class="input-helper"></i>  
+                            للبيع
+                        </label>
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" name="booktype" value="swap" ng-required="!$root.newBook.type" ng-model="$root.newBook.type">
+                            <i class="input-helper"></i>  
+                            للتبادل
+                        </label>
+                      <!--   <label class="radio radio-inline m-r-20">
+                            <input type="radio" name="booktype" value="borrow" ng-required="!$root.newBook.type" ng-model="$root.newBook.type">
+                            <i class="input-helper"></i>  
+                            استعاره 
+                        </label> -->
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" name="booktype" value="gift" ng-required="!$root.newBook.type" ng-model="$root.newBook.type">
+                            <i class="input-helper"></i>  
+                            دون مقابل
+                        </label>
+                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="اختر حالة الكتاب" ng-show="mvm.newbookform.booktype.$invalid && mvm.newbookform.$submitted" aria-hidden="false"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+                    <div class="fg-line">
+                       <div class="select">
+                          <label for="sel1">تصنيف الكتاب</label>
+                           <tags-input placeholder="أضف تصنيف" ng-model="$root.newBook.tags" add-on-comma="false" replace-spaces-with-dashes="true" name="booktags" required></tags-input>
+                            <i class="md md-error form-error group-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل نوع للمجموعة" ng-show="mvm.newbookform.booktags.$invalid && mvm.newbookform.$submitted" aria-hidden="false"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative" ng-show="$root.newBook.type == 'sale'">
+                    <label for="groupname">سعر كتاب</label>
+                    <input ng-model="$root.newBook.price" type="text" class="form-control" placeholder="سعر كتاب" name="bookprice">
+                    <i class="md md-error form-error group-error" tooltip-placement="bottom" uib-tooltip="ادخل سعر كتاب" ng-show="mvm.newbookform.bookprice.$invalid && mvm.newbookform.$submitted" aria-hidden="false"></i>
+                </div>
+            </div>
+            <div class="form-group position-relative">
+                <label for="groupdes">طريقة التواصل</label>
+                <input ng-model="$root.newBook.contact" type="text"  class="form-control" placeholder="ايميل,رقم الهاتف..." name="contact" required="required">
+                <i class="md md-error form-error group-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل طريقة التواصل" ng-show="mvm.newbookform.contact.$invalid && mvm.newbookform.$submitted" aria-hidden="false"></i>
+            </div>
+            <div class="m-t-5">
+                <i class="md md-camera-alt f-20 v-l-m edzance-color" ng-class="{'error-color' : mvm.newbookform.uploadfile.$invalid}">
+                </i> 
+                <div ngf-drop ngf-select="watch(files)" 
+                   ng-model="files"
+                   class="drop-box" 
+                   ngf-drag-over-class="'dragover'" 
+                   ngf-multiple="false" 
+                   ngf-allow-dir="true"
+                   accept="image/*" 
+                   ngf-pattern="'image/*'"
+                   value="{{files}}"
+                   ng-bind="files.name || fileMaxSize || files.$error || files.$errorParam || 'اضغط لرفع صوره / أو قم بادراجها'"
+                   ng-change="imageUpload(mvm.newbookform.uploadfile,files)"
+                   ngf-max-size="4MB"
+                   name="uploadfile"
+                   ng-class="{'error-color' : mvm.newbookform.uploadfile.$invalid}"
+                   >
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-top p-10 p-b-15">
+            <button type="submit" class="btn btn-primary f-14">إضافة كتاب</button>
+        </div>
+        </form>
+    </div>
+</script>

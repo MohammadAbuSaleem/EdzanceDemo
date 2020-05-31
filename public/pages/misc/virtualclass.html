@@ -1,0 +1,18 @@
+<div class="group-box">
+    <a ui-sref="app.group({groupid:group.id})">
+    <div class="position-relative">
+        <img lazy-img="{{group.cover}}" width="100%" height="120">
+    </div>
+    <div class="p-10 m-t-5">
+        <div class="f-18 text-black long-text" ng-bind="group.name"></div>
+        <div class="text-black">
+            <span ng-bind="group.user.length"></span>
+        </div>
+        <div>
+            <strong class="f-18">
+                 دخول
+            </strong>
+        </div> 
+    </div>
+    </a>
+</div>

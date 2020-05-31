@@ -1,0 +1,77 @@
+<div class="row m-t-10">
+  <md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1' ng-show="nopost == 1">
+	    <div ng-repeat="(key,sclass) in dat | orderBy: 'key':true track by $index" class="col-md-12 col-sm-12 col-xs-12">
+	    	<div class="media">
+		    	<div class="card">
+		    		<div class="card-body">
+				    	<div class="pull-right m-l-10">
+				    		<a ui-sref="app.profile.timeline({id:sclass.uid})"> 
+				     			<img ng-src="{{sclass.avatar}}" class="schedule-img" alt="{{sclass.u_name}}"> 
+				     		</a>
+				    	</div>
+				    	<div class="media-body p-5">
+				    		<div>
+				    			<i class="md md-description"></i>
+				    			<span ng-bind="sclass.name" class="schedule-title"></span>
+				    		</div>
+				    		<div>
+				    			<i class="md md-home"></i>
+				    			القاعة: <span ng-bind="sclass.class_hall"></span>
+				    		</div>
+				    		<div>
+				    			<i class="md md-event"></i>
+				    			<span>
+				    			الأيام: <span ng-bind="sclass.days"></span>
+				    			</span>
+				    			&nbsp; &nbsp; &nbsp; &nbsp;	
+				    			<span class="mobile-newline">
+				    			<span>
+				    			<i class="md md-query-builder"></i>
+				    			من: <span>
+				    				{{ (sclass.from | date:"HH:mm a") }}
+				    			</span>
+				    			</span>
+				    			|
+				    			<span>
+				    			الى: <span>
+				    				 {{ (sclass.to | date:"HH:mm a") }}
+				    			</span>
+				    			</span>
+				    			</span>
+				    		</div>
+				    		<div class="add-profile-course" ng-if="itsmyclass == true">
+			                    <a ui-sref="app.virtualclass.discussion({classid:sclass.class_id})" class="btn btn-success waves-effect waves-button waves-float fn-lg m-t-5">
+				                         الذهاب الى المادة  
+				                </a>
+				    		</div>
+				    		<div class="add-profile-course" ng-if="pro.rscope.prodata.acctype == 1 && itsmyclass == false">
+			                    <a ui-sref-active="active" data-toggle="modal" data-target="#registersemster" class="btn btn-success waves-effect waves-button waves-float fn-lg m-t-5">
+				                  <i class="md md-add"></i>
+				                          تسجيل المادة  
+				                </a>
+				    		</div>
+				    	</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+    </md-content>
+     <div ng-show="nopost == 3"  class="position-relative">
+        <div class="empty-img-profile">
+          <div class="empty-div">
+            <div>
+              <img src="img/faces/sad-face.svg">
+            </div>
+            <div class="text">  
+            لا يوجد لديك مواد
+            </div>
+            <div ng-if="!$root.meFlag && $root.me.status != 'd_unconfirmed'">
+            	<a class="btn btn-success waves-effect waves-button waves-float fn-lg m-t-5 waves-effect waves-button waves-float" data-target="#registersemster" data-toggle="modal">
+                    <i class="md md-add"></i>
+                    إضافة مادة
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

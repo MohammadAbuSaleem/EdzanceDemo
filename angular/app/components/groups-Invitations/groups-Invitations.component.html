@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-12 col-xs-12 col-xs-12">
+		<a class="btn btn-primary btn-membership f-15 p-t-4 p-b-4  waves-effect waves-button waves-float pull-left f-18" ui-sref="app.groups.index">
+			الرجوع <i class="md md-chevron-left"></i>
+		</a>
+	</div>
+</div>
+<div class="row">
+	<md-content class="Page-container" infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+	 	<div ng-repeat="(key,group) in dat | orderBy: 'created_at'" class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-t-10 m-b-10">
+ 			<div ui-view="group"></div>
+		 </div>
+ 	</md-content>
+ 	<div ng-show="nopost == 3" class="f-20">
+	 	لا يوجد مجموعات
+	</div>
+ </div>

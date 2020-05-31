@@ -1,0 +1,94 @@
+<div class="m-10">
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12 groups-title">
+			<div class="pull-right">
+				<i class="md md-account-balance"></i>
+				 الأقسام
+			</div>
+		</div> 
+		<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-b-10">
+			<div class="group-box new-group-padding" ng-click="vm.modalOpen()">
+				<a class="add-new-group">
+	    			<div>
+	    				<i class="md md-add-circle-outline add-newgroup-icon"></i>
+	    			</div>
+	    			<div class="f-18">	    					
+	    				إضافة قسم 
+	    			</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-b-10">
+			<div ui-view="group">
+				<div class="group-box">
+				    <a ui-sref="app.institute.specialties">
+					    <div class="position-relative">
+					        <img width="100%" height="120" src="/images/showcase/default.jpg">
+					    </div>
+					    <div class="p-10 m-t-5">
+					        <div class="f-18 text-black long-text">
+					        	قسم هندسة الكهرباء
+					        </div>
+					        <div class="text-black">
+					            التخصصات <span ng-bind="group.user.length">1</span>
+					        </div>
+					        <div>
+					        	<strong class="f-18	">
+					                 دخول
+					            </strong>
+					        </div> 
+					    </div>
+				    </a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-b-10">
+			<div ui-view="group">
+				<div class="group-box">
+				    <a ui-sref="app.institute.specialties">
+					    <div class="position-relative">
+					        <img width="100%" height="120" src="/images/showcase/default.jpg">
+					    </div>
+					    <div class="p-10 m-t-5">
+					        <div class="f-18 text-black long-text">
+					        	قسم هندسة المدني
+					        </div>
+					        <div class="text-black">
+					            التخصصات <span ng-bind="group.user.length">1</span>
+					        </div>
+					        <div>
+					        	<strong class="f-18	">
+					                 دخول
+					            </strong>
+					        </div> 
+					    </div>
+				    </a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-6 p-r-5 p-l-5 m-b-10">
+			<div ui-view="group">
+				<div class="group-box">
+				    <a ui-sref="app.institute.specialties">
+					    <div class="position-relative">
+					        <img width="100%" height="120" src="/images/showcase/default.jpg">
+					    </div>
+					    <div class="p-10 m-t-5">
+					        <div class="f-18 text-black long-text">
+					        	قسم هندسة البيئة
+					        </div>
+					        <div class="text-black">
+					            التخصصات <span ng-bind="group.user.length">1</span>
+					        </div>
+					        <div>
+					        	<strong class="f-18	">
+					                 دخول
+					            </strong>
+					        </div> 
+					    </div>
+				    </a>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

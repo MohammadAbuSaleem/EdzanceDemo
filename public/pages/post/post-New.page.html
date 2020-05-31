@@ -1,0 +1,109 @@
+<div class="media">
+  <div class="media-body">
+    <div class="card">
+      <div class="card-body card-padding">
+        <div class="media-body">  
+          <form ng-submit="submitPost(files)" name="submitTextForm" novalidate>
+            <div class="row post-img1">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="fg-line m-b-10">
+                  <textarea id="postbody"
+                            live-url
+                            ng-model="textpost"
+                            my-enter="submitPost(files)" 
+                            class="form-control post-textarea auto-size" 
+                            rows="4" 
+                            url-title="" 
+                            url-description="" 
+                            url-url="" 
+                            url-image=""
+                            placeholder="شارك ما يفيد..."
+                            name="textpost"
+                            data-ng-trim="false"
+                            required>
+                  </textarea>
+                </div>
+                <div class="liveurl-loader">
+                </div>
+                <div  class="liveurl" ng-show="closeUrl">
+                  <div class="close" title="اغلاق">
+                  </div>
+                  <div  class="inner">
+                    <div ng-bind="live_image" class="image"> 
+                    </div>
+                    <div class="details">
+                      <div class="info">
+                        <div ng-bind="live_title" class="title" ng-model="title"> 
+                        </div>
+                        <div ng-bind="live_description" class="description" ng-model="description"> 
+                        </div> 
+                        <div ng-bind="live_url" type="hidden" id="url" name="url" class="url" ng-model="media" >
+                        </div>
+                      </div>
+                      <div class="thumbnail">
+                        <div class="pictures">
+                          <div class="controls">
+                            <div class="prev button inactive">
+                            </div>
+                            <div class="next button inactive">
+                            </div>
+                            <div class="count">
+                              <span class="current">0
+                              </span>
+                              <span> من 
+                              </span>
+                              <span class="max">0
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="video">
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="readed-con">
+                  <img ng-src="{{imagereaded}}" class="image-readed"/>
+                  <a type="button" class="remove-img" ng-click = "removeImg()">
+                    <span aria-hidden="true">×
+                    </span>
+                  </a>
+                </div>
+                <div class="pull-right m-t-5">
+                  <i class="md md-camera-alt f-20 v-l-m edzance-color" ng-class="{'error-color' : submitTextForm.uploadfile.$invalid}">
+                  </i> 
+                  <div ngf-drop ngf-select="watch(files)" 
+                       ng-model="files"
+                       class="drop-box" 
+                       ngf-drag-over-class="'dragover'" 
+                       ngf-multiple="false" 
+                       ngf-allow-dir="true"
+                       accept="image/*" 
+                       ngf-pattern="'image/*'"
+                       value="{{files}}"
+                       ng-bind="files.name || fileMaxSize || files.$error || files.$errorParam || 'اضغط لرفع صورة / أو قم بإدراجها'"
+                       ng-change="imageUpload(submitTextForm.uploadfile,files)"
+                       ngf-max-size="4MB"
+                       name="uploadfile"
+                       ng-class="{'error-color' : submitTextForm.uploadfile.$invalid}"
+                       >
+                  </div>
+                </div>
+                <div ngf-no-file-drop>
+                  هذا المتصح لا يدعم رفع الصور
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm waves-effect waves-button waves-float pull-left fn-lg tag-height p-r-15 p-l-15" ng-disabled="(submitTextForm.textpost.$invalid || $root.post_disable)">
+                  <i class="md md-send">
+                  </i>
+                  نشر
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

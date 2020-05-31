@@ -1,0 +1,640 @@
+<div class="m-h-m-5" ng-class="$root.prodata.itsme ? '' : 'visitor'" ng-if="contact.email.length > 0">
+    <div class="col-md-6 col-sm-6 col-xs-12 p-0">
+        <div class="pmb-block">
+            <div class="card m-b-0">
+                <form editable-form name="editableForm" onaftersave="proab.editableForm()">
+                    <div class="pmbb-header box-header">
+                        <h2>
+                            <i class="md md-info icon-box info-icon"></i>
+                            معلومات الشخصية
+                        </h2>
+                        <ul ng-if="$root.prodata.itsme" class="actions p-t-10 p-l-10">
+                            <li class="dropdown">
+                                <a ng-hide="editableForm.$visible" href="" data-toggle="dropdown">
+                                    <i class="md md-more-vert"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="javascript:void(0)" ng-click="editableForm.$show()" ng-hide="editableForm.$visible">تعديل</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div class="pmbb-view">
+                            <div>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">الأسم </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 username">
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() " e-placeholder="الأسم الأول" editable-text="inf.name" e-name="name" ng-model="proab.name" ng-bind="inf.name">{{inf.name}}</span>
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-text="inf.mid_name" e-placeholder="الأسم الثاني" e-name="mid_name" ng-model="proab.mid_name" ng-bind="inf.mid_name">{{inf.mid_name}}</span>
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() " e-placeholder="الأسم الأخير" editable-text="inf.last_name" e-name="last_name" ng-model="proab.last_name" ng-bind="inf.last_name">{{inf.last_name}}</span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">الجنس</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() " editable-select="inf.sex" e-name="sex" ng-model="inf.sex" e-ng-options="s.value as s.text for s in proab.sex">{{inf.sex  || 'لم يتم إدخال جنس'}}</span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" class="p-l-30">الجنسية</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel()" editable-select="inf.country" e-name="country" ng-model="inf.country" e-ng-options="s.value as s.text for s in proab.countries">{{inf.country  || 'لم يتم إدخال جنسية'}}</span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">تاريخ الميلاد</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() " ng-class="(inf.DOB.getFullYear() == 1940 && $root.prodata.itsme == true) ? 'editable-empty':' '" e-placeholder="تاريخ الولادة" editable-date="inf.DOB" e-name="DOB" e-value="{{inf.DOB}}" ng-model="inf.DOB"> 
+                                         {{inf.DOB.getFullYear() == 1940 ? "لم يتم إدخال تاريخ الميلاد" : (inf.DOB.getFullYear() + '/' + (inf.DOB.getMonth() + 1) + '/' +inf.DOB.getDate())}}
+                                         </span>
+                                        <!--  <span ng-click="" ng-click=" $root.prodata.itsme == true ? editableForm.$show() : editableForm.$cancel() ;popup1.opened = true;" editable-bsdate="inf.DOB" e-datepicker-popup="dd-MMMM-yyyy" e-uib-datepicker-popup="dd-MMMM-yyyy"  e-name="DOB"  e-class="form-control" e-is-open="popup1.opened" e-ng-click="popup1.opened = true;" e-datepicker-options="dateOptions"   ng-model="inf.DOB"  e-ng-model="inf.DOB" class="width-75p">{{inf.DOB || 'ادخل تاريخ ميلادك'}}</span>
+                            </div> -->
+                                </dl>
+                                </div>
+                            </div>
+                            <!-- buttons to submit / cancel form -->
+                            <div class="text-left" ng-show="editableForm.$visible">
+                                <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                                    حفظ
+                                </button>
+                                <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                                    الغاء
+                                </button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+        <div class="pmb-block">
+            <div class="card m-b-0">
+                <form editable-form name="PublicInf" onaftersave="proab.PublicInf()">
+                    <div class="pmbb-header box-header">
+                        <h2>
+                            <i class="md  md-public icon-box info-icon general-icon"></i>
+                            معلومات عامة
+                        </h2>
+                        <ul ng-if="$root.prodata.itsme" class="actions p-t-10 p-l-10">
+                            <li class="dropdown">
+                                <a ng-show="!PublicInf.$visible" href="" data-toggle="dropdown">
+                                    <i class="md md-more-vert"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="javascript:void(0)" ng-click="PublicInf.$show()" ng-show="!PublicInf.$visible" data-pmb-action="edit">تعديل</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div class="pmbb-view">
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">المهارات</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <tags-input placeholder="أضف المهارات" ng-model="other.skills" ng-show="PublicInf.$visible" add-on-comma="false" replace-spaces-with-dashes="false"></tags-input>
+                                    <span ng-show="PublicInf.$visible == false" ng-repeat="(key,skills) in other.skills" ng-if="other.skills != null || other.skills != ''">
+                                        <span  ng-bind="skills.text" class="tags-result"></span>
+                                    </span>
+                                    <span ng-if="other.skills == null || other.skills == ''">لم يتم إدخال مهارات</span>
+                                    <!-- <span ng-click="$root.prodata.itsme == true ? PublicInf.$show() : PublicInf.$cancel() " editable-textarea="other.skills" e-name="other.skills" ng-bind="other.skills  || 'لم يتم إدخال المهارات'"></span> -->
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">الإهتمامات</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <tags-input placeholder="أضف الإهتمامات" ng-model="other.concerns" ng-show="PublicInf.$visible" add-on-comma="false" replace-spaces-with-dashes="false"></tags-input>
+                                    <span ng-show="PublicInf.$visible == false" ng-repeat="(key,concerns) in other.concerns" ng-if="other.concerns != null || other.concerns == ''">
+                                        <span ng-bind="concerns.text || 'لم يتم إدخال اهتمامات'" class="tags-result"></span>
+                                    </span>
+                                    <span ng-if="other.concerns == null || concerns.text == ''">لم يتم إدخال اهتمامات</span>
+                                    <!-- <span ng-click="$root.prodata.itsme == true ? PublicInf.$show() : PublicInf.$cancel() " editable-textarea="other.concerns" e-name="other.concerns" ng-bind="other.concerns  || 'لم يتم إدخال اهتمامات'"></span> -->
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">الهوايات</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <tags-input placeholder="أضف الهوايات" ng-model="other.hobbies" ng-show="PublicInf.$visible" add-on-comma="false" replace-spaces-with-dashes="false"></tags-input>
+                                    <span ng-show="PublicInf.$visible == false" ng-repeat="(key,hobbies) in other.hobbies" ng-if="other.hobbies != null || other.hobbies != ''">
+                                        <span ng-bind="hobbies.text" class="tags-result"></span>
+                                    </span>
+                                    <span ng-if="other.hobbies == null || other.hobbies == ''">لم يتم إدخال هوايات</span>
+                                    <!-- <span ng-click="$root.prodata.itsme == true ? PublicInf.$show() : PublicInf.$cancel() " editable-textarea="other.hobbies" e-name="other.hobbies" ng-bind="other.hobbies  || 'لم يتم إدخال هوايات'"></span> -->
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">اللغات</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <tags-input placeholder="أضف اللغات" ng-model="other.languages" ng-show="PublicInf.$visible" add-on-comma="false" replace-spaces-with-dashes="false"></tags-input>
+                                    <span ng-show="PublicInf.$visible == false" ng-repeat="(key,languages) in other.languages" ng-if="other.languages != null">
+                                        <span ng-bind="languages.text" class="tags-result"></span>
+                                    </span>
+                                    <span ng-if="other.languages == null">لم يتم إدخال لغات</span>
+                                    <!-- <span ng-click="$root.prodata.itsme == true ? PublicInf.$show() : PublicInf.$cancel() " editable-textarea="other.languages" e-name="other.languages" ng-bind="other.languages  || 'لم يتم إدخال اللغات المتقنة'"></span> -->
+                                </div>
+                            </dl>
+                        </div>
+                        <!-- buttons to submit / cancel form -->
+                        <div class="text-left" ng-show="PublicInf.$visible">
+                            <button type="submit" class="btn btn-primary" ng-disabled="PublicInf.$waiting">
+                                حفظ
+                            </button>
+                            <button type="button" class="btn btn-default" ng-disabled="PublicInf.$waiting" ng-click="PublicInf.$cancel()">
+                                اغلاق
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="pmb-block">
+            <div class="card m-b-0">
+                <form editable-form name="ConnectionStatus" onaftersave="proab.ConnectionStatus()">
+                    <div class="pmbb-header box-header">
+                        <h2><i class="md md-phone m-r-5 icon-box com-icon"></i> معلومات الاتصال</h2>
+                        <ul ng-if="$root.prodata.itsme" class="actions p-t-10 p-l-10">
+                            <li class="dropdown">
+                                <a ng-show="!ConnectionStatus.$visible" href="" data-toggle="dropdown">
+                                    <i class="md md-more-vert"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="javascript:void(0)" ng-click="ConnectionStatus.$show()" ng-show="!ConnectionStatus.$visible" data-pmb-action="edit">تعديل</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div class="pmbb-view">
+                            <dl class="row dl-horizontal" ng-if="$root.prodata.itsme">
+                                <div class="col-md-3 col-sm-3 col-xs-3">البريد الإلكتروني</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " ng-bind="contact.email  || 'لم يتم إدخال بريد الإلكتروني'"  class="break-word"></span>
+                                    <!-- editable-text="contact.email" e-name="email"  -->
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal" ng-if="$root.prodata.itsme">
+                                <div class="col-md-3 col-sm-3 col-xs-3">رقم الهاتف</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " editable-text="contact.telephone" e-name="telephone" ng-bind="contact.telephone  || 'لم يتم إدخال رقم هاتف'"></span>
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">سكايب</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " editable-text="contact.skype" e-name="skype" ng-bind="contact.skype  || 'لم يتم إدخال حساب على skype'" class="break-word"></span>
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">تويتر</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " editable-text="contact.twitter" e-name="twitter" ng-bind="contact.twitter  || 'لم يتم إدخال حساب على twitter'" class="break-word"></span>
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">لينكد ان</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " editable-text="contact.linkedin" e-name="linkedin" ng-bind="contact.linkedin  || 'لم يتم إدخال حساب على linkedin'" class="break-word"></span>
+                                </div>
+                            </dl>
+                            <dl class="row dl-horizontal">
+                                <div class="col-md-3 col-sm-3 col-xs-3">فيسبوك</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <span ng-click="$root.prodata.itsme == true ? ConnectionStatus.$show() : ConnectionStatus.$cancel() " editable-text="contact.facebook" e-name="facebook" ng-bind="contact.facebook  || 'لم يتم إدخال حساب على facebook'" class="break-word"></span>
+                                </div>
+                            </dl>
+                        </div>
+                        <!-- buttons to submit / cancel form -->
+                        <div class="text-left" ng-show="ConnectionStatus.$visible">
+                            <button type="submit" class="btn btn-primary" ng-disabled="ConnectionStatus.$waiting">
+                                حفظ
+                            </button>
+                            <button type="button" class="btn btn-default" ng-disabled="ConnectionStatus.$waiting" ng-click="ConnectionStatus.$cancel()">
+                                اغلاق
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 p-0">
+            <div class="pmb-block" ng-if="$root.prodata.level == 4 || $root.prodata.level == 5">
+                <div class="card m-b-0">
+                    <form editable-form name="SocialForm" onaftersave="proab.SocialForm()">
+                        <div class="pmbb-header box-header">
+                            <h2 ng-if="$root.prodata.level == 4">
+                            <i class="md md-domain m-r-5 icon-box school-icon"></i>
+                             معلومات الدراسة الحالي
+                        </h2>
+                            <h2 ng-if="$root.prodata.level == 5">
+                            <i class="md md-domain m-r-5 icon-box school-icon"></i> 
+                            معلومات التدريس
+                        </h2>
+                            <ul ng-if="$root.prodata.itsme && $root.prodata.level == 4" class="actions p-t-10 p-l-10">
+                                <li class="dropdown">
+                                    <a ng-show="!SocialForm.$visible" href="" data-toggle="dropdown">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="SocialForm.$show()" ng-hide="SocialForm.$visible" data-pmb-action="edit">تعديل</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pmbb-body p-10">
+                            <div class="pmbb-view">
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">المؤسسة التعليمية</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-bind="uni.university_name || 'لم يتم ادخل الجامعة/المدرسة'"></span>
+                                    </div>
+                                </dl>
+                                <!-- <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">الكلية/المديريه</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-bind="uni.college_name || 'لم يتم ادخل الكلية/المديريه'"></span>
+                                    </div>
+                                </dl> -->
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">التخصص/الصف</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-bind="uni.specialition_name || 'لم يتم ادخل التخصص/الصف'"></span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" class="p-l-30">الدولة</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-bind="uni.university_country  || 'لم يتم ادخل الدولة'"></span>
+                                    </div>
+                                </dl>
+                               <!--  <dl class="row dl-horizontal" ng-if="$root.prodata.level == 4">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">الرقم الجامعي/المدرسي</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click="$root.prodata.itsme == true ? SocialForm.$show() : SocialForm.$cancel() " editable-text="uni.university_id" e-name="university_id" ng-bind="uni.university_id || 'لم يتم إدخال الرقم الجامعي/المدرسي'"></span>
+                                    </div>
+                                </dl> -->
+                             <!--    <dl class="row dl-horizontal" ng-if="$root.prodata.level == 4">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" class="p-l-30">وصف التخصص</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click="$root.prodata.itsme == true ? SocialForm.$show() : SocialForm.$cancel() " editable-textarea="uni.specialition_desc" e-name="specialition_desc" ng-bind="uni.specialition_desc  || 'لم يتم إدخال وصف التخصص'"></span>
+                                    </div>
+                                </dl> -->
+                          <!--       <dl class="row dl-horizontal" ng-if="$root.prodata.level == 4">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">سنة الدخول</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? SocialForm.$show() : SocialForm.$cancel() " editable-select="uni.university_start" e-name="university_start" ng-model="uni.university_start" e-ng-options="s.value as s.text for s in university_end" ng-class="(uni.university_start == 1940 && $root.prodata.itsme == true) ? 'editable-empty':' '">
+                                        {{uni.university_start == 1940 ? "ادخل العام الذي انتسبت فيه لمؤسستك التعليمية" : uni.university_start}}
+                                        </span>
+                                    </div>
+                                </dl> -->
+                             <!--    <dl class="row dl-horizontal" ng-if="$root.prodata.level == 4"  >
+                                    <div class="col-md-3 col-sm-3 col-xs-3">سنة التخرج</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? SocialForm.$show() : SocialForm.$cancel() " editable-select="uni.university_end" e-name="end_year" ng-model="uni.university_end" e-ng-options="s.value as s.text for s in university_end" ng-class="(uni.university_end == 1940 && $root.prodata.itsme == true) ? 'editable-empty':' '">
+                                        {{uni.university_end == 1940 ? "ادخل العام الذي تخرجت او المتوقع التخرج فيه" : uni.university_end}}
+                                        </span>
+                                    </div>
+                                </dl> -->
+                            </div>
+                            <div class="text-left" ng-show="SocialForm.$visible">
+                                <button type="submit" class="btn btn-primary" ng-disabled="SocialForm.$waiting">
+                                    حفظ
+                                </button>
+                                <button type="button" class="btn btn-default" ng-disabled="SocialForm.$waiting" ng-click="SocialForm.$cancel()">
+                                    اغلاق
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="pmb-block">
+                <div class="card m-b-0">
+                    <div class="pmbb-header box-header">
+                        <h2 class="pull-right">
+                            <i class="md md-school m-r-5 icon-box following-icon"></i>
+                             معلومات الدراسة
+                        </h2>
+                        <div class="pull-left" ng-if="$root.prodata.itsme">
+                            <i class="md md-add f-22 edzance-color" ng-click="proab.addGrade(UnvForm);"></i>
+                        </div>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div ng-repeat="(key,edu) in dgreeuni| orderBy: key:false track by $index">
+                        <hr ng-if="key != 0" class="row"/>
+                        <div class="row m-0">    
+                            <div class="pull-right" ng-hide="UnvForm.$visible">
+                                <div class="text-bold">
+                                    {{edu.instName + ' - ' + getCountry(edu.country_id)}}
+                                </div>
+                                <div class="text-gray"> 
+                                    {{showGrade(edu.grade)}} , {{edu.speName}} 
+                                </div>
+                                <div class="text-gray">
+                                    {{edu.start_year}} - {{edu.end_year}} 
+                                </div>
+                            </div>
+                            <ul ng-if="$root.prodata.itsme" class="actions pull-left">
+                                <li class="dropdown" ng-hide="UnvForm.$visible">
+                                    <a ng-show="!UnvForm.$visible" href="" data-toggle="dropdown">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="UnvForm.$show()" ng-hide="UnvForm.$visible" data-pmb-action="edit" e-form="UnvForm">تعديل</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-hide="UnvForm.$visible" ng-click="proab.removeGrade(key,edu.id)" e-form="UnvForm">حذف</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <form editable-form name="UnvForm" onaftersave="proab.saveGrade(edu,edu.id)" shown="edu.open_edit == 1">
+                            <div class="pmbb-view p-t-10 p-b-10" ng-show="UnvForm.$visible">
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">الدرجة العلمية</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 ins-input">
+                                        <span ng-click=" $root.prodata.itsme == true ? UnvForm.$show() : UnvForm.$cancel() " editable-select="edu.grade" e-name="grade" ng-model="edu.grade" e-ng-options="s.value as s.text for s in grade" e-form="UnvForm">
+                                            {{showGrade(edu.grade) || 'لم يتم إدخال الدرجة العلمية'}}
+                                        </span> 
+                                    </div>
+                                </dl>
+                                <script type="text/ng-template" id="historyTemplate.html">
+                                    <div class="row m-0">
+                                        <div class="media-body">
+                                            <div ng-bind="match.model.name" class="text-bold f-15"></div>
+                                        </div>
+                                    </div>
+                                </script>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <span>المؤسسة</span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 uni-auto ins-input">
+                                        <span editable-text="edu.instName" 
+                                        e-name="instName" 
+                                        ng-bind="edu.instName || 'لم يتم إدخال الجامعة'" 
+                                        e-form="UnvForm" 
+                                        e-required
+                                        ng-model="edu.instName"
+                                        ng-paste="getInstitute($viewValue,edu);"
+                                        e-uib-typeahead="name for result in getInstitute($viewValue,edu)" 
+                                        e-typeahead-min-length="1" 
+                                        e-typeahead-is-open = "showResult"
+                                        e-typeahead-loading="searching"
+                                        placeholder="اختر الجامعة/المدرسة"
+                                        e-typeahead-template-url="historyTemplate.html" 
+                                        e-typeahead-on-select="onInsSelect($item,key)"
+                                        ng-keydown="shouldInsSelect($event,key)" 
+                                        ></span>
+                                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل الجامعة" ng-show="UnvForm.instName.$invalid && UnvForm.instName.$touched" aria-hidden="false"></i>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <span>التخصص/الصف</span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 uni-auto ins-input">
+                                        <span editable-text="edu.speName" 
+                                        e-name="specialization" 
+                                        ng-bind="edu.speName || 'لم يتم إدخال التخصص'" 
+                                        ng-model="edu.speName"
+                                        e-form="UnvForm" 
+                                        ng-paste="getSpecialty($viewValue,edu.instId);"
+                                        e-uib-typeahead="name for result in getSpecialty($viewValue,edu.instId)" 
+                                        e-typeahead-min-length="1" 
+                                        e-typeahead-is-open = "showResult"
+                                        e-typeahead-loading="searching"
+                                        e-typeahead-template-url="historyTemplate.html" 
+                                        e-typeahead-on-select="onSpeSelect($item,key)"
+                                        ng-keydown="shouldSpeSelect($event,key)" 
+                                        e-autocomplete="off"
+                                        e-required></span>
+                                        <i class="md md-error form-error" tooltip-placement="bottom" uib-tooltip="ادخل التخصص" ng-show="UnvForm.specialization.$invalid && UnvForm.specialization.$touched" aria-hidden="false"></i>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" class="p-l-30">الدولة</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span editable-select="edu.country_id" e-name="country_id" e-ng-options="s.value as s.text for s in unicountry" e-form="UnvForm">
+                                            {{getCountry(edu.country_id) || 'لم يتم إدخال الدولة'}}
+                                        </span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">سنة الدخول</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span editable-select="edu.start_year" e-name="start_year" ng-model="edu.start_year" e-ng-options="s.value as s.text for s in university_end" e-form="UnvForm">
+                                        {{edu.start_year || 'لم يتم إدخال تاريخ دخول للجامعة'}}
+                                        </span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">سنة التخرج</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span editable-select="edu.end_year" e-name="end_year" ng-model="edu.end_year" e-ng-options="s.value as s.text for s in university_end" e-form="UnvForm">
+                                            {{edu.end_year == 1940 ? "لم يتم إدخال تاريخ التخرج للجامعة" : edu.end_year}}
+                                        </span> 
+                                    </div>
+                                </dl>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="pull-left  p-b-10" ng-show="UnvForm.$visible">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="UnvForm.$waiting">
+                                            حفظ
+                                        </button>
+                                        <button type="button" class="btn btn-default pull-left" ng-disabled="UnvForm.$waiting" ng-click="UnvForm.$cancel();proab.closeGrade()" ng-show="UnvForm.$visible" e-form="UnvForm">
+                                            اغلاق
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div ng-if="dgreeuni == ''">
+                            لا يوجد معلومات
+                        </div>
+                    </div>
+                </div>
+            </div> 
+             <div class="pmb-block" ng-if="$root.prodata.level == 5">
+                <div class="card m-b-0">
+                    <div class="pmbb-header box-header">
+                        <h2 class="pull-right">
+                            <i class="md md-access-time m-r-5 icon-box video-icon"></i> 
+                            أوقات التفرغ
+                        </h2>
+                        <div class="pull-left" ng-if="$root.prodata.itsme">
+                            <i class="md md-add f-22 edzance-color" ng-click="proab.addTime(UnvForm);"></i>
+                        </div>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div ng-repeat="(key,hours) in freehours| orderBy: key:false track by $index">
+                            <div>
+                                <hr ng-if="key != 0" class="row"/>
+                                <div class="row m-0" ng-show="!avTime.$visible">
+                                    <div class="pull-right">
+                                        <div class="text-bold">
+                                            <span ng-repeat="(key,days) in hours.days| orderBy: key:false track by $index">
+                                                <span ng-if="key != 0">,</span>
+                                                <span ng-bind="showDays(days)"></span>
+                                            </span>
+                                        </div> 
+                                        <div class="text-gray">
+                                            <span>من:</span> 
+                                            <span ng-bind="proab.toDate(hours.from_hour)"></span> - <span>الى:</span>
+                                            <span ng-bind="proab.toDate(hours.to_hour)"></span>
+                                        </div>  
+                                    </div>
+                                    <ul ng-if="$root.prodata.itsme" class="actions pull-left">
+                                        <li class="dropdown">
+                                            <a ng-show="!avTime.$visible" href="" data-toggle="dropdown">
+                                                <i class="md md-more-vert"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                           <!--      <li>
+                                                    <a href="javascript:void(0)" ng-click="avTime.$show()" ng-show="!avTime.$visible" data-pmb-action="edit">تعديل</a>
+                                                </li> -->
+                                                <li>
+                                                    <a href="javascript:void(0)" ng-hide="UnvForm.$visible" ng-click="proab.removeTime(key,hours.id)" e-form="UnvForm">حذف</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pmbb-view" ng-show="avTime.$visible">
+                                    <dl class="row m-0 dl-horizontal access-days">
+              <!--                         <a href="#" editable-checklist="daysSelected.status" e-ng-options="s.value as s.text for s in advdays">
+                                        {{ s.text }}
+                                      </a> -->
+                                        <label ng-repeat="role in advdays">
+                                          <input type="checkbox" data-checklist-model="daysSelected.status" data-checklist-value="role" e-form="avTime" e-required> {{role.text}}
+                                        </label>
+                                    </dl>
+                                    <dl class="row dl-horizontal">
+                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                        من الساعة</div>
+                                        <div class="col-md-9 col-sm-9 col-xs-9 vc-calendar">
+                                           <span  e-form="avTime" e-name="from_hour" e-placeholder= 'لم يتم إدخال الوقت' editable-bstime="from_hour" e-show-meridian="true" e-minute-step="1" e-required>
+                                              {{ (from_hour | date:"hh:mm a") || 'لم يتم إدخال الوقت'}}
+                                            </span>
+                                        </div>
+                                    </dl>
+                                    <dl class="row dl-horizontal">
+                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                        الى الساعة</div>
+                                        <div class="col-md-9 col-sm-9 col-xs-9 vc-calendar">
+                                           <span e-form="avTime" e-name="to_hour" e-placeholder= 'لم يتم إدخال الوقت' editable-bstime="to_hour" e-show-meridian="true" e-minute-step="1" e-required>
+                                              {{ (to_hour | date:"hh:mm a") || 'لم يتم إدخال الوقت'}}
+                                            </span>
+                                        </div>
+                                    </dl>
+                                </div>
+                                <div class="text-left" ng-show="avTime.$visible">
+                                    <form editable-form name="avTime" onaftersave="proab.avaTime(from_hour,to_hour,daysSelected.status,key)" shown="hours.edit_hour == 1 || avTime.$invalid">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="avTime.$waiting || avTime.$invalid">
+                                            حفظ
+                                        </button>
+                                        <button type="button" class="btn btn-default" ng-disabled="avTime.$waiting" ng-click="avTime.$cancel();proab.removeTime(key,hours.id)">
+                                            اغلاق
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="freehours == ''">
+                            لا يوجد أوقات التفرغ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="pmb-block">
+                <div class="card m-b-0">
+                    <form editable-form name="UniversityInf" onaftersave="proab.UniversityInf()">
+                        <div class="pmbb-header box-header">
+                            <h2><i class="md md-domain m-r-5 icon-box school-icon"></i> معلومات الدراسة الثانوية
+                        </h2>
+                            <ul ng-if="$root.prodata.itsme" class="actions p-t-10 p-l-10">
+                                <li class="dropdown">
+                                    <a ng-show="!UniversityInf.$visible" href="" data-toggle="dropdown">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="javascript:void(0)" ng-click="UniversityInf.$show()" ng-show="!UniversityInf.$visible" data-pmb-action="edit">تعديل</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pmbb-body p-10" >
+                            <div class="pmbb-view">
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">المدرسة</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click="$root.prodata.itsme == true ? UniversityInf.$show() : UniversityInf.$cancel() " editable-text="sec.school" e-name="school" ng-bind="sec.school  || 'لم يتم إدخال مدرسة'"></span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">بلدة المدرسة</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click="$root.prodata.itsme == true ? UniversityInf.$show() : UniversityInf.$cancel() " editable-text="sec.school_town" e-name="school_town" ng-bind="sec.school_town || 'لم يتم إدخال مدينة مدرسة'"></span>
+                                    </div>
+                                </dl>
+                                <dl class="row dl-horizontal">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">سنة التخرج</div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <span ng-click=" $root.prodata.itsme == true ? UniversityInf.$show() : UniversityInf.$cancel() " editable-select="sec.school_end" e-name="school_end" ng-model="sec.school_end" e-ng-options="s.value as s.text for s in university_end" ng-class="(sec.school_end.getFullYear() == 1940 && $root.prodata.itsme == true) ? 'editable-empty':' '">
+                                        {{sec.school_end.getFullYear() == 1940 ? "لم يتم إدخال سنة  التخرج" : sec.school_end.getFullYear()}}  
+                                        </span>
+                                    </div>
+                                </dl>
+                            </div>
+                            <div class="text-left" ng-show="UniversityInf.$visible">
+                                <button type="submit" class="btn btn-primary" ng-disabled="UniversityInf.$waiting">
+                                    حفظ
+                                </button>
+                                <button type="button" class="btn btn-default" ng-disabled="UniversityInf.$waiting" ng-click="UniversityInf.$cancel()">
+                                    اغلاق
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+    </div>
+</div>
+<div ng-if="contact.email.length < 0" class="position-relative">
+    <div class="floatingBarsG">
+        <div class="blockG rotateG_01"></div>
+        <div class="blockG rotateG_02"></div>
+        <div class="blockG rotateG_03"></div>
+        <div class="blockG rotateG_04"></div>
+        <div class="blockG rotateG_05"></div>
+        <div class="blockG rotateG_06"></div>
+        <div class="blockG rotateG_07"></div>
+        <div class="blockG rotateG_08"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".dropdown").click(function() {
+                $(".dropdown").removeClass("open");
+            });
+        }, 3000);
+    });
+</script>

@@ -1,0 +1,28 @@
+@font-face {
+    font-family: Janna;
+    src: url(font/Bahij_Janna-Regular.ttf);
+}
+ html , body{
+  direction: rtl;
+  font-size: 16px;
+  font-family: Janna;
+}
+
+.navbar-edzance{
+    a{
+        color:#fff;
+        font-size: 32px;   
+    }
+}
+.navbar{
+     border-radius: 0px !important;
+}
+body{
+  //background: #402965;
+  background: url("../img/1.jpg") center center no-repeat;
+  color: #fff;
+  background-size: cover;
+}
+footer{
+  margin-top:40px;
+}

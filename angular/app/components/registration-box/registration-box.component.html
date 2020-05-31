@@ -1,0 +1,100 @@
+<!--new registerion -->
+<div class="alert alert-danger alert-dismissable fade in p-15" ng-show="vm.formError">
+    <i class="md md-error f-16"></i>
+    <span ng-repeat="(key,happy) in vm.formErrorData">
+        <span ng-bind="happy"></span>
+    </span> 
+</div>
+<form ng-submit="vm.register(vm.registerForm.$valid,vm)" method="post" name="vm.registerForm" autocomplete="off" novalidate>
+    <div class="card register-shadow">
+        <div class="card-body p-15">
+            <div class="f-20 text-center edzance-color p-b-15">
+                إنشاء حساب جديد
+            </div>
+     <!--        <div class="p-b-20"> 
+                <a onclick="window.location = '/auth/facebook';" class="btn btn-lg facebook-btn btn-soical">
+                    <span>
+                        <svg viewBox="0 0 14.1 26.9" width="23px" height="23px">
+                        <path fill="#fff" d="M1,8.8h2.8V6.1c0-1.2,0-3,0.9-4.1c0.9-1.2,2.1-2,4.3-2c3.5,0,4.9,0.5,4.9,0.5l-0.7,4.1
+                              c0,0-1.2-0.3-2.2-0.3c-1.1,0-2,0.4-2,1.5v3.1h4.4l-0.3,4H8.9v13.9H3.8V12.8H1V8.8z"></path>
+                        </svg>
+                    </span>
+                    <span>
+                        الدخول باستخدام الفيس بوك
+                    </span>
+                </a>
+            </div>
+            <div class="p-b-20 position-relative">
+                <div class="or-text">أو</div>
+                <hr/>
+            </div> -->
+                <div class="callout callout-danger" ng-if="vm.loginfailed">
+                    <h4>فشل تسجيل الدخول</h4>
+                    <p>ايميل او كلمة سر خاطئة.</p>
+                </div>
+                <div class="callout callout-danger" ng-if="vm.unverified">
+                    <h4>لم يتم تأكيد الايميل</h4>
+                    <p>نرجوا منك الضغط على ايميل التفعيل الموجود في بريدك الالكتروني.</p>
+                </div>
+                <div class="callout callout-success" ng-if="vm.registerSuccess">
+                    <h4>تم التسجيل بنجاح</h4>
+                    <p>تم ارسال بريد الكتروني اليك يحتوي رابط التفعيل الرجاء الضغط عليه لاكمال عملية التسجيل</p>
+                </div>
+                <div class="callout callout-success" ng-if="vm.successMsg">
+                    <h4>تمت العملية بنجاح!</h4>
+                    <p>{{ vm.successMsg}}</p>
+                </div>
+             <div class="m-b-20-mobile m-b-10-web position-relative" ng-class="{ 'has-error': vm.registerForm.name.$invalid && (vm.formSubmitted || vm.registerForm.name.$touched) }">
+                <input type="text" class="form-control register-input gray-input" placeholder="الأسم الثلاثي" ng-model="$root.user.name" name="name" ng-maxlength="30" required="" autocomplete="off" />
+                <p ng-show="vm.registerForm.name.$error.required && (vm.formSubmitted)" class="help-block">الاسم مطلوب</p>
+                <p ng-show="vm.registerForm.name.$error.maxlength" class="help-block">الاسم طويل</p>
+                <!-- <p ng-show="vm.registerForm.name.$invalid && (vm.formSubmitted || vm.errors.name)" class="help-block">{{vm.errors.name}}</p> -->
+            </div>
+            <div  ng-class="{ 'has-error': vm.registerForm.email.$invalid && (vm.formSubmitted || vm.registerForm.email.$touched) }" class="m-b-20-mobile m-b-10-web position-relative">
+                <input type="email" ng-model="$root.user.email" name="email" ng-maxlength="30" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required class="form-control register-input gray-input" placeholder="البريد الإلكتروني">
+                <p ng-show="vm.registerForm.email.$invalid && (vm.formSubmitted || vm.errors.email)" class="help-block">{{vm.errors.email}}</p>
+                <p ng-show="vm.registerForm.email.$error.required && (vm.formSubmitted)" class="help-block">الايميل مطلوب</p>
+                <p ng-show="vm.registerForm.email.$error.email" class="help-block">الايميل خاطئ</p>
+            </div>
+            <div ng-class="{ 'has-error': vm.registerForm.password.$invalid && (vm.formSubmitted || vm.registerForm.password.$touched) }"  class="m-b-20-mobile m-b-15-web position-relative">
+                <input type="password" class="form-control register-input gray-input" placeholder="كلمة المرور" ng-model="$root.user.password" name="password" ng-minlength="6" ng-maxlength="50" required="">
+                <p ng-show="vm.registerForm.password.$error.required && (vm.formSubmitted)" class="help-block">كلمة السر مطلوبة</p>
+                <p ng-show="vm.registerForm.password.$error.maxlength" class="help-block">كلمة المرور طويلة</p>
+                <p ng-show="vm.registerForm.password.$invalid && vm.registerForm.password.$error.minlength && vm.registerForm.password.$touched" class="help-block">كلمة المرور قصيرة</p>
+            </div>   
+            <div class="form-group m-b-15-web position-relative">
+                <md-select ng-model="$root.user.countries" 
+                           class="text-last-center form-control gray-input p-t-0"
+                           name="unvcountry"
+                           placeholder="اختر الدولة" 
+                           required>
+                    <md-option ng-repeat="country in unvcountries" ng-value="{{country.id}}" ng-bind="country.country_arabic"></md-option>
+                </md-select>
+                <p ng-show="vm.registerForm.unvcountry.$invalid && vm.registerForm.$submitted" class="help-block">الرجاء اختيار الدولة</p>     
+            </div>
+            <div class="m-b-20 position-relative">
+                <label class="checkbox checkbox-inline">
+                    <input type="checkbox" ng-model="$root.user.agree" ng-click="vm.check()" value="" ng-required="true" >
+                    <i class="input-helper"></i>    
+                     <span class="text-gray">أوافق على شروط</span>
+                     <span class="edzance-color">
+                     <a ui-sref="logins.login.privacy" class="edzance-color">
+                        الخصوصية
+                     </a>
+                      و
+                     <a class="edzance-color">
+                     سياسة الإستخدام
+                     </a>
+                    </span>
+                </label>
+            </div>
+            <div class="m-b-20-mobile m-b-10-web">
+                <button type="submit"  class="btn btn-lg con-btn btn-primary">
+                    <span>
+                    إنشاء حساب
+                   </span>
+                </button>
+            </div> 
+        </div> 
+    </div>
+</form>

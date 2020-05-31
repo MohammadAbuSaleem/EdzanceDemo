@@ -1,0 +1,51 @@
+{
+            
+  "rules": {
+    ".read": true,
+    ".write": false,
+    "chat": {
+      "$room_id": {
+          "data":{
+            ".read": "root.child('chat').child($room_id).child('users').hasChild(auth.uid)",//true
+            ".write":"root.child('chat').child($room_id).child('users').hasChild(auth.uid)",//true 
+            },
+          "users":{
+            ".read": "root.child('chat').child($room_id).child('users').hasChild(auth.uid)",
+            ".write": false,
+            "unReaded":{
+              ".read": "root.child('chat').child($room_id).child('users').hasChild(auth.uid)",//true
+              ".write":"root.child('chat').child($room_id).child('users').hasChild(auth.uid)",//true 
+            } 
+            },
+          "CreatedBy":{
+            ".read": false,
+            ".write": false,
+            },
+          "Online":{
+            ".read": true,
+            ".write": true,  
+            },
+        }
+      },
+  "Online_Users":{
+    ".read": true,
+    ".write": true,  
+    },
+  "Rooms":{
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "$auth_id":{
+      ".read":true,//"$auth_id === auth.uid",
+      ".write":true,// "$auth_id === auth.uid",
+      "unReaded":{
+        ".read": true,
+        ".write":true ,
+      },
+      "ahmad":{
+        ".read": true,
+        ".write":true ,
+      }
+      }
+    },
+  }
+}

@@ -1,0 +1,129 @@
+<section id="content">
+    <div ng-init="$root.controller='home'" class="container">
+        <div class="row m-0-mobile">
+            <div class="col-md-7 col-sm-7">
+                <div ng-if="!$root.meFlag && permission('post.add')">
+                    <post-new req-url="me/post" req-type="post" req-parent="home"></post-new>
+                </div>
+                <!-- post -->
+                <div ng-if="mobile">
+                    <div class="m-b-10">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- EDZANCE PHONE HOME ADS -->
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2067358913948217" data-ad-slot="4465828285" data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    <div class="m-b-10">
+                        <ks-swiper-container ng-if="friendSliderFlag" initial-slide="0" loop="false" show-nav-buttons="false" slides-per-view="2.3" space-between="10" pagination-clickable="false">                
+                            <ks-swiper-slide class="swiper-slide p-10" ng-repeat="(key,friend)  in univ | orderBy:$index" class="item animated left-repeat" ng-init="vm.fr[friend.id] = key">
+                                <div>
+                                    <img src="img/icons/infinity.svg" ng-src="{{friend.avatar}}"/>
+                                </div>
+                                <a ui-sref="app.profile.timeline({id: friend.id})">
+                                    <div class="text-bold f-16" ng-bind="friend.name"></div>
+                                </a>
+                                <div class="f-16" ng-bind="friend.university"></div>
+                                <div ng-if="$root.me.activated_at.length > 1">
+                                    <a ng-click="vm.follow(friend.id,'follower',$index);vm.friend[friend.id]=1;" class="btn btn-primary waves-effect waves-button waves-float fn-lg m-t-8">
+                                        <i class="md md-person-add"></i> متابعة
+                                    </a>
+                                </div>
+                            </ks-swiper-slide>
+                            <ks-swiper-slide class="swiper-slide">
+                                <div class="text-center line-height-10">
+                                    <a ui-sref="app.suggestionsfriends">تعرف على مزيد من الزملاء</a>
+                                </div>
+                            </ks-swiper-slide>
+                        </ks-swiper-container>
+                    </div>
+                </div>
+                <div ui-view="post"></div> 
+            </div>
+            <div class="col-md-5 col-sm-5 hidden-xs" ng-if="desktop">
+                <div>
+                    <div>
+                        <div>
+                            <h4>
+                            <i class="md md-add-box"></i>
+                            متابعة المزيد من الزملاء
+                        </h4>
+                        </div>
+                        <div ng-repeat="(key,friend)  in univ | limitTo: 3 | orderBy:$index" class="item animated left-repeat" ng-init="vm.fr[friend.id] = key" id="friend-{{friend.id}}">
+                            <div ng-model="vm.friend[friend.id]" class="row m-0 left-friend">
+                                <div class="pull-right">
+                                    <img src="img/icons/infinity.svg" ng-src="{{friend.avatar}}" alt="" class="suggestion-img">
+                                </div>
+                                <div class="media-body col-md-12 col-sm-12 col-xs-12">
+                                    <a ui-sref="app.profile.timeline({id: friend.id})">
+                                        <div ng-bind="friend.name" class="user-name long-spe-text m-t-15"></div>
+                                    </a>
+                                    <div ng-bind="friend.university" class="long-spe-text"></div>
+                                </div>
+                                <div class="pull-left p-l-10" ng-if="$root.me.activated_at.length > 1">
+                                    <a ng-click="vm.follow(friend.id,'follower',$index);vm.friend[friend.id]=1;" class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn-margin">
+                                        <i class="md md-person-add"></i> متابعة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="suggestions-friends" ng-if="univ">
+                            <a ui-sref="app.suggestionsfriends" class="f-16">
+                                تعرف على مزيد من الزملاء   
+                            </a>
+                        </div>
+                    </div>
+                    <div scroll-to-fixed="{ marginTop: 70}" class="left-side-bar">
+                        <div>
+                            <h4>
+                            <i class="md md-work"></i>
+                            إعلان
+                        </h4>
+                        </div>
+                        <div ng-if="desktop">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- ED-GOOGLE-ADS-2 -->
+                            <ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-2067358913948217" data-ad-slot="9654847883"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                        <div class="text-center">
+                            <a class="f-15 text-gray" ui-sref="app.privacy-login">الخصوصية</a> - <a class="f-15 text-gray" ui-sref="app.support">مركز المساعدة</a> - <a class="f-15 text-gray" ui-sref="institution.index">المؤسسات التعليمية</a>
+                        </div>
+                        <div class="f-15 text-gray text-center">
+                            <span class="m-r-5">
+                                Edzance © 2017 
+                            </span>
+                            <img src="img/logo-small.svg" class="edzance-logo-xs">
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="imgModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-modal-dialog" role="document">
+        <div class="text-center">
+            <div>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div>
+                <div>
+                    <img src="" class="img-mirror">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.liveurl.js"></script>
+<script src="js/jquery.typeahead.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".delete-post").click(function() {
+            $(".dropdown").removeClass("open");
+        });
+    });
+</script>

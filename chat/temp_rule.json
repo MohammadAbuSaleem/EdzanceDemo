@@ -1,0 +1,26 @@
+{
+  "rules": {
+    "chat": {
+      "$room_id": {
+        "data":{
+          ".read": true,//"data.child($room_id).child('users').child('user_1').val() === auth.uid || data.child('users').child('user_2').val() === auth.uid",
+          ".write":true //"data.child($room_id).child('users').child('user_1').val() === auth.uid || data.child('users').child('user_2').val() === auth.uid",
+          },
+          "users":{
+            ".read": false,
+            ".write": false,
+          }
+        },
+      "test":{
+         "$uid": {
+        ".read": "$uid == auth.uid",//true,
+        ".write": "$uid == auth.uid"//true
+      },
+        "9871051132":{
+        ".read": true,
+        ".write":true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,209 @@
+<div ng-show="$root.progressPercentage != 0">
+  <div class="card">
+    <div class="card-body p-10">
+    <div class="p-b-5"> 
+      جاري الرفع....
+    </div>
+      <uib-progressbar class="progress-striped active" value="$root.progressPercentage">
+          <b>{{$root.progressPercentage}}%</b>
+      </uib-progressbar>
+    </div>
+  </div>
+</div>
+<div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1'>
+  <div ng-repeat="(key,post) in dat| orderBy: 'created_at':true track by $index"  class="media animated">
+        <div>
+          <div class="media-body">
+              <div class="card w-item vc-con">
+                  <div class="card-body card-padding f-15 p-b-0">
+                  <div class="media">
+                    <div class="pull-right">
+                        <a ui-sref="app.profile.timeline({id: post.userid})">
+                            <img class="post-img" src="img/icons/infinity.svg" lazy-img="{{post.user_avatar}}">
+                        </a>
+                    </div>
+                    <div>
+                        <div class="pull-right">
+                            <a ui-sref="app.profile.timeline({id: post.userid})" class="user-name username ng-binding" ng-bind="post.user_name | capitalize"></a>
+                            <div class="data-post ng-binding" ng-bind="moment(post.created_at, 'YYYY-MM-DD hh:mm:ss').fromNow()"></div>
+                        </div>
+                        <!-- ngIf: post.userid == vm.userData.id --><!-- end ngIf: post.userid == vm.userData.id -->
+                    </div>
+                   <div class="pull-left" ng-if="permission('homeWork.edit')">
+                      <ul class="actions">
+                          <li ng-hide="editableForm.$visible"  class="dropdown">
+                              <a href="" data-toggle="dropdown" aria-expanded="false">
+                                  <i class="md md-more-vert"></i>
+                              </a>
+                              <ul ng-hide="editableForm.$visible"  class="dropdown-menu dropdown-menu-right">
+                                  <li class="b-bottom">
+                                      <a data-pmb-action="delete" class="close-menu sa-params"  ng-click="deleteNode(post,false);" data-post-id="{{post.id}}" data-post-key="{{post.key =key}}"  data-post-key="{{post.index =key}}" data-post-type="homework" >
+                                      <i class="md md-delete"></i>
+                                      حذف
+                                      </a>
+                                      
+                                  </li>
+                                  <li >
+                                     <!--  <a data-pmb-action="delete" href="#" ng-click="vm.edit(post.id,$index)"> -->
+                                       <a href="javascript:void(0)" ng-click="editableForm.$show()" ng-hide="editableForm.$visible" class="close-menu" >
+                                        <i class="md md-mode-edit"></i>
+                                      تعديل<!-- </a> --></a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+                  </div>
+                    <div class="row m-t-5">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div  class="homework-title">
+                        <span ng-show="editableForm.$visible" class="home-title">
+                        <i class="md md-description"></i>
+                         العنوان
+                        </span>
+                        <span e-form="editableForm" editable-text="post.title" e-name="title" ng-bind="post.title  "></span>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="row p-b-10">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div class="f-16 text-black">
+                         <span ng-show="editableForm.$visible" class="home-title">
+                            <i class="md md-description"></i>
+                            وصف الواجب
+                         </span>
+                         <span e-form="editableForm"  editable-textarea="post.body" e-name="body" ng-bind="post.body"></span>
+                         </div>
+                        </div>
+                    </div>
+                    <hr class="m-b-10" ng-hide="editableForm.$visible">
+                     <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="pull-right" ng-hide="editableForm.$visible" ng-if="post.file != ''">
+                          <img lazy-img="img/upload-icon/{{post.file.split('.').pop()}}.svg" width="92px">
+                        </div>
+                        <div class="media-body">
+                       <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <div ng-class="(editableForm.$visible) ? 'homework-edit': 'pull-right'"> 
+                            <div class="homework-type">
+                              <i class="md md-now-widgets"></i>
+                              <span ng-show="editableForm.$visible" >نوع الواجب</span>
+                              <span editable-select="post.type" e-form="editableForm"  e-ng-options="g.value as g.text for g in type" e-name="type" e-class="form-control">
+                                <span ng-if="post.type=='presentation'">عرض تقديمي</span>
+                                <span ng-if="post.type=='homework'">واجب بيتي</span>
+                                <span ng-if="post.type=='project'">مشروع</span>
+                                <span ng-if="post.type=='report'">تقرير</span>
+                                <span ng-if="post.type=='research'">بحث</span>
+                              </span>
+                            </div>
+                            <div class="homework-type">
+                              <i class="md md-filter-9-plus"></i>
+                              <span>علامه الواجب </span>
+                              <span editable-text="post.mark" e-form="editableForm" e-name="mark" ng-bind="post.mark  " e-class="form-control"></span>
+                            </div>
+                            <div class="m-b-5 homework-type">
+                              <i class="md md-today"></i>
+                              <span>موعد التسليم</span>
+                              <span  e-placeholder="تاريخ التسليم"  editable-date="post.handover" e-form="editableForm" e-name="handover" e-value="{{post.handover}}" e-class="form-control"> {{ (post.handover.getFullYear() + '/' + (post.handover.getMonth() + 1) + '/' +post.handover.getDate()) }}</span>
+                            </div>
+                            <div class="m-b-10" ng-if="post.file != ''">
+                              <a href="{{post.file}}" download target="_blank" class="btn btn-default down-btn">
+                                <i class="md md-file-download"></i>
+                                تحميل
+                              </a>
+                              <a href="{{post.file}}" target="_blank" class="btn btn-default down-btn">
+                                <i class="md md-find-in-page"></i>
+                                مشاهدة
+                              </a>
+                            </div>
+                            <!-- buttons to submit / cancel form -->
+                         <form editable-form name="editableForm" onaftersave="updateData($data, post.id)">
+                            <div class="" ng-show="editableForm.$visible">
+                                  <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                                    حفظ
+                                  </button>
+                                  <button type="button" class="btn btn-danger" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                                    الغاء
+                                  </button>
+                              </div> 
+                          </form>
+                         </div> 
+                        
+                        </div>
+                       </div>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="position-relative">
+                      <div ng-hide="editableForm.$visible" class="homework-comment">
+                         <!--     <a href="{{post.file}}" download class="btn btn-default f-15 down-btn">
+                                <i class="md md-file-download"></i>
+                                تحميل
+                              </a> -->
+                              <div data-toggle="modal" data-target="#commentModel{{post.id}}" video-post-popup data-src="{{$root.trustSrc(post.media)}}" data-video-id="{{post.id}}">
+                            <div class="mouse-pointer" ng-if="post.comment.length == 2">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليقين
+                              </a>
+                            </div>
+                            <div ng-if="(post.comment.length > 2 && post.comment.length < 11)">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليقات
+                              </a>
+                            </div>
+                            <div ng-if="(post.comment.length > 10 || post.comment.length == 1)">
+                              <a>
+                                <i class="md md-comment"></i>
+                                <span ng-bind="post.comment.length"></span>
+                                تعليق
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+              </div>
+           <!-- Comment --> 
+            <comment-repeat ng-init="$root.controller='virtualclass-homework'" req-url="homework" comment-id="{{post.id}}" comment-index="{{key}}" req-parent="virtualclass-homework"></comment-repeat>
+           <!-- End Comment -->
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+<div ng-if="nopost == 3">
+  <div class="card">
+    <div class="card-body card-padding empty-text">
+      لا يوجد واجبات
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="homeworkModal.html">
+  <div class="modal-body">
+    <div>
+      <div class="row"> 
+        <div class="col-md-12 col-sm-12 col-xs-12 f-24 text-center m-t-20 p-b-10">
+          <div>
+            <img src="img/success.svg" class="smileyface">
+          </div>
+          <div class="m-t-5">
+            تم اضافة الواجب بنجاح
+          </div>
+          <div class="f-18">
+            سنقوم بإبلاغ جميع طلبتك عن هذا الواجب وعن المعلومات التي قمت بإرفاقها معة.
+          </div>
+          <div class="f-14 text-red m-t-10 m-b-5">
+            يمكنك دائما أن تقوم بتعديل المعلومات التي أدخلتها في هذا الواجب ويمكنك أيضا حذفه بشكل نهائي, وسنقوم بإبلاغ طلابك بأي تغير يحصل على هذا الواجب.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary p-r-30 p-l-30 m-b-20" data-dismiss="modal" ng-click="mvm.ok()">اغلاق الصندوق</button>
+    </div>
+  </div>
+</script>

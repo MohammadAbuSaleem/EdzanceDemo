@@ -1,0 +1,73 @@
+<div class="row" ng-if="$root.vc.instructor == $root.me.id">
+	<div class="p-r-5 p-l-5 p-b-5">
+	  <div class="col-md-6 col-sm-6 col-xs-12 p-r-5 p-l-5 p-b-10">
+		  <a ng-click="deleteClass()" >
+			  <div class="option-box">
+				<i class="md md-delete option-icon"></i>
+			 	<div>
+			  		حذف المادة
+				</div> 
+			  </div>
+		  </a>
+	  </div>
+	  <div class="col-md-6 col-sm-6 col-xs-12 p-r-5 p-l-5">
+	  	<div class="option-box">
+	  		<a ng-click="archiveClass('archiving')" ng-if=" $root.vc.status == 'Activated'">
+			  	<i class="md md-save option-icon"></i>
+			  	<div>
+		  			ارشفة المادة
+			  	</div>
+		  	</a>
+		  	<a ng-click="archiveClass('activating')" ng-if=" $root.vc.status == 'Archived'">
+			  	<i class="md md-save option-icon"></i>
+			  	<div>
+		  			الغاء ارشفة المادة
+			  	</div>
+		  	</a>
+	  	</div>
+	  </div>
+	</div>
+</div>
+<div class="row" ng-if="$root.vc.instructor != $root.me.id">
+	<div class="p-r-5 p-l-5 p-b-5">
+	  <div class="col-md-6 col-sm-6 col-xs-12 p-r-5 p-l-5 p-b-10">
+		  <a ng-click="leaveClass()" >
+			  <div class="option-box">
+				<i class="md md-exit-to-app option-icon"></i>
+			 	<div>
+			  		مغادره المادة
+				</div> 
+			  </div>
+		  </a>
+	  </div>
+	</div>
+</div>
+<!-- Modal -->
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body f-18 text-center">
+      	<i class="md md-delete un-options-icon"></i>
+      	<div>		
+      		انك لاتملك صلاحيات الحذف في الوقت الراهن , سيتم مراجعة طلبك وتنفيذه في وقت لاحق 
+      	</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="archiveModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body f-18 text-center">
+      	<i class="md md-save un-options-icon"></i>
+      	<div>
+        	لن تتمكن من ارشفة المادة في هذا الوقت يرجى العودة في نهاية الفصل الدراسي لأرشفتها
+      	</div>
+      </div>
+    </div>
+  </div>
+</div> -->

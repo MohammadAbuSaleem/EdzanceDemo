@@ -1,0 +1,162 @@
+<md-content class="Page-container">
+  <div ng-repeat="post in post| orderBy: 'created_at':true track by $index"  class="media animated">
+  <div>
+      <div class="pull-right hidden-xs p-l-10">
+          <a ui-sref="app.profile.timeline({id: post.userid})" class="img-fram">
+              <img class="post-img" ng-src="{{post.avatar}}" src="img/profile-pics/5.jpg" alt="">
+          </a>
+      </div>
+      <div class="media-body post-pos">
+          <div class="card w-item">
+              <div class="card-body card-padding p-b-0">
+                  <div class="media">
+                      <div class="pull-right hidden-md hidden-sm hidden-lg">
+                          <a ui-sref="app.profile.timeline({id: post.userid})">
+                              <img class="post-img" ng-src="{{post.avatar}}" alt="">
+                          </a>
+                      </div>
+                      <div>
+                          <div class="pull-right">
+                              <a ui-sref="app.profile.timeline({id: post.userid})" class="user-name"  ng-bind="post.name | capitalize"></a>
+                              <div class="data-post"  ng-bind="post.created_at"></div>
+                          </div>
+                          <div class="pull-left" ng-if="post.userid == vm.userData.id">
+                            <ul class="actions">
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="b-bottom">
+                                            <a data-pmb-action="delete" href="#" ng-click="vm.deletePost(post.id,$index)" class="close-menu">
+                                            <i class="md md-delete"></i>
+                                            حذف
+                                            </a>
+                                        </li>
+                                        <li >
+                                           <!--  <a data-pmb-action="delete" href="#" ng-click="vm.edit(post.id,$index)"> -->
+                                             <a href="javascript:void(0)" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" class="close-menu">
+                                              <i class="md md-mode-edit"></i>
+                                            تعديل<!-- </a> --></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- text body -->
+                  <div ng-if="post.type == 'text'">
+                      <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="vm.updatepost($data,post.id)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-10" r-m>
+                      {{post.body}}
+                      </div>
+                  </div>
+                  <!-- end text body -->
+                  <!-- video body-->
+                <div ng-if="post.type == 'video'">
+                  <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="vm.updatepost($data,post.id)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-10" r-m>
+                      {{post.body}}
+                      </div>
+                  <div class="m-t-10">
+                      <iframe ng-src="{{post.media}}" width="100%" height="315"></iframe>
+                  </div> 
+              </div>
+                  <!-- end video body-->
+                   <!-- image body-->
+               <div ng-if="post.type == 'image'">
+                  <div editable-textarea="post.body" e-form="textBtnForm" onbeforesave="vm.updatepost($data,post.id)" class="col-md-12 col-sm-12 col-xs-12 read-more text-black p-10" r-m>
+                      {{post.body}}
+                      </div>
+                  <div class="m-t-20">
+                      <img ng-src="{{post.media}}" class="image-post" data-toggle="modal" data-target="#imgModel"/>
+                  </div>
+                </div>
+                <!-- end image body-->
+                <!-- url body -->
+                <div ng-if="post.type == 'url'">
+                  <div class="row">
+                      <div>
+                          <div class="profile-pic media m-t-15">
+                              <div class="pull-right p-r-15"> 
+                                  <a href="{{post.media}}" ><img alt="" class="url-user-img" ng-src="{{post.mediaimage}}"></a>
+                              </div>
+                              <div class="media-body"> 
+                                  <div class="user-name ng-binding" ng-bind="post.mediatitle"></div>
+                                  <div class="m-b-5 text-black" ng-bind="post.mediadesc"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                  <!-- end url body -->
+              <div class="row faces-padding">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <span ng-bind="post.all" class="pull-right f-20 p-l-5"></span>
+                      <a ng-click="vm.exprission(post.id,'happy',$index);post.present='happy'" class="facs-size"   active-face ng-class="(post.present =='happy') ? 'active' : ''">
+                              &#x1F60D;</a>
+                       <a ng-click="vm.exprission(post.id,'normal',$index);post.present='normal'"  class="facs-size" active-face ng-class="(post.present=='normal') ? 'active' : ''">
+                              &#x1F610;</a>
+                       <a ng-click="vm.exprission(post.id,'sad',$index);post.present='sad';" class="facs-size" active-face ng-class="(post.present=='sad') ? 'active' : ''">
+                          &#x1F612;</a>
+                  </div>
+              </div>
+              </div>
+              <!-- Comment -->
+              <div class="wi-comments">
+                  <div class="list-group" ng-repeat="comments in post.comment| orderBy: 'created_at'"  class="media animated fadeIn">
+                      <div class="list-group-item media">
+                          <div class="pull-right p-l-8">  
+                              <ul class="list-unstyled p-r-0">
+                                  <li>
+                                      <a data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-html="true" ui-sref="app.profile.timeline({id: comments.uid})" id="login" data-original-title="" title="">
+                                          <img class="post-img" ng-src="{{comments.avatar}}"  src="img/profile-pics/1.jpg" alt="">
+                                      </a>
+                                  </li>
+                                  <div id="popover-content" class="hide">
+                                      <div class="media">
+                                          <div class="pull-right">
+                                              <a  ui-sref="app.profile.timeline({id: comments.uid})">
+                                                  <img class="post-img" src="img/profile-pics/1.jpg" alt="">
+                                              </a>
+                                          </div>
+                                          <div class="media-body">
+                                              <a ui-sref="app.profile.timeline({id: comments.uid})"  ng-bind="comments.name"  class="user-name">أحمد حسن</a>
+                                              <div ng-bind="comments.created_at" class="m-b-5 text-black">منذ 4 دقائق</div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </ul>
+                          </div>
+                          <div class="media-body">
+                              <a ui-sref="app.profile.timeline({id: comments.uid})"  ng-bind="comments.name" class="user-name"></a>
+                              <div  ng-bind="comments.created_at" class="m-b-5 text-black"></div>
+                              
+                          </div>
+                          <div ng-bind="comments.body" class="text-black" r-m>
+                          </div>
+                         
+                           <div>
+                          </div>
+                      </div>
+                       <hr/>
+                  </div>
+                  <!-- Comment form -->
+                  <div class="wic-form toggled row m-r-0 m-l-0">
+                      <img ng-src="{{vm.userData.avatar}}" class="comment-img">
+                      <textarea  my-enter="vm.submitComment(post.id,$index)" ng-model="vm.comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control auto-size pull-left"></textarea>    
+                  </div>
+              </div>
+              <!-- End Comment -->
+          </div>
+      </div>
+  </div>
+</div>
+                <!--End post text -->
+  <div ng-if="dataPost">
+    <div class="card">
+      <div class="card-body card-padding empty-text">
+        لا يوجد منشورات
+      </div>
+    </div>
+  </div>
+</md-content>

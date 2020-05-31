@@ -1,0 +1,45 @@
+{
+  "name": "angular-scrolltofixed",
+  "description": "AngularJS directive for ScrollToFixed",
+  "version": "0.4.1",
+  "homepage": "https://github.com/xavierdutreilh/angular-scrolltofixed",
+  "authors": [
+    {
+      "name": "Xavier Dutreilh",
+      "email": "xavier@dutreilh.com",
+      "url": "http://xavier.dutreilh.com/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xavierdutreilh/angular-scrolltofixed.git"
+  },
+  "license": "MIT",
+  "main": [
+    "src/scrollToFixed.js"
+  ],
+  "ignore": [
+    "/.*",
+    "examples",
+    "package.json",
+    "test"
+  ],
+  "dependencies": {
+    "angular": "1.x",
+    "ScrollToFixed": "~1.0.6"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.x",
+    "normalize-css": "~4.1.1"
+  },
+  "_release": "0.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.1",
+    "commit": "db83139db0251f93646e2212272d2b6fc548e9d9"
+  },
+  "_source": "https://github.com/xavierdutreilh/angular-scrolltofixed.git",
+  "_target": "^0.4.1",
+  "_originalSource": "angular-scrolltofixed",
+  "_direct": true
+}

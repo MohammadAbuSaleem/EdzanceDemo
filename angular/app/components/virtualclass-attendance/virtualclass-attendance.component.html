@@ -1,0 +1,208 @@
+<div class="row m-b-10">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h3>
+            <i class="md md-assignment"></i> الحضور والغياب
+            <button class="btn btn-primary btn-newmark pull-left" data-toggle="modal" data-target="#allAttendanceModal" ng-if="$root.vc.instructor == $root.me.id">
+                اخذ الحضور والغياب
+            </button>
+        </h3>
+    </div>
+</div>
+<div ng-if="$root.vc.instructor == $root.me.id">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>اسم الطالب</th>
+                            <th>عدد الغيابات</th>
+                            <th>الاجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="att in attendanceAll track by $index">
+                            <td ng-bind="att.name"></td>
+                            <td class="list-group-item">
+                                <a data-toggle="modal" data-target="#attendanceModal" ng-click="getAttendance(att.id,att.name)">
+                                    <strong>
+                                        <i class=" md-flip-to-back md-flip-to-back md-flip-to-back md-flip-to-backmd  md-visibility md-visibility md-visibilitymd-visibility"></i>
+                                        التفاصيل
+                                    </strong>
+                                </a>
+                            </td> 
+                            <td ng-cloak>
+                                <div class="toggle-switch" data-ts-color="red">
+                                    <label for="ts{{$index+1}}" class="ts-label">
+                                        {{att.status ? 'الغاء الحرمان' : 'حرمان الطالب'}}
+                                    </label>
+                                    <input id="ts{{$index+1}}" name="ts{{$index+1}}"  type="checkbox" hidden="hidden" ng-click="changeStatus(att.status,att.user_id,$index)" ng-model="att.status" ng-checked="att.status == 1">
+                                    <label for="ts{{$index+1}}" class="ts-helper"></label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="attendanceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header p-10">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="registersemsterLabel">
+                        <i class="md md-school"></i>
+                        إضافة غياب
+                    </h3>
+                </div>
+                <div class="modal-body p-15">
+                    <div class="form-group row m-0 p-b-10">
+                        <label for="exampleInputName2" class="col-sm-2 p-0">اسم الطالب</label>
+                        <div class="col-sm-10 p-0-mobile ins-input">
+                            <span ng-bind="student.name"></span>
+                        </div>
+                    </div>
+                    <hr class="m-t-10 m-b-10">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed">
+                            <tr>
+                              <th style="width:33%">نوع الغياب</th>
+                              <th style="width:33%">تاريخ الغياب</th>
+                              <th style="width:33%">تعديل</th>
+                            </tr>
+                            <tr ng-repeat="att in attendance">
+                              <td>
+                                <!-- editable status (select-local) -->
+                                <span ng-model="att.type" editable-select="att.type" e-name="type" e-form="rowform" e-ng-options="s.value as s.text for s in type">
+                                  {{ getType(att.type) }}
+                                </span>
+                              </td>
+                              <td>
+                                <!-- editable group (select-remote) -->
+                                <span e-placeholder="تاريخ الغياب" editable-date="att.absence_date | date :  'dd/MM/y'" e-name="absence_date" e-value="{{att.absence_date | date :  'dd/MM/y'}}" e-form="rowform">
+                                 <!--  {{ att.absence_date | date :  "dd/MM/y"}} -->
+                                    {{ moment(att.absence_date).format('YYYY/MM/DD')}}
+                                </span>
+                              </td>
+                              <td style="white-space: nowrap">
+                                <!-- form -->
+                                <form editable-form name="rowform" onbeforesave="saveAttendance($data,$index)" ng-show="rowform.$visible" class="form-buttons form-inline"  shown="att.openEdit == 1">
+                                  <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                    حفظ
+                                  </button>
+                                  <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                                    إغلاق
+                                  </button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                  <button type="button" class="btn btn-primary" ng-click="rowform.$show()">تعديل</button>
+                                  <button type="button" class="btn btn-danger" ng-click="deleteAttendance(att.id,$index)">حذف</button>
+                                </div>  
+                              </td>
+                            </tr>
+                          </table>
+                    </div>
+                    <button type="button" class="btn btn-primary m-t-10" ng-click="addAttendance()">
+                        + إضافة غياب
+                    </button>
+                </div>
+                <div class="modal-footer border-top p-10">
+                    <button type="submit" class="btn btn-primary f-14" data-dismiss="modal">إغلاق الصندوق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="allAttendanceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header p-10">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="registersemsterLabel">
+                        <i class="md md-school"></i>
+                        اخذ الحضور والغياب
+                    </h3>
+                </div>
+                <form>
+                    <div class="modal-body p-15"> 
+                        <div class="m-b-15">
+                            <strong>تاريخ الغياب : </strong>
+                            <span class="p-r-15">
+                                <input type="date" value="{{allAttendanceDate | date:'yyyy-MM-dd'}}" data-date-format="DD MMMM YYYY" ng-model="allAttendanceDate">
+                            </span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-condensed">
+                                <tr>
+                                  <th style="width:33%">اسم الطالب</th>
+                                  <th style="width:33%">حاضر</th>
+                                  <th style="width:33%">غياب</th>
+                                  <th style="width:33%">تاخير</th>
+                                </tr>
+                                <tr ng-repeat="att in attendanceAll">
+                                    <td>
+                                        <span ng-bind="att.name"></span>
+                                    </td>
+                                    <td>
+                                        <span class="radio m-b-15">
+                                            <label>
+                                                <input type="radio" value="" name="attendancetype{{$index}}" ng-model="att.type" ng-checked="true">
+                                                <i class="input-helper"></i>
+                                            </label>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="radio m-b-15">
+                                            <label>
+                                                <input type="radio" value="absence" name="attendancetype{{$index}}" ng-model="att.type">
+                                                <i class="input-helper"></i>
+                                            </label>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="radio m-b-15">
+                                            <label>
+                                                <input type="radio" value="delay" name="attendancetypradioe{{$index}}" ng-model="att.type">
+                                                <i class="input-helper"></i>
+                                            </label>
+                                        </span>
+                                    </td>
+                                </tr>
+                              </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top p-10">
+                        <button class="btn btn-primary f-14" ng-click="saveAllAttendance(attendanceAll,allAttendanceDate)">
+                            تخزين الغيابات
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="$root.vc.instructor != $root.me.id">
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed" ng-if="stydentAtt != ''">
+            <tr>
+                <th style="width:33%">نوع الغياب</th>
+                <th style="width:33%">تاريخ الغياب</th>
+            </tr>
+            <tr ng-repeat="att in stydentAtt">
+                <td ng-bind="getType(att.type)"></td>
+                <td>{{ moment(att.absence_date).format('YYYY/MM/DD') }}</td>
+            </tr>     
+        </table>
+        <div ng-if="stydentAtt == ''">
+            <div class="card">
+                <div class="card-body f-20 p-10">
+                    لا يوجد لديك الغيابات
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

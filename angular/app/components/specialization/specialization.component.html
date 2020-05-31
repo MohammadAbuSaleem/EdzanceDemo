@@ -1,0 +1,130 @@
+<section id="content">
+    <div class="container">
+    	    <div class="col-md-2 col-sm-3 col-xs-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                   <div class="card vc-card hidden-xs">
+                        <div class="card-body card-padding">
+                           <img src="/img/unv/GJU.png" width="100%" alt="" class="">  
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h1 class="f-n-22 m-0 edzance-color">
+                        	الجامعة الألمانية الأردنية
+                        </h1>
+                        <h2 class="f-20 m-b-15 m-t-10">                          
+                        	هندسة الحاسوب
+                        </h2>
+                    </div>
+                </div>
+            </div>    
+            <div>
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.discussion">النقاشات</a>
+                </div>
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.materials">المواد الدراسية</a>
+                </div>
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.attachments">المرفقات</a>
+                </div>
+                <!-- <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.homework">الواجبات المطروحة</a>
+                </div> -->
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.students">طلبة التخصص</a>
+                </div>
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.instructors">مدرسي التخصص</a>
+                </div>
+                <!-- <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.files">الملفات</a>
+                </div> -->
+                <!-- <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.videos">الفديوهات</a>
+                </div>
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.photos">الصور</a>
+                </div> -->
+                <div class="tabs-edzance" ui-sref-active="active">
+                    <a class="" ui-sref="app.specialization.groups">المجموعات</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-6 col-xs-12">
+           <div ui-view></div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div>
+                <div>
+                    <h4>
+                        <i class="md md-add-box"></i>
+                        متابعة المزيد من الزملاء داخل تخصصك
+                    </h4>
+                </div>
+                <div>
+                    <div ng-repeat="(key,friend)  in univ | limitTo: 3"  class="item" ng-class="{active:$first}" ng-init="vm.fr[friend.id] = key" >
+                        <div class="card animated">
+                            <div class="card-body">
+                                <div  ng-model="vm.friend[friend.id]" id="friend-{{friend.id}}"  class="row m-0">
+                                    <div class="pull-right">
+                                        <img ng-src="{{friend.avatar}}" alt="" class="suggestion-img">
+                                    </div>
+                                    <div class="media-body col-md-12 col-xs-12">
+                                        <a  ui-sref="app.profile.timeline({id: friend.id})" ><div ng-bind="friend.name + ' ' + friend.last_name " class="user-name m-t-15"></div></a>
+                                        <div ng-bind=" 'جامعة ' + friend.university" ></div>
+                                    </div>
+                                    <div class="pull-left p-l-15">
+                                        <a ng-click="vm.follow(friend.id,'follower',$index);vm.friend[friend.id]=1;" class="btn btn-primary waves-effect waves-button waves-float fn-lg follow-btn-margin">
+                                                <i class="md md-person-add"></i>
+                                                متابعة
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h4>
+                        <i class="md md-add-box"></i>
+                        مجموعات ذات صلة
+                    </h4>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div class="group-box">
+                                <div class="position-relative">
+                                    <img src="img/profile-menu.png" width="100%" height="120">
+                                    <div class="member-img-div">
+                                        <img src="img/profile-pics/1.jpg" class="group-member-img"/>
+                                        <img src="img/profile-pics/2.jpg" class="group-member-img"/>
+                                        <img src="img/profile-pics/3.jpg" class="group-member-img"/>
+                                        <img src="img/profile-pics/4.jpg" class="group-member-img"/>
+                                        <img src="img/profile-pics/5.jpg" class="group-member-img"/>
+                                    </div>
+                                </div>
+                                <div class="p-10 m-t-5">
+                                    <div class="f-18">
+                                        تعلم البرمجة في ستة ايام
+                                    </div>
+                                    <div>
+                                        الأعضاء 161,507
+                                    </div>
+                                    <div class="join-btn">
+                                        <a ui-sref="app.group.discussion" class="btn btn-default f-15 down-btn">
+                                            الانضمام
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

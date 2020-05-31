@@ -1,0 +1,149 @@
+<div class="row m-t-10">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    	<div class="media">
+	    	<div class="card">
+	    		<div class="card-body" data-toggle="modal" data-target="#materialModal">
+			    	<div class="pull-right m-l-10">
+			    		<a ui-sref="app.profile.timeline({id:sclass.uid})"> 
+			     			<img ng-src="images/avatar/default.jpg" class="schedule-img" alt=""> 
+			     		</a>
+			    	</div>
+			    	<div class="media-body p-5">
+			    		<div>
+			    			<i class="md md-description"></i>
+			    			<span class="schedule-title">الرياضيات الهندسية</span>
+			    		</div>
+			    		<div>
+			    			<i class="md md-home"></i>
+			    			القاعة: <span>102</span>
+			    			&nbsp; &nbsp; &nbsp; &nbsp;
+			    			<span>
+				    			<i class="md md-event"></i>
+				    			<span>
+				    			الأيام: <span>الاحد,الثلاثاء,الخميس</span>
+				    			</span>
+				    		</span>
+			    		</div>
+			    		<div class="mobile-newline">
+			    			<span>
+			    			<i class="md md-query-builder"></i>
+			    			من: <span>10:35:00</span>
+			    			</span>
+			    			|
+			    			<span>
+			    			الى: <span>10:50:00</span>
+			    			</span>
+		    			</div>
+			    		<div class="add-profile-course" ng-if="$root.prodata.acctype == 1 && itsmyclass">
+		                    <a ui-sref="app.virtualclass.discussion({classid:sclass.class_id})" class="btn btn-success waves-effect waves-button waves-float fn-lg m-t-5">
+			                         الذهاب الى المادة  
+			                </a>
+			    		</div>
+			    		<div class="add-profile-course" ng-if="$root.prodata.acctype == 1 && x`">
+		                    <a ui-sref-active="active" data-toggle="modal" data-target="#registersemster" class="btn btn-success waves-effect waves-button waves-float fn-lg m-t-5">
+			                  <i class="md md-add"></i>
+			                          تسجيل المادة  
+			                </a>
+			    		</div>
+			    	</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+<div class="modal fade" id="materialModal" tabindex="-1" role="dialog" aria-labelledby="newGroupLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">
+        	الرياضيات الهندسية
+        </h3>
+      </div>
+       <form name="vm.newgroupform">
+      <div class="modal-body">
+		<div class="row m-b-10">
+			<div class="col-md-2 col-sm-2 col-xs-2">
+				<img src="/images/avatar/default.jpg" class="material-img">
+			</div>
+			<div class="col-md-10 col-sm-10 col-xs-10 f-20">
+				<div>
+					<strong>المدرس: </span>
+					<span>خالد يعقوب العمري</span>
+				</div>
+				<div>
+					<strong>التخصص: </span>
+					<span>الهندسة الميكانيكية</span>
+				</div>
+				<div>
+					<strong>الجامعة: </span>
+					<span>جامعة العالوم والتكنولوجيا الااردنية</span>
+				</div>
+			</div>
+		</div>
+		<div class="row m-b-10">
+			<div class="col-md-4 col-sm-4 col-xs-4">
+				<div>
+					<strong>
+						أيام التدريس
+					</strong>
+				</div>
+				<div>احد, ثلاثاء, خميس</div>
+			</div>
+			<div class="col-md-8 col-sm-8 col-xs-8">
+				<div>
+					<strong>
+						اوقات التدريس
+					</strong>
+				</div>
+				<div>
+					<span class="p-l-30">
+						من الساعة | 2:00م
+					</span>
+					<span>
+						الى الساعة | 3:00م
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row m-b-10">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div>
+					<strong>
+					وصف المادة
+					</strong>
+				</div>
+				<div>مادة ذكاء رياضي تعكمل على توفير سبل التعليم الرياضية بطريقة أفضل واذكى وتسعى لالهام الطلبة</div>
+			</div>
+		</div>
+		<div class="row m-b-15">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="m-b-5">
+					<strong>
+						الطلبة المنسبين
+					</strong>
+				</div>
+				<img src="/images/avatar/default.jpg" class="material-user-img" />
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<img src="/images/avatar/default.jpg" class="material-user-img"/>
+				<div class="user-m-number">
+					+30
+				</div>
+			</div>
+		</div>
+		<div class="row m-b-5">
+			<div class="col-md-5 col-sm-5 col-xs-5 p-l-5">
+				<button class="btn btn-primary btn-block">طلب الانضمام للمادة</button>	
+			</div>
+			<div class="col-md-7 col-sm-7 col-xs-7 p-r-5">
+			<button class="btn btn-primary btn-block">انضم الآن الى المادة في حال كنت تملك رمز التسجيل</button>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>

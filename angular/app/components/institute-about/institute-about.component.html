@@ -1,0 +1,164 @@
+<div class="m-h-m-5">
+    <div class="col-md-6 col-sm-6 col-xs-12 p-0"  ng-click="vm.modalOpen()">
+        <div class="pmb-block">
+            <div class="card m-b-0">
+                <div class="pmbb-body p-10">
+                    <div class="pmbb-view text-center">
+                        <i class="md  md-add-circle-outline add-newgroup-icon"></i>
+                        <div class="f-18">إضافة صندوق جديد</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="col-md-6 col-sm-6 col-xs-12 p-0" ng-repeat="(key, inf) in $root.about">
+        <div class="pmb-block">
+            <div class="card m-b-0"> 
+                <form editable-form name="info" onaftersave="vm.info()">
+                    <div class="pmbb-header box-header">
+                        <h2>
+                    		<i class="md md-{{inf.icon}} icon-box school-icon"></i>
+                            <span ng-bind="inf.name"></span>
+                    	</h2>
+                        <ul class="actions p-t-10 p-l-10">
+                            <li class="dropdown">
+                                <a ng-hide="info.$visible" href="" data-toggle="dropdown">
+                                    <i class="md md-more-vert"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="javascript:void(0)" ng-click="info.$show()" ng-hide="info.$visible">تعديل</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pmbb-body p-10">
+                        <div class="pmbb-view">
+                            <div>
+                                <dl class="row dl-horizontal m-0" ng-repeat="(key, value) in inf.data">
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <span e-placeholder="ادخل هنا" editable-text="value.title" e-name="name" ng-model="value.title" ng-bind="value.title || 'لم يتم ادخال معلومات'">
+                                        </span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-8 username">
+                                        <span e-placeholder="ادخل هنا" editable-text="value.value" e-type={{value.type}} e-name="name" ng-model="value.value" ng-bind="value.value || 'لم يتم ادخال معلومات'">
+                                        </span>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="text-left" ng-show="info.$visible">
+                            <button type="submit" class="btn btn-primary" ng-disabled="info.$waiting">
+                                حفظ
+                            </button>
+                            <button type="button" class="btn btn-default" ng-disabled="info.$waiting" ng-click="info.$cancel()">
+                                الغاء
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="newBox.html">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="mvm.cancel()"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">
+            <i class="md md-add-box"></i>
+            إنشاء صندوق جديدة
+        </h3>
+      </div>
+       <form name="mvm.newBoxform" novalidate ng-submit="mvm.addNewBox(mvm.newBoxform,vm)" autocomplete="off">
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+                    <label for="boxName">اسم صندوق</label>
+                    <input ng-model="$root.newBox.name" type="text"  class="form-control" placeholder="اسم صندوق" name="boxName" required="required">
+                    <i class="md md-error form-error left-6 group-error" tooltip-placement="bottom" uib-tooltip="ادخل اسم صندوق" ng-show="mvm.newBoxform.boxName.$invalid && mvm.newBoxform.$submitted" aria-hidden="false"></i>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+                    <label for="boxName">اختر الإيقونه</label>
+                    <md-select ng-model="$root.newBox.icon" placeholder="اختر الإيقونه" class="full-width" required="required">
+                      <md-option value="info"><i class="md md-info icon-box school-icon"></i></md-option>
+                      <md-option value="access-time"><i class="md md-access-time icon-box school-icon"></i></md-option>
+                      <md-option value="attach-money"><i class="md md-attach-money icon-box school-icon"></i></md-option>
+                      <md-option value="phone"><i class="md md-phone icon-box school-icon"></i></md-option>
+                    </md-select>
+                    <i class="md md-error form-error left-6 group-error" tooltip-placement="bottom" uib-tooltip="ادخل اسم صندوق" ng-show="mvm.newBoxform.boxName.$invalid && mvm.newBoxform.$submitted" aria-hidden="false"></i>
+                </div>
+            </div>
+            <hr/>
+            <div ng-repeat="(key, value) in $root.newBox.data">
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+                        <div class="fg-line">
+                            <div class="select">
+                            <label for="sel1">العنوان</label>
+                            <input ng-model="$root.newBox.data[key].title" type="text" class="form-control" placeholder="العنوان" name="title" required="required">
+                            <i class="md md-error form-error group-error" tooltip-placement="bottom" uib-tooltip="ادخل العنوان" ng-show="mvm.newBoxform.title.$invalid && mvm.newBoxform.$submitted" aria-hidden="false"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12 position-relative">
+                        <div class="fg-line">
+                            <div class="select">
+                            <label for="sel1">النوع</label>
+                            <md-select ng-model="$root.newBox.data[key].type" placeholder="النوع" class="full-width"  required="required">
+                              <md-option value="text">نص</md-option>
+                              <md-option value="date">تاريخ</md-option>
+                              <md-option value="number">رقم</md-option>
+                              <md-option value="email">ايميل</md-option>
+                              <md-option value="url">رابط</md-option>
+                            </md-select> 
+                            <i class="md md-error form-error group-error" tooltip-placement="bottom" uib-tooltip="ادخل النوع" ng-show="mvm.newBoxform.type.$invalid && mvm.newBoxform.$submitted" aria-hidden="false"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group position-relative">
+                    <div class="fg-line">
+                        <div class="select">
+                            <label for="sel1">المحتوى</label>
+                            <input ng-model="$root.newBox.data[key].value" type="{{$root.newBox.data[key].type}}"  class="form-control" placeholder="المحتوى" name="value" required="required">
+                            <i class="md md-error form-error group-error left-6" tooltip-placement="bottom" uib-tooltip="ادخل المحتوى" ng-show="mvm.newBoxform.value.$invalid && mvm.newBoxform.$submitted" aria-hidden="false"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div>
+                <a ng-click="mvm.addNewItem();">+ إضافة عنصر جديد</a>
+            </div>
+            <div class="pmb-block">
+                <div class="card m-b-0"> 
+                        <div class="pmbb-header box-header">
+                            <h2>
+                                <i class="md md-{{$root.newBox.icon}} icon-box school-icon"></i>
+                                <span ng-bind="$root.newBox.name"></span>
+                            </h2>
+                        </div>
+                        <div class="pmbb-body p-10">
+                            <div class="pmbb-view">
+                                <div>
+                                    <dl class="row dl-horizontal" ng-repeat="(key, value) in $root.newBox.data">
+                                        <div class="col-md-4 col-sm-4 col-xs-4" ng-bind="value.title || 'لم يتم ادخال معلومات'"></div>
+                                        <div class="col-md-8 col-sm-8 col-xs-8 username">
+                                            <span ng-bind="value.value || 'لم يتم ادخال معلومات'">
+                                            </span>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+      </div>
+      <div class="text-center p-h-10 p-b-15">
+        <button type="submit" class="btn btn-primary p-r-30 p-l-30 f-16">إنشاء صندوق</button>
+      </div>
+      </form>
+    </div>
+</script>

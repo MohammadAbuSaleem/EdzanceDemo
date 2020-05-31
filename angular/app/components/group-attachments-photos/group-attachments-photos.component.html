@@ -1,0 +1,33 @@
+<div infinite-scroll='getPost();' infinite-scroll-disabled='$root.busy' infinite-scroll-distance='1' ng-show="nopost == 1">
+  <div ng-repeat="(key,image) in dat | orderBy: 'created_at':true">
+     <div class="col-md-4 col-xs-6 timeline-follower-padding"> 
+       <img src="img/icons/infinity.svg" lazy-img="{{image.media}}" class="timeline-follower image-post" img-model data-toggle="modal" data-target="#imgModel" height="140px" />
+     </div>
+  </div> 
+</div>
+<div ng-show="nopost == 3" class="position-relative">
+  <div class="empty-img-profile">
+    <div class="empty-div">
+      <div>
+        <img src="img/faces/sad-face.svg">
+      </div>
+      <div class="text">  
+        لا يوجد صور لعرضها
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="modal fade" id="imgModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-modal-dialog" role="document">
+        <div class="text-center">
+          <div>
+            <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div>
+            <div>
+            <img src="" class="img-mirror">
+            </div>
+          </div>
+        </div>
+    </div>
+</div> -->

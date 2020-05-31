@@ -1,0 +1,6 @@
+<div ng-if="$root.groupObj.member != 'out' && $root.groupObj.member != 'waiting'">
+	<post-new req-url="me/post" req-type="post" req-parent="home"></post-new>
+</div>
+<div class="m-t-10">
+	<div ui-view="post"></div> 
+</div>

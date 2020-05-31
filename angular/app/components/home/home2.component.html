@@ -1,0 +1,478 @@
+
+        <section id="content">
+            <div class="container">
+                <div class="col-md-7 col-sm-7">
+                    <div class="media">
+                        <div class="pull-right p-l-10 post-tool">
+                            <div>
+                                <a class="btn btn-primary btn-sm waves-effect waves-button waves-float postText">
+                                    <i class="md md-create  fn-lg"></i>
+                                </a>
+                            </div>
+                             <div>
+                                <a type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float postVideo">
+                                    <i class="md md-videocam fn-lg"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float postImg">
+                                    <i class="md  md-insert-photo fn-lg"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float postCode">
+                                    <i class="md  md-thumbs-up-down fn-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                        <div class="card">
+                        <div class="card-body card-padding">
+                            <div class="media-body p-r-20">
+                            <form ng-submit="vm.submitText()">
+                                <div class="row post-text">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="fg-line">
+                                            <textarea  ng-model="vm.textpost" my-enter="vm.submitText()" class="form-control auto-size post-textarea" rows="6" placeholder="بم تفكر؟..."></textarea>
+                                        </div> 
+                                            <div class="liveurl-loader"></div>
+                                            <div class="liveurl">
+                                                <div class="close" title="close"></div>
+                                                <div class="inner">
+                                                    <div class="image"> </div>
+                                                    <div class="details">
+                                                        <div class="info">
+                                                            <div class="title"> </div>
+                                                            <div class="description"> </div> 
+                                                            <div class="url"> </div>
+                                                        </div>
+                                                        <div class="thumbnail">
+                                                            <div class="pictures">
+                                                                <div class="controls">
+                                                                    <div class="prev button inactive"></div>
+                                                                    <div class="next button inactive"></div>
+                                                                    <div class="count">
+                                                                        <span class="current">0</span><span> v on </span><span class="max">0</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="video"></div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        <div class="fg-line">
+                                          <input my-enter="vm.test(12)" class="form-control auto-size" ng-model="vm.tag"  type="text">
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                                <form ng-submit="vm.submitVideo()">
+                                <div class="row post-video hidden-element">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="fg-line">
+                                            <textarea  ng-model="vm.videoPost" class="form-control auto-size post-textarea" rows="6" placeholder="بم تفكر؟..."></textarea>
+                                        </div> 
+                                            <div class="liveurl-loader"></div>
+                                            <div class="liveurl">
+                                                <div class="close" title="Entfernen"></div>
+                                                <div class="inner">
+                                                    <div class="image"> </div>
+                                                    <div class="details">
+                                                        <div class="info">
+                                                            <div class="title"> </div>
+                                                            <div class="description"> </div> 
+                                                            <div class="url"> </div>
+                                                        </div>
+                                                        <div class="thumbnail">
+                                                            <div class="pictures">
+                                                                <div class="controls">
+                                                                    <div class="prev button inactive"></div>
+                                                                    <div class="next button inactive"></div>
+                                                                    <div class="count">
+                                                                        <span class="current">0</span><span> von </span><span class="max">0</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="video"></div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        <div class="fg-line">
+                                          <input class="form-control auto-size" ng-model="vm.tag"  type="text">
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                                <form ng-submit="vm.submitImg()">
+                                <div class="row post-img1 hidden-element">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <input type="file"
+                                               accept="image/*"
+                                               ng-model="vm.file"
+                                               onchange="angular.element(this).scope().fileChanged(this); angular.element(this).scope().$digest();"
+                                               ng-model="vm.imgPost" />  
+                                        <div class="fg-line">
+                                          <input class="form-control auto-size" ng-model="vm.tag"  type="text">
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                                <form ng-submit="vm.submitCode()">
+                                 <div class="row post-code hidden-element">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="fg-line">
+                                            <textarea  ng-model="vm.codePost" class="form-control auto-size" rows="6" placeholder="بم تفكر؟..."></textarea>
+                                        </div>   
+                                        <div class="fg-line">
+                                          <input class="form-control auto-size" ng-model="vm.tag"  type="text">
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                                <!--                                    <hr/>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                                                            <div class="fg-line">
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control" placeholder="Search for...">
+                                                                                    <span class="input-group-btn">
+                                                                                        <button class="btn btn-default" type="button">Go!</button>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>-->
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- {{dat}} -->
+                    <div ng-repeat="post in dat| orderBy: 'created_at':true"  class="media animated">
+                        <div class="pull-right hidden-xs p-l-10">
+                            <a ui-sref="app.profile.timeline({id: vm.userData.id})" class="img-fram">
+                                <img class="post-img" ng-src="{{vm.userData.avatar}}" src="img/profile-pics/5.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <div class="card w-item">
+                                <div class="card-body card-padding">
+
+                                    <div class="media">
+                                        <div class="pull-right hidden-md hidden-sm hidden-lg">
+                                            <a ui-sref="app.profile.timeline({id: post.userid})">
+                                                <img class="post-img" ng-src="{{post.avatar}}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <a class="user-name"  ng-bind="post.name | capitalize"></a>
+                                            <div class="text-black"  ng-bind="post.created_at"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-t-15">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" ng-bind="post.body">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wi-comments">
+                                    <div class="list-group" ng-repeat="comments in post.comment| orderBy: 'created_at'"  class="media animated fadeIn">
+                                        <div class="list-group-item media">
+                                            <div class="pull-right">  
+                                                <ul class="list-unstyled p-r-0">
+                                                    <li>
+                                                        <a data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-html="true" ui-sref="app.profile.timeline({id: comments.uid})" id="login" data-original-title="" title="">
+                                                            <img class="post-img" ng-src="{{comments.avatar}}"  src="img/profile-pics/1.jpg" alt="">
+                                                        </a>
+                                                    </li>
+                                                    <div id="popover-content" class="hide">
+                                                        <div class="media">
+                                                            <div class="pull-right">
+                                                                <a  ui-sref="app.profile.timeline({id: comments.uid})">
+                                                                    <img class="post-img" src="img/profile-pics/1.jpg" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <a ui-sref="app.profile.about({id: comments.uid})"  ng-bind="{{comments.name}}"  class="user-name"></a>
+                                                                <div class="m-b-5 text-black"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="media-body">
+                                                <a ui-sref="app.profile.timeline({id: comments.uid})" ng-bind="{{comments.name}}" class="user-name"></a>
+                                                <div class="m-b-5 text-gray">{{comments.created_at}}</div>
+                                                <div> 
+                                                    {{comments.body}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Comment form -->
+                                    <div class="wic-form toggled">
+                                        <textarea  my-enter="vm.test(post.id)" ng-model="vm.comment[post.id]" placeholder="اكتب تعليقك..." data-ma-action="wall-comment-open" class="form-control auto-size"></textarea>
+                                        <button ng-click="vm.submitComment(post.id,$index)" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float pull-left fn-lg">
+                                            نشر
+                                            <i class="md md-send"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="img/300x200.gif" alt="" width="100%"/>   
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-5">
+                    <div class="card">
+                        <div class="card-body card-padding">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <img src="img/profile-pics/5.jpg" alt="" class="user-img">
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                <div class="user-name">حمزة النتشة</div>
+                                                <div>جامعة الحسين بن طلال</div>
+                                                <div>علم الحاسوب</div>
+                                                <div>
+                                                    <button class="btn btn-primary waves-effect waves-button waves-float fn-lg m-t-10">
+                                                        <i class="md md-person-add"></i>
+                                                        متابعة
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="friend in university| orderBy: 'created_at':true"  class="item">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <img ng-src="friend.avatar" src="img/profile-pics/2.jpg" alt="" class="user-img">
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                <div ng-bind="friend.name + ' ' + friend.last_name " class="user-name"></div>
+                                                <div ng-bind=" 'جامعة ' + friend.university" ></div>
+                                                <div  ng-bind="friend.specialition"></div>
+                                                <div>
+                                                    <button class="btn btn-primary waves-effect waves-button waves-float fn-lg m-t-10">
+                                                        <i class="md md-person-add"></i>
+                                                        متابعة
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--                                    <div class="item">
+                                                                            <div class="text-center">
+                                                                                <a>
+                                                                                    مشاهده المزيد من المقترح
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>-->
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="md md-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="md md-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="img/300x200.gif" alt="" width="100%"/>   
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            
+            !function(e){e.fn.extend({liveUrl:function(t){var i={meta:[["description","name","description"],["description","property","og:description"],["description","property","pinterestapp:about"],["image","property","og:image"],["image","itemprop","image"],["title","property","og:title"],["video","property","og:video"],["video_type","property","og:video:type"],["video_width","property","og:video:width"],["video_height","property","og:video:height"]],findLogo:!1,findDescription:!0,matchNoData:!0,multipleImages:!0,defaultProtocol:"http://",minWidth:100,minHeight:32,logoWord:"logo",success:function(){},loadStart:function(){},loadEnd:function(){},imgLoadStart:function(){},imgLoadEnd:function(){},addImage:function(){}},t=e.extend(i,t);this.each(function(){var i=t,r={already:[]},a={};r.init=function(){r.preview=!1,r.processedImg=0,a={url:"",images:[],image:"",title:"",description:""}},r.textUpdate=function(t){var i=e.urlHelper.getLinks(e(t).val());r.cleanDuplicates(i),null!=i&&(r.preview||(r.current=e(t),r.process(i)))},r.process=function(t){for(var n in t){var o=t[n];if("string"==typeof o){var s=new e.urlHelper.UriParser(o);if((s.subdomain&&s.subdomain.length>0||s.protocol&&s.protocol.length>0)&&(0==s.protocol.length&&(o=i.defaultProtocol+o),!r.isDuplicate(o,r.already)))return e.urlHelper.isImage(o)?(a.image=o,r.getPreview({},o)):r.getData(o),!0}}},r.cleanDuplicates=function(t){var i=r.createLinks(t);for(var a in r.already){var n=r.already[a];if(!r.isDuplicate(n,i)){var a=e.inArray(n,r.already);r.already.splice(a,1)}}},r.createLinks=function(t){var r=[];for(var a in t){var n=t[a];if("string"==typeof n){var o=new e.urlHelper.UriParser(n);(o.subdomain&&o.subdomain.length>0||o.protocol&&o.protocol.length>0)&&(0==o.protocol.length&&(n=i.defaultProtocol+n),r.push(n))}}return r},r.isDuplicate=function(t,i){var r=!1;return e.each(i,function(e,i){i==t&&(r=!0)}),r},r.getData=function(t){var i="//head|//body",a='select * from html where url="'+t+'" and compat="html5" and xpath="'+i+'"';r.addLoader(),e.yql(a,function(){var e={query:{results:null}};return r.ajaxSuccess(e,t),r.removeLoader(),!1},function(e){r.ajaxSuccess(e,t)})},r.ajaxSuccess=function(t,a){return r.isDuplicate(a,r.already)||r.preview?(r.removeLoader(),!1):void(0==e(t).find("results").text().length?i.matchNoData?r.getPreview(t,a):(r.already.push(a),r.removeLoader()):r.getPreview(t,a))},r.hasValue=function(e){return 0==a[e].length?!1:!0},r.getPreview=function(t,n){r.preview=!0,r.already.push(n);var o="";if(e(t,"<head>").find("title").each(function(){o=e(this).text()}),a.title=o||n,a.url=n,e(t,"<head>").find("meta").each(function(){r.setMetaData(e(this))}),i.findDescription&&!r.hasValue("description")&&e(t,"<body>").find("p").each(function(){var t=e.trim(e(this).text());return t.length>3?(a.description=t,!1):void 0}),!r.hasValue("image")){var s=e(t,"<body>").find("img");i.findLogo&&s.each(function(){var t=e(this);return t.attr("src")&&-1!=t.attr("src").search(i.logoWord,"i")||t.attr("id")&&-1!=t.attr("id").search(i.logoWord,"i")||this.className&&-1!=this.className.search(i.logoWord,"i")?(a.image=e(this).attr("src"),!1):void 0}),!r.hasValue("image")&&s.length>0&&s.each(function(){a.images.push(e(this).attr("src"))})}r.removeLoader();var l="undefined",t={title:a.title,description:a.description,url:a.url,video:typeof a.video!=l&&a.video.length>0?{}:null};null!=t.video&&(t.video={file:a.video,type:typeof a.video_type!=l?a.video_type:"",width:typeof a.video_width!=l?a.video_width:"",height:typeof a.video_height!=l?a.video_height:""}),i.success(t),r.hasValue("image")&&(a.images.push(a.image),a.image=""),r.addImages(),r.current.one("clear",function(){r.init()})},r.addLoader=function(){i.loadStart()},r.removeLoader=function(){i.loadEnd()},r.setMetaData=function(e){for(index in i.meta){var t=i.meta[index];a[t[0]]=r.getValue(e,t[1],t[2])||a[t[0]]}},r.getValue=function(e,t,i){return e.attr(t)&&e.attr(t).toLowerCase()==i.toLowerCase()&&e.attr("content")&&e.attr("content").length>0?e.attr("content"):void 0},r.addImages=function(){for(var t in a.images){var n=a.images[t];if(!e.urlHelper.isAbsolute(n)){var o=new e.urlHelper.UriParser(a.url),s=o.url+o.subdomain+o.domain;n=e.urlHelper.isPathAbsolute(n)?s+n:s+e.urlHelper.stripFile(o.path)+"/"+n}r.getImage(n,function(e){e.width>=i.minWidth&&e.height>=i.minHeight&&r.preview&&(i.addImage(e),!i.multipleImages)})}},r.getImage=function(t,n){var o=e.urlHelper.hasParam(t)?"&":"?";t+=o+"random="+(new Date).getTime(),e("<img />").attr({src:t}).load(function(){var e=this,t=window.setInterval(function(){r.processedImg++,e.width&&(window.clearInterval(t),n(e)),r.processedImg==a.images.length&&i.imgLoadEnd()},100)})},r.init();var n=this,o=e(this);o.on("keyup",function(t){var i=e.urlHelper.getLinks(e(o).val());r.cleanDuplicates(i),window.clearInterval(r.textTimer);var a=t.keyCode?t.keyCode:t.which;13==a||32==a?r.textUpdate(n):r.textTimer=window.setInterval(function(){r.textUpdate(n),window.clearInterval(r.textTimer)},1e3)}).on("paste",function(){r.textUpdate(n)})})}}),jQuery.yql=function t(i,r,a){var t={path:"http://query.yahooapis.com/v1/public/yql?q=",query:encodeURIComponent(i)},n=/msie/.test(navigator.userAgent.toLowerCase());if(n&&window.XDomainRequest){var o=new XDomainRequest;o.open("get",t.path+t.query),o.onload=function(){a(o.responseText)},o.send()}else e.ajax({crossDomain:!0,cache:!1,type:"GET",url:t.path+t.query,timeout:8e3,dataType:"xml",error:r,success:a})},jQuery.urlHelper={UriParser:function(e){this._regExp=/^((\w+):\/\/\/?)?((\w+):?(\w+)?@)?([^\/\?:]+)?(:\d+)?(.*)?/,this._regExpHost=/^(.+\.)?(.+\..+)$/,this._getVal=function(e,t){return e?"undefined"==typeof e[t]?"":e[t]:null},this.parse=function(e){var t=this._regExp.exec(e);this.results=t,this.url=this._getVal(t,1),this.protocol=this._getVal(t,2),this.username=this._getVal(t,4),this.password=this._getVal(t,5),this.domain=this._getVal(t,6),this.port=this._getVal(t,7),this.path=this._getVal(t,8);var i=this._regExpHost.exec(this.domain);return this.subdomain=this._getVal(i,1),this.domain=this._getVal(i,2),t},e&&this.parse(e)},getLinks:function(e){var t=/((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;return e.match(t)},isImage:function(e,t){null==t&&(t="jpg|gif|png|jpeg");var i=/([^\s]+(?=\.(jpg|gif|png|jpeg))\.\2)/gm;return e.match(i)},isAbsolute:function(e){var t=/^(https?:)?\/\//i,i=null!=e.match(t)?!0:!1;return i},isPathAbsolute:function(e){return"/"==e.substr(0,1)?!0:void 0},hasParam:function(e){return-1==e.lastIndexOf("?")?!1:!0},stripFile:function(e){return e.substr(0,e.lastIndexOf("/")+1)}}}(jQuery);
+
+
+
+
+                           var curImages = new Array();
+                
+                $('.post-textarea').liveUrl({
+                    loadStart : function(){
+                        $('.liveurl-loader').show();
+                    },
+                    loadEnd : function(){
+                        $('.liveurl-loader').hide();
+                    },
+                    success : function(data) 
+                    {                        
+                        var output = $('.liveurl');
+                        output.find('.title').text(data.title);
+                        output.find('.description').text(data.description);
+                        output.find('.url').text(data.url);
+                        output.find('.image').empty();
+                        
+                        output.find('.close').one('click', function() 
+                        {
+                            var liveUrl     = $(this).parent();
+                            liveUrl.hide('fast');
+                            liveUrl.find('.video').html('').hide();
+                            liveUrl.find('.image').html('');
+                            liveUrl.find('.controls .prev').addClass('inactive');
+                            liveUrl.find('.controls .next').addClass('inactive');
+                            liveUrl.find('.thumbnail').hide();
+                            liveUrl.find('.image').hide();
+
+                            $('textarea').trigger('clear'); 
+                            curImages = new Array();
+                        });
+                        
+                        output.show('fast');
+                        
+                        if (data.video != null) {                       
+                            var ratioW        = data.video.width  /350;
+                            data.video.width  = 350;
+                            data.video.height = data.video.height / ratioW;
+        
+                            var video = 
+                            '<object width="' + data.video.width  + '" height="' + data.video.height  + '">' +
+                                '<param name="movie"' +
+                                      'value="' + data.video.file  + '"></param>' +
+                                '<param name="allowScriptAccess" value="always"></param>' +
+                                '<embed src="' + data.video.file  + '"' +
+                                      'type="application/x-shockwave-flash"' +
+                                      'allowscriptaccess="always"' +
+                                      'width="' + data.video.width  + '" height="' + data.video.height  + '"></embed>' +
+                            '</object>';
+                            output.find('.video').html(video).show();
+                            
+                         
+                        }
+                    },
+                    addImage : function(image)
+                    {   
+                        var output  = $('.liveurl');
+                        var jqImage = $(image);
+                        jqImage.attr('alt', 'Preview');
+                        
+                        if ((image.width / image.height)  > 7 
+                        ||  (image.height / image.width)  > 4 ) {
+                            // we dont want extra large images...
+                            return false;
+                        } 
+
+                        curImages.push(jqImage.attr('src'));
+                        output.find('.image').append(jqImage);
+                        
+                        
+                        if (curImages.length == 1) {
+                            // first image...
+                            
+                            output.find('.thumbnail .current').text('1');
+                            output.find('.thumbnail').show();
+                            output.find('.image').show();
+                            jqImage.addClass('active');
+                            
+                        }
+                        
+                        if (curImages.length == 2) {
+                            output.find('.controls .next').removeClass('inactive');
+                        }
+                        
+                        output.find('.thumbnail .max').text(curImages.length);
+                    }
+                });
+              
+              
+                $('.liveurl ').on('click', '.controls .button', function() 
+                {
+                    var self        = $(this);
+                    var liveUrl     = $(this).parents('.liveurl');
+                    var content     = liveUrl.find('.image');
+                    var images      = $('img', content);
+                    var activeImage = $('img.active', content);
+
+                    if (self.hasClass('next')) 
+                         var elem = activeImage.next("img");
+                    else var elem = activeImage.prev("img");
+      
+                    if (elem.length > 0) {
+                        activeImage.removeClass('active');
+                        elem.addClass('active');  
+                        liveUrl.find('.thumbnail .current').text(elem.index() +1);
+                        
+                        if (elem.index() +1 == images.length || elem.index()+1 == 1) {
+                            self.addClass('inactive');
+                        }
+                    }
+
+                    if (self.hasClass('next')) 
+                         var other = elem.prev("img");
+                    else var other = elem.next("img");
+                    
+                    if (other.length > 0) {
+                        if (self.hasClass('next')) 
+                               self.prev().removeClass('inactive');
+                        else   self.next().removeClass('inactive');
+                   } else {
+                        if (self.hasClass('next')) 
+                               self.prev().addClass('inactive');
+                        else   self.next().addClass('inactive');
+                   }
+                   
+                   
+                   
+                }); 
+            $( ".postText").click(function() {
+                $(".post-text").removeClass("hidden-element");
+                $(".post-video").addClass("hidden-element");
+                $(".post-img1").addClass("hidden-element");
+                $(".post-code").addClass("hidden-element");
+            });
+            $( ".postVideo" ).click(function() {
+                $(".post-text").addClass("hidden-element");
+                $(".post-video").removeClass("hidden-element");
+                $(".post-img1").addClass("hidden-element");
+                $(".post-code").addClass("hidden-element");
+            });
+            $( ".postImg" ).click(function() {
+                $(".post-text").addClass("hidden-element");
+                $(".post-video").addClass("hidden-element");
+                $(".post-img1").removeClass("hidden-element");
+                $(".post-code").addClass("hidden-element");
+            });
+            $( ".postCode" ).click(function() {
+                $(".post-text").addClass("hidden-element");
+                $(".post-video").addClass("hidden-element");
+                $(".post-img1").addClass("hidden-element");
+                $(".post-code").removeClass("hidden-element");
+            });
+           
+        </script>
